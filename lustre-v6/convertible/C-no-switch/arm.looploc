@@ -1,0 +1,24 @@
+<!-- those bounds was guessed fro the assembly code ...
+pretty sure they are realistic:
+they are related to:
+- floating points
+6: cause 6*4 = 23 (+1 virtual) bits of mantissa
+23: cause 23 bits of mantissa
+- double precision
+5: case 5*4 = 20 +1 bits of HALF/mantissa
+21: HALF/mantissa
+--> 
+<loop source="gcc-4.4.2/.*/arm/ieee754-sf.S" line="691"  maxcount="6"></loop>
+<loop source="gcc-4.4.2/.*/arm/ieee754-sf.S" line="744"  maxcount="23"></loop>
+<loop source="gcc-4.4.2/.*/arm/ieee754-sf.S" line="752"  maxcount="23"></loop>
+<loop source="gcc-4.4.2/.*/arm/ieee754-sf.S" line="577"  maxcount="23"></loop>
+<loop source="gcc-4.4.2/.*/arm/ieee754-sf.S" line="585"  maxcount="23"></loop>
+
+<loop source="gcc-4.4.2/.*/arm/ieee754-df.S" line="968"  maxcount="5"></loop>
+<loop source="gcc-4.4.2/.*/arm/ieee754-df.S" line="829"  maxcount="21"></loop>
+<loop source="gcc-4.4.2/.*/arm/ieee754-df.S" line="840"  maxcount="21"></loop>
+
+<!-- this one is not sure at all ... 
+seems to appear in a integer lib, where 32-bits are lifted one by one (?)
+-->
+<loop source="gcc-4.4.2/.*/arm/lib1funcs.asm" line="468"  maxcount="32"></loop>

@@ -1,0 +1,3004 @@
+
+typedef unsigned long int size_t;
+
+typedef int wchar_t;
+
+typedef enum  {
+	P_ALL,
+	P_PID,
+	P_PGID
+} idtype_t;
+
+typedef unsigned char __u_char;
+
+typedef unsigned short int __u_short;
+
+typedef unsigned int __u_int;
+
+typedef unsigned long int __u_long;
+
+typedef signed char __int8_t;
+
+typedef unsigned char __uint8_t;
+
+typedef signed short int __int16_t;
+
+typedef unsigned short int __uint16_t;
+
+typedef signed int __int32_t;
+
+typedef unsigned int __uint32_t;
+
+typedef signed long int __int64_t;
+
+typedef unsigned long int __uint64_t;
+
+typedef long int __quad_t;
+
+typedef unsigned long int __u_quad_t;
+
+typedef unsigned long int __dev_t;
+
+typedef unsigned int __uid_t;
+
+typedef unsigned int __gid_t;
+
+typedef unsigned long int __ino_t;
+
+typedef unsigned long int __ino64_t;
+
+typedef unsigned int __mode_t;
+
+typedef unsigned long int __nlink_t;
+
+typedef long int __off_t;
+
+typedef long int __off64_t;
+
+typedef int __pid_t;
+
+typedef struct  {
+	int __val[2];
+} __fsid_t;
+
+typedef long int __clock_t;
+
+typedef unsigned long int __rlim_t;
+
+typedef unsigned long int __rlim64_t;
+
+typedef unsigned int __id_t;
+
+typedef long int __time_t;
+
+typedef unsigned int __useconds_t;
+
+typedef long int __suseconds_t;
+
+typedef int __daddr_t;
+
+typedef int __key_t;
+
+typedef int __clockid_t;
+
+typedef void *__timer_t;
+
+typedef long int __blksize_t;
+
+typedef long int __blkcnt_t;
+
+typedef long int __blkcnt64_t;
+
+typedef unsigned long int __fsblkcnt_t;
+
+typedef unsigned long int __fsblkcnt64_t;
+
+typedef unsigned long int __fsfilcnt_t;
+
+typedef unsigned long int __fsfilcnt64_t;
+
+typedef long int __fsword_t;
+
+typedef long int __ssize_t;
+
+typedef long int __syscall_slong_t;
+
+typedef unsigned long int __syscall_ulong_t;
+
+typedef __off64_t __loff_t;
+
+typedef __quad_t *__qaddr_t;
+
+typedef char *__caddr_t;
+
+typedef long int __intptr_t;
+
+typedef unsigned int __socklen_t;
+
+static  __attribute__ ((__inline__)) unsigned int __bswap_32(unsigned int __bsx)
+{
+# 47 "/usr/include/x86_64-linux-gnu/bits/byteswap.h"
+	return __builtin_bswap32(__bsx);
+}
+
+static  __attribute__ ((__inline__)) __uint64_t __bswap_64(__uint64_t __bsx_0)
+{
+# 111 "/usr/include/x86_64-linux-gnu/bits/byteswap.h"
+	return __builtin_bswap64(__bsx_0);
+}
+
+union wait {
+	int w_status;
+	struct  {
+		unsigned int __w_termsig : 7;
+		unsigned int __w_coredump : 1;
+		unsigned int __w_retcode : 8;
+		unsigned int  : 16;
+	} __wait_terminated;
+	struct  {
+		unsigned int __w_stopval : 8;
+		unsigned int __w_stopsig : 8;
+		unsigned int  : 16;
+	} __wait_stopped;
+} ;
+
+typedef union  {
+	union wait *__uptr;
+	int *__iptr;
+} __WAIT_STATUS __attribute__ ((__transparent_union__)) ;
+
+typedef struct  {
+	int quot;
+	int rem;
+} div_t;
+
+typedef struct  {
+	long int quot;
+	long int rem;
+} ldiv_t;
+
+__extension__ typedef struct  {
+	long long int quot;
+	long long int rem;
+} lldiv_t;
+
+extern size_t __ctype_get_mb_cur_max(void ) __attribute__ ((__leaf__,
+	__nothrow__)) ;
+extern double atof(char  const *__nptr) __attribute__ ((__nonnull__(1),
+	__pure__, __leaf__, __nothrow__)) ;
+extern int atoi(char  const *__nptr) __attribute__ ((__nonnull__(1), __pure__,
+	__leaf__, __nothrow__)) ;
+extern long int atol(char  const *__nptr) __attribute__ ((__nonnull__(1),
+	__pure__, __leaf__, __nothrow__)) ;
+extern long long int atoll(char  const *__nptr) __attribute__ ((__nonnull__(1),
+	__pure__, __leaf__, __nothrow__)) ;
+extern double strtod(char  const * __restrict __nptr, char ** __restrict
+	__endptr) __attribute__ ((__nonnull__(1), __leaf__, __nothrow__)) ;
+extern float strtof(char  const * __restrict __nptr, char ** __restrict
+	__endptr) __attribute__ ((__nonnull__(1), __leaf__, __nothrow__)) ;
+extern long double strtold(char  const * __restrict __nptr, char ** __restrict
+	__endptr) __attribute__ ((__nonnull__(1), __leaf__, __nothrow__)) ;
+extern long int strtol(char  const * __restrict __nptr, char ** __restrict
+	__endptr, int __base) __attribute__ ((__nonnull__(1), __leaf__,
+	__nothrow__)) ;
+extern unsigned long int strtoul(char  const * __restrict __nptr, char
+	** __restrict __endptr, int __base) __attribute__ ((__nonnull__(1),
+	__leaf__, __nothrow__)) ;
+extern long long int strtoq(char  const * __restrict __nptr, char ** __restrict
+	__endptr, int __base) __attribute__ ((__nonnull__(1), __leaf__,
+	__nothrow__)) ;
+extern unsigned long long int strtouq(char  const * __restrict __nptr, char
+	** __restrict __endptr, int __base) __attribute__ ((__nonnull__(1),
+	__leaf__, __nothrow__)) ;
+extern long long int strtoll(char  const * __restrict __nptr, char ** __restrict
+	__endptr, int __base) __attribute__ ((__nonnull__(1), __leaf__,
+	__nothrow__)) ;
+extern unsigned long long int strtoull(char  const * __restrict __nptr, char
+	** __restrict __endptr, int __base) __attribute__ ((__nonnull__(1),
+	__leaf__, __nothrow__)) ;
+extern char *l64a(long int __n) __attribute__ ((__leaf__, __nothrow__)) ;
+extern long int a64l(char  const *__s) __attribute__ ((__nonnull__(1), __pure__,
+	__leaf__, __nothrow__)) ;
+
+typedef __u_char u_char;
+
+typedef __u_short u_short;
+
+typedef __u_int u_int;
+
+typedef __u_long u_long;
+
+typedef __quad_t quad_t;
+
+typedef __u_quad_t u_quad_t;
+
+typedef __fsid_t fsid_t;
+
+typedef __loff_t loff_t;
+
+typedef __ino_t ino_t;
+
+typedef __dev_t dev_t;
+
+typedef __gid_t gid_t;
+
+typedef __mode_t mode_t;
+
+typedef __nlink_t nlink_t;
+
+typedef __uid_t uid_t;
+
+typedef __off_t off_t;
+
+typedef __pid_t pid_t;
+
+typedef __id_t id_t;
+
+typedef __ssize_t ssize_t;
+
+typedef __daddr_t daddr_t;
+
+typedef __caddr_t caddr_t;
+
+typedef __key_t key_t;
+
+typedef __clock_t clock_t;
+
+typedef __time_t time_t;
+
+typedef __clockid_t clockid_t;
+
+typedef __timer_t timer_t;
+
+typedef unsigned long int ulong;
+
+typedef unsigned short int ushort;
+
+typedef unsigned int uint;
+
+typedef int int8_t __attribute__ ((__mode__(__QI__))) ;
+
+typedef int int16_t __attribute__ ((__mode__(__HI__))) ;
+
+typedef int int32_t __attribute__ ((__mode__(__SI__))) ;
+
+typedef int int64_t __attribute__ ((__mode__(__DI__))) ;
+
+typedef unsigned int u_int8_t __attribute__ ((__mode__(__QI__))) ;
+
+typedef unsigned int u_int16_t __attribute__ ((__mode__(__HI__))) ;
+
+typedef unsigned int u_int32_t __attribute__ ((__mode__(__SI__))) ;
+
+typedef unsigned int u_int64_t __attribute__ ((__mode__(__DI__))) ;
+
+typedef int register_t __attribute__ ((__mode__(__word__))) ;
+
+typedef int __sig_atomic_t;
+
+typedef struct  {
+	unsigned long int __val[1024 / ((8 * sizeof(unsigned long int)))];
+} __sigset_t;
+
+typedef __sigset_t sigset_t;
+
+struct timespec {
+	__time_t tv_sec;
+	__syscall_slong_t tv_nsec;
+} ;
+
+struct timeval {
+	__time_t tv_sec;
+	__suseconds_t tv_usec;
+} ;
+
+typedef __suseconds_t suseconds_t;
+
+typedef long int __fd_mask;
+
+typedef struct  {
+	__fd_mask __fds_bits[1024 / ((8 * (int)sizeof(__fd_mask)))];
+} fd_set;
+
+typedef __fd_mask fd_mask;
+
+extern int select(int __nfds, fd_set * __restrict __readfds, fd_set * __restrict
+	__writefds, fd_set * __restrict __exceptfds, struct timeval * __restrict
+	__timeout);
+extern int pselect(int __nfds, fd_set * __restrict __readfds, fd_set
+	* __restrict __writefds, fd_set * __restrict __exceptfds,
+	struct timespec  const * __restrict __timeout, __sigset_t
+	 const * __restrict __sigmask);
+extern unsigned int gnu_dev_major(unsigned long long int
+	__dev) __attribute__ ((__const__, __leaf__, __nothrow__)) ;
+extern unsigned int gnu_dev_minor(unsigned long long int
+	__dev) __attribute__ ((__const__, __leaf__, __nothrow__)) ;
+extern unsigned long long int gnu_dev_makedev(unsigned int __major, unsigned int
+	__minor) __attribute__ ((__const__, __leaf__, __nothrow__)) ;
+
+typedef __blksize_t blksize_t;
+
+typedef __blkcnt_t blkcnt_t;
+
+typedef __fsblkcnt_t fsblkcnt_t;
+
+typedef __fsfilcnt_t fsfilcnt_t;
+
+typedef unsigned long int pthread_t;
+
+union pthread_attr_t {
+	char __size[56];
+	long int __align;
+} ;
+
+typedef union pthread_attr_t pthread_attr_t;
+
+typedef struct __pthread_internal_list {
+	struct __pthread_internal_list *__prev;
+	struct __pthread_internal_list *__next;
+} __pthread_list_t;
+
+typedef union  {
+	struct __pthread_mutex_s {
+		int __lock;
+		unsigned int __count;
+		int __owner;
+		unsigned int __nusers;
+		int __kind;
+		short int __spins;
+		short int __elision;
+		__pthread_list_t __list;
+	} __data;
+	char __size[40];
+	long int __align;
+} pthread_mutex_t;
+
+typedef union  {
+	char __size[4];
+	int __align;
+} pthread_mutexattr_t;
+
+typedef union  {
+	struct  {
+		int __lock;
+		unsigned int __futex;
+		unsigned long long int __total_seq;
+		unsigned long long int __wakeup_seq;
+		unsigned long long int __woken_seq;
+		void *__mutex;
+		unsigned int __nwaiters;
+		unsigned int __broadcast_seq;
+	} __data;
+	char __size[48];
+	long long int __align;
+} pthread_cond_t;
+
+typedef union  {
+	char __size[4];
+	int __align;
+} pthread_condattr_t;
+
+typedef unsigned int pthread_key_t;
+
+typedef int pthread_once_t;
+
+typedef union  {
+	struct  {
+		int __lock;
+		unsigned int __nr_readers;
+		unsigned int __readers_wakeup;
+		unsigned int __writer_wakeup;
+		unsigned int __nr_readers_queued;
+		unsigned int __nr_writers_queued;
+		int __writer;
+		int __shared;
+		unsigned long int __pad1;
+		unsigned long int __pad2;
+		unsigned int __flags;
+	} __data;
+	char __size[56];
+	long int __align;
+} pthread_rwlock_t;
+
+typedef union  {
+	char __size[8];
+	long int __align;
+} pthread_rwlockattr_t;
+
+typedef int  volatile pthread_spinlock_t;
+
+typedef union  {
+	char __size[32];
+	long int __align;
+} pthread_barrier_t;
+
+typedef union  {
+	char __size[4];
+	int __align;
+} pthread_barrierattr_t;
+
+extern long int random(void ) __attribute__ ((__leaf__, __nothrow__)) ;
+extern void srandom(unsigned int __seed) __attribute__ ((__leaf__,
+	__nothrow__)) ;
+extern char *initstate(unsigned int __seed, char *__statebuf, size_t
+	__statelen) __attribute__ ((__nonnull__(2), __leaf__, __nothrow__)) ;
+extern char *setstate(char *__statebuf) __attribute__ ((__nonnull__(1),
+	__leaf__, __nothrow__)) ;
+
+struct random_data {
+	int32_t *fptr;
+	int32_t *rptr;
+	int32_t *state;
+	int rand_type;
+	int rand_deg;
+	int rand_sep;
+	int32_t *end_ptr;
+} ;
+
+extern int random_r(struct random_data * __restrict __buf, int32_t * __restrict
+	__result) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern int srandom_r(unsigned int __seed, struct random_data
+	*__buf) __attribute__ ((__nonnull__(2), __leaf__, __nothrow__)) ;
+extern int initstate_r(unsigned int __seed, char * __restrict __statebuf, size_t
+	__statelen, struct random_data * __restrict
+	__buf) __attribute__ ((__nonnull__(2, 4), __leaf__, __nothrow__)) ;
+extern int setstate_r(char * __restrict __statebuf, struct random_data
+	* __restrict __buf) __attribute__ ((__nonnull__(1, 2), __leaf__,
+	__nothrow__)) ;
+extern int rand(void ) __attribute__ ((__leaf__, __nothrow__)) ;
+extern void srand(unsigned int __seed) __attribute__ ((__leaf__, __nothrow__)) ;
+extern int rand_r(unsigned int *__seed) __attribute__ ((__leaf__,
+	__nothrow__)) ;
+extern double drand48(void ) __attribute__ ((__leaf__, __nothrow__)) ;
+extern double erand48(unsigned short int
+	__xsubi[3]) __attribute__ ((__nonnull__(1), __leaf__, __nothrow__)) ;
+extern long int lrand48(void ) __attribute__ ((__leaf__, __nothrow__)) ;
+extern long int nrand48(unsigned short int
+	__xsubi[3]) __attribute__ ((__nonnull__(1), __leaf__, __nothrow__)) ;
+extern long int mrand48(void ) __attribute__ ((__leaf__, __nothrow__)) ;
+extern long int jrand48(unsigned short int
+	__xsubi[3]) __attribute__ ((__nonnull__(1), __leaf__, __nothrow__)) ;
+extern void srand48(long int __seedval) __attribute__ ((__leaf__,
+	__nothrow__)) ;
+extern unsigned short int *seed48(unsigned short int
+	__seed16v[3]) __attribute__ ((__nonnull__(1), __leaf__, __nothrow__)) ;
+extern void lcong48(unsigned short int
+	__param[7]) __attribute__ ((__nonnull__(1), __leaf__, __nothrow__)) ;
+
+struct drand48_data {
+	unsigned short int __x[3];
+	unsigned short int __old_x[3];
+	unsigned short int __c;
+	unsigned short int __init;
+	unsigned long long int __a;
+} ;
+
+extern int drand48_r(struct drand48_data * __restrict __buffer, double
+	* __restrict __result) __attribute__ ((__nonnull__(1, 2), __leaf__,
+	__nothrow__)) ;
+extern int erand48_r(unsigned short int __xsubi[3], struct drand48_data
+	* __restrict __buffer, double * __restrict
+	__result) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern int lrand48_r(struct drand48_data * __restrict __buffer, long int
+	* __restrict __result) __attribute__ ((__nonnull__(1, 2), __leaf__,
+	__nothrow__)) ;
+extern int nrand48_r(unsigned short int __xsubi[3], struct drand48_data
+	* __restrict __buffer, long int * __restrict
+	__result) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern int mrand48_r(struct drand48_data * __restrict __buffer, long int
+	* __restrict __result) __attribute__ ((__nonnull__(1, 2), __leaf__,
+	__nothrow__)) ;
+extern int jrand48_r(unsigned short int __xsubi[3], struct drand48_data
+	* __restrict __buffer, long int * __restrict
+	__result) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern int srand48_r(long int __seedval, struct drand48_data
+	*__buffer) __attribute__ ((__nonnull__(2), __leaf__, __nothrow__)) ;
+extern int seed48_r(unsigned short int __seed16v[3], struct drand48_data
+	*__buffer) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern int lcong48_r(unsigned short int __param[7], struct drand48_data
+	*__buffer) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern void *malloc(size_t __size) __attribute__ ((__malloc__, __leaf__,
+	__nothrow__)) ;
+extern void *calloc(size_t __nmemb, size_t __size) __attribute__ ((__malloc__,
+	__leaf__, __nothrow__)) ;
+extern void *realloc(void *__ptr, size_t
+	__size) __attribute__ ((__warn_unused_result__, __leaf__,
+	__nothrow__)) ;
+extern void free(void *__ptr) __attribute__ ((__leaf__, __nothrow__)) ;
+extern void cfree(void *__ptr) __attribute__ ((__leaf__, __nothrow__)) ;
+extern void *alloca(size_t __size) __attribute__ ((__leaf__, __nothrow__)) ;
+extern void *valloc(size_t __size) __attribute__ ((__malloc__, __leaf__,
+	__nothrow__)) ;
+extern int posix_memalign(void **__memptr, size_t __alignment, size_t
+	__size) __attribute__ ((__nonnull__(1), __leaf__, __nothrow__)) ;
+extern void abort(void ) __attribute__ ((__noreturn__, __leaf__, __nothrow__)) ;
+extern int atexit(void (*__func)(void )) __attribute__ ((__nonnull__(1),
+	__leaf__, __nothrow__)) ;
+extern int on_exit(void (*__func)(int __status, void *__arg), void
+	*__arg) __attribute__ ((__nonnull__(1), __leaf__, __nothrow__)) ;
+extern void exit(int __status) __attribute__ ((__noreturn__, __leaf__,
+	__nothrow__)) ;
+extern void _Exit(int __status) __attribute__ ((__noreturn__, __leaf__,
+	__nothrow__)) ;
+extern char *getenv(char  const *__name) __attribute__ ((__nonnull__(1),
+	__leaf__, __nothrow__)) ;
+extern int putenv(char *__string) __attribute__ ((__nonnull__(1), __leaf__,
+	__nothrow__)) ;
+extern int setenv(char  const *__name, char  const *__value, int
+	__replace) __attribute__ ((__nonnull__(2), __leaf__, __nothrow__)) ;
+extern int unsetenv(char  const *__name) __attribute__ ((__nonnull__(1),
+	__leaf__, __nothrow__)) ;
+extern int clearenv(void ) __attribute__ ((__leaf__, __nothrow__)) ;
+extern char *mktemp(char *__template) __attribute__ ((__nonnull__(1), __leaf__,
+	__nothrow__)) ;
+extern int mkstemp(char *__template) __attribute__ ((__nonnull__(1))) ;
+extern int mkstemps(char *__template, int
+	__suffixlen) __attribute__ ((__nonnull__(1))) ;
+extern char *mkdtemp(char *__template) __attribute__ ((__nonnull__(1), __leaf__,
+	__nothrow__)) ;
+extern int system(char  const *__command);
+extern char *realpath(char  const * __restrict __name, char * __restrict
+	__resolved) __attribute__ ((__leaf__, __nothrow__)) ;
+
+typedef int (*__compar_fn_t)(void  const *, void  const *);
+
+extern void *bsearch(void  const *__key, void  const *__base, size_t __nmemb,
+	size_t __size, __compar_fn_t __compar) __attribute__ ((__nonnull__(1, 2,
+	5))) ;
+extern void qsort(void *__base, size_t __nmemb, size_t __size, __compar_fn_t
+	__compar) __attribute__ ((__nonnull__(1, 4))) ;
+extern int abs(int __x) __attribute__ ((__const__, __leaf__, __nothrow__)) ;
+extern long int labs(long int __x) __attribute__ ((__const__, __leaf__,
+	__nothrow__)) ;
+extern long long int llabs(long long int __x) __attribute__ ((__const__,
+	__leaf__, __nothrow__)) ;
+extern div_t div(int __numer, int __denom) __attribute__ ((__const__, __leaf__,
+	__nothrow__)) ;
+extern ldiv_t ldiv(long int __numer, long int
+	__denom) __attribute__ ((__const__, __leaf__, __nothrow__)) ;
+extern lldiv_t lldiv(long long int __numer, long long int
+	__denom) __attribute__ ((__const__, __leaf__, __nothrow__)) ;
+extern char *ecvt(double __value, int __ndigit, int * __restrict __decpt, int
+	* __restrict __sign) __attribute__ ((__nonnull__(3, 4), __leaf__,
+	__nothrow__)) ;
+extern char *fcvt(double __value, int __ndigit, int * __restrict __decpt, int
+	* __restrict __sign) __attribute__ ((__nonnull__(3, 4), __leaf__,
+	__nothrow__)) ;
+extern char *gcvt(double __value, int __ndigit, char
+	*__buf) __attribute__ ((__nonnull__(3), __leaf__, __nothrow__)) ;
+extern char *qecvt(long double __value, int __ndigit, int * __restrict __decpt,
+	int * __restrict __sign) __attribute__ ((__nonnull__(3, 4), __leaf__,
+	__nothrow__)) ;
+extern char *qfcvt(long double __value, int __ndigit, int * __restrict __decpt,
+	int * __restrict __sign) __attribute__ ((__nonnull__(3, 4), __leaf__,
+	__nothrow__)) ;
+extern char *qgcvt(long double __value, int __ndigit, char
+	*__buf) __attribute__ ((__nonnull__(3), __leaf__, __nothrow__)) ;
+extern int ecvt_r(double __value, int __ndigit, int * __restrict __decpt, int
+	* __restrict __sign, char * __restrict __buf, size_t
+	__len) __attribute__ ((__nonnull__(3, 4, 5), __leaf__, __nothrow__)) ;
+extern int fcvt_r(double __value, int __ndigit, int * __restrict __decpt, int
+	* __restrict __sign, char * __restrict __buf, size_t
+	__len) __attribute__ ((__nonnull__(3, 4, 5), __leaf__, __nothrow__)) ;
+extern int qecvt_r(long double __value, int __ndigit, int * __restrict __decpt,
+	int * __restrict __sign, char * __restrict __buf, size_t
+	__len) __attribute__ ((__nonnull__(3, 4, 5), __leaf__, __nothrow__)) ;
+extern int qfcvt_r(long double __value, int __ndigit, int * __restrict __decpt,
+	int * __restrict __sign, char * __restrict __buf, size_t
+	__len) __attribute__ ((__nonnull__(3, 4, 5), __leaf__, __nothrow__)) ;
+extern int mblen(char  const *__s, size_t __n) __attribute__ ((__leaf__,
+	__nothrow__)) ;
+extern int mbtowc(wchar_t * __restrict __pwc, char  const * __restrict __s,
+	size_t __n) __attribute__ ((__leaf__, __nothrow__)) ;
+extern int wctomb(char *__s, wchar_t __wchar) __attribute__ ((__leaf__,
+	__nothrow__)) ;
+extern size_t mbstowcs(wchar_t * __restrict __pwcs, char  const * __restrict
+	__s, size_t __n) __attribute__ ((__leaf__, __nothrow__)) ;
+extern size_t wcstombs(char * __restrict __s, wchar_t  const * __restrict
+	__pwcs, size_t __n) __attribute__ ((__leaf__, __nothrow__)) ;
+extern int rpmatch(char  const *__response) __attribute__ ((__nonnull__(1),
+	__leaf__, __nothrow__)) ;
+extern int getsubopt(char ** __restrict __optionp, char * const * __restrict
+	__tokens, char ** __restrict __valuep) __attribute__ ((__nonnull__(1, 2,
+	3), __leaf__, __nothrow__)) ;
+extern int getloadavg(double __loadavg[], int
+	__nelem) __attribute__ ((__nonnull__(1), __leaf__, __nothrow__)) ;
+extern void *memcpy(void * __restrict __dest, void  const * __restrict __src,
+	size_t __n) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern void *memmove(void *__dest, void  const *__src, size_t
+	__n) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern void *memccpy(void * __restrict __dest, void  const * __restrict __src,
+	int __c, size_t __n) __attribute__ ((__nonnull__(1, 2), __leaf__,
+	__nothrow__)) ;
+extern void *memset(void *__s, int __c, size_t
+	__n) __attribute__ ((__nonnull__(1), __leaf__, __nothrow__)) ;
+extern int memcmp(void  const *__s1, void  const *__s2, size_t
+	__n) __attribute__ ((__nonnull__(1, 2), __pure__, __leaf__,
+	__nothrow__)) ;
+extern void *memchr(void  const *__s, int __c, size_t
+	__n) __attribute__ ((__nonnull__(1), __pure__, __leaf__, __nothrow__)) ;
+extern char *strcpy(char * __restrict __dest, char  const * __restrict
+	__src) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern char *strncpy(char * __restrict __dest, char  const * __restrict __src,
+	size_t __n) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern char *strcat(char * __restrict __dest, char  const * __restrict
+	__src) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern char *strncat(char * __restrict __dest, char  const * __restrict __src,
+	size_t __n) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern int strcmp(char  const *__s1, char
+	 const *__s2) __attribute__ ((__nonnull__(1, 2), __pure__, __leaf__,
+	__nothrow__)) ;
+extern int strncmp(char  const *__s1, char  const *__s2, size_t
+	__n) __attribute__ ((__nonnull__(1, 2), __pure__, __leaf__,
+	__nothrow__)) ;
+extern int strcoll(char  const *__s1, char
+	 const *__s2) __attribute__ ((__nonnull__(1, 2), __pure__, __leaf__,
+	__nothrow__)) ;
+extern size_t strxfrm(char * __restrict __dest, char  const * __restrict __src,
+	size_t __n) __attribute__ ((__nonnull__(2), __leaf__, __nothrow__)) ;
+
+typedef struct __locale_struct {
+	struct __locale_data *__locales[13];
+	unsigned short int  const *__ctype_b;
+	int  const *__ctype_tolower;
+	int  const *__ctype_toupper;
+	char  const *__names[13];
+} *__locale_t;
+
+typedef __locale_t locale_t;
+
+extern int strcoll_l(char  const *__s1, char  const *__s2, __locale_t
+	__l) __attribute__ ((__nonnull__(1, 2, 3), __pure__, __leaf__,
+	__nothrow__)) ;
+extern size_t strxfrm_l(char *__dest, char  const *__src, size_t __n, __locale_t
+	__l) __attribute__ ((__nonnull__(2, 4), __leaf__, __nothrow__)) ;
+extern char *strdup(char  const *__s) __attribute__ ((__nonnull__(1),
+	__malloc__, __leaf__, __nothrow__)) ;
+extern char *strndup(char  const *__string, size_t
+	__n) __attribute__ ((__nonnull__(1), __malloc__, __leaf__,
+	__nothrow__)) ;
+extern char *strchr(char  const *__s, int __c) __attribute__ ((__nonnull__(1),
+	__pure__, __leaf__, __nothrow__)) ;
+extern char *strrchr(char  const *__s, int __c) __attribute__ ((__nonnull__(1),
+	__pure__, __leaf__, __nothrow__)) ;
+extern size_t strcspn(char  const *__s, char
+	 const *__reject) __attribute__ ((__nonnull__(1, 2), __pure__, __leaf__,
+	__nothrow__)) ;
+extern size_t strspn(char  const *__s, char
+	 const *__accept) __attribute__ ((__nonnull__(1, 2), __pure__, __leaf__,
+	__nothrow__)) ;
+extern char *strpbrk(char  const *__s, char
+	 const *__accept) __attribute__ ((__nonnull__(1, 2), __pure__, __leaf__,
+	__nothrow__)) ;
+extern char *strstr(char  const *__haystack, char
+	 const *__needle) __attribute__ ((__nonnull__(1, 2), __pure__, __leaf__,
+	__nothrow__)) ;
+extern char *strtok(char * __restrict __s, char  const * __restrict
+	__delim) __attribute__ ((__nonnull__(2), __leaf__, __nothrow__)) ;
+extern char *__strtok_r(char * __restrict __s, char  const * __restrict __delim,
+	char ** __restrict __save_ptr) __attribute__ ((__nonnull__(2, 3),
+	__leaf__, __nothrow__)) ;
+extern char *strtok_r(char * __restrict __s, char  const * __restrict __delim,
+	char ** __restrict __save_ptr) __attribute__ ((__nonnull__(2, 3),
+	__leaf__, __nothrow__)) ;
+extern size_t strlen(char  const *__s) __attribute__ ((__nonnull__(1), __pure__,
+	__leaf__, __nothrow__)) ;
+extern size_t strnlen(char  const *__string, size_t
+	__maxlen) __attribute__ ((__nonnull__(1), __pure__, __leaf__,
+	__nothrow__)) ;
+extern char *strerror(int __errnum) __attribute__ ((__leaf__, __nothrow__)) ;
+extern int strerror_r(int __errnum, char *__buf, size_t
+	__buflen) __attribute__ ((__asm__("__xpg_strerror_r"), __nonnull__(2),
+	__leaf__, __nothrow__)) ;
+extern char *strerror_l(int __errnum, __locale_t __l) __attribute__ ((__leaf__,
+	__nothrow__)) ;
+extern void __bzero(void *__s, size_t __n) __attribute__ ((__nonnull__(1),
+	__leaf__, __nothrow__)) ;
+extern void bcopy(void  const *__src, void *__dest, size_t
+	__n) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern void bzero(void *__s, size_t __n) __attribute__ ((__nonnull__(1),
+	__leaf__, __nothrow__)) ;
+extern int bcmp(void  const *__s1, void  const *__s2, size_t
+	__n) __attribute__ ((__nonnull__(1, 2), __pure__, __leaf__,
+	__nothrow__)) ;
+extern char *index(char  const *__s, int __c) __attribute__ ((__nonnull__(1),
+	__pure__, __leaf__, __nothrow__)) ;
+extern char *rindex(char  const *__s, int __c) __attribute__ ((__nonnull__(1),
+	__pure__, __leaf__, __nothrow__)) ;
+extern int ffs(int __i) __attribute__ ((__const__, __leaf__, __nothrow__)) ;
+extern int strcasecmp(char  const *__s1, char
+	 const *__s2) __attribute__ ((__nonnull__(1, 2), __pure__, __leaf__,
+	__nothrow__)) ;
+extern int strncasecmp(char  const *__s1, char  const *__s2, size_t
+	__n) __attribute__ ((__nonnull__(1, 2), __pure__, __leaf__,
+	__nothrow__)) ;
+extern char *strsep(char ** __restrict __stringp, char  const * __restrict
+	__delim) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern char *strsignal(int __sig) __attribute__ ((__leaf__, __nothrow__)) ;
+extern char *__stpcpy(char * __restrict __dest, char  const * __restrict
+	__src) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern char *stpcpy(char * __restrict __dest, char  const * __restrict
+	__src) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern char *__stpncpy(char * __restrict __dest, char  const * __restrict __src,
+	size_t __n) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+extern char *stpncpy(char * __restrict __dest, char  const * __restrict __src,
+	size_t __n) __attribute__ ((__nonnull__(1, 2), __leaf__, __nothrow__)) ;
+
+typedef int _boolean;
+
+typedef int _integer;
+
+typedef char *_string;
+
+typedef double _real;
+
+typedef double _double;
+
+typedef float _float;
+
+typedef _integer convertible_eq_case;
+
+typedef _integer convertible_hood_speed_state;
+
+typedef _integer convertible_hood_state;
+
+typedef struct  {
+	_integer i;
+	_integer j;
+	_real v;
+} convertible_update_acc;
+
+typedef _integer convertible_vehicle_state;
+
+typedef struct  {
+	convertible_hood_state _memory;
+} Lustre_pre_ctx_type;
+
+typedef struct  {
+	_boolean _memory;
+} Lustre_arrow_ctx_type;
+
+typedef struct  {
+	convertible_hood_speed_state _memory;
+} Lustre_pre_2_ctx_type;
+
+typedef struct  {
+	_boolean _memory;
+} Lustre_arrow_2_ctx_type;
+
+typedef struct  {
+	_real _memory;
+} Lustre_pre_3_ctx_type;
+
+typedef struct  {
+	_boolean _memory;
+} Lustre_arrow_3_ctx_type;
+
+typedef struct  {
+	Lustre_pre_2_ctx_type Lustre_pre_2_ctx_tab[1];
+	Lustre_pre_3_ctx_type Lustre_pre_3_ctx_tab[2];
+	Lustre_arrow_2_ctx_type Lustre_arrow_2_ctx_tab[1];
+	Lustre_arrow_3_ctx_type Lustre_arrow_3_ctx_tab[2];
+} convertible_hood_speed_ctx_type;
+
+typedef struct  {
+	convertible_hood_speed_ctx_type convertible_hood_speed_ctx_tab[1];
+	Lustre_pre_ctx_type Lustre_pre_ctx_tab[1];
+	Lustre_arrow_ctx_type Lustre_arrow_ctx_tab[1];
+} convertible_hood_ctx_type;
+
+typedef struct  {
+	_boolean _memory;
+} Lustre_arrow_4_ctx_type;
+
+typedef struct  {
+	_integer _memory;
+} Lustre_pre_4_ctx_type;
+
+typedef struct  {
+	_real _memory[50];
+} Lustre_pre_5_ctx_type;
+
+typedef struct  {
+	_boolean _memory;
+} Lustre_arrow_5_ctx_type;
+
+typedef struct  {
+	Lustre_pre_5_ctx_type Lustre_pre_5_ctx_tab[1];
+	Lustre_pre_4_ctx_type Lustre_pre_4_ctx_tab[1];
+	Lustre_arrow_5_ctx_type Lustre_arrow_5_ctx_tab[1];
+	Lustre_arrow_4_ctx_type Lustre_arrow_4_ctx_tab[1];
+} sum_50_0d0_ctx_type;
+
+typedef struct  {
+	Lustre_pre_5_ctx_type Lustre_pre_5_ctx_tab[1];
+	Lustre_pre_4_ctx_type Lustre_pre_4_ctx_tab[1];
+	Lustre_arrow_5_ctx_type Lustre_arrow_5_ctx_tab[1];
+	Lustre_arrow_4_ctx_type Lustre_arrow_4_ctx_tab[1];
+} sum_50_0d1_ctx_type;
+
+typedef struct  {
+	sum_50_0d1_ctx_type sum_50_0d1_ctx_tab[1];
+	sum_50_0d0_ctx_type sum_50_0d0_ctx_tab[1];
+	Lustre_pre_3_ctx_type Lustre_pre_3_ctx_tab[3];
+	Lustre_arrow_3_ctx_type Lustre_arrow_3_ctx_tab[3];
+} convertible_speed_kmh_ctx_type;
+
+typedef struct  {
+	convertible_vehicle_state _memory;
+} Lustre_pre_6_ctx_type;
+
+typedef struct  {
+	_boolean _memory;
+} Lustre_arrow_6_ctx_type;
+
+typedef struct  {
+	Lustre_pre_6_ctx_type Lustre_pre_6_ctx_tab[1];
+	Lustre_arrow_6_ctx_type Lustre_arrow_6_ctx_tab[1];
+} convertible_vehicle_ctx_type;
+
+typedef struct  {
+	Lustre_pre_3_ctx_type Lustre_pre_3_ctx_tab[1];
+	Lustre_arrow_3_ctx_type Lustre_arrow_3_ctx_tab[1];
+} convertible_may_collide_ctx_type;
+
+typedef struct  {
+	convertible_vehicle_ctx_type convertible_vehicle_ctx_tab[1];
+	convertible_speed_kmh_ctx_type convertible_speed_kmh_ctx_tab[1];
+	convertible_may_collide_ctx_type convertible_may_collide_ctx_tab[1];
+	convertible_hood_ctx_type convertible_hood_ctx_tab[1];
+} convertible_main_ctx_type;
+
+void Lustre_arrow_4_ctx_reset(Lustre_arrow_4_ctx_type *ctx);
+void Lustre_arrow_4_ctx_init(Lustre_arrow_4_ctx_type *ctx);
+void Lustre_arrow_4_step(_integer , _integer , _integer *,
+	Lustre_arrow_4_ctx_type *);
+void Lustre_arrow_3_ctx_reset(Lustre_arrow_3_ctx_type *ctx);
+void Lustre_arrow_3_ctx_init(Lustre_arrow_3_ctx_type *ctx);
+void Lustre_arrow_3_step(_real , _real , _real *, Lustre_arrow_3_ctx_type *);
+void Lustre_arrow_2_ctx_reset(Lustre_arrow_2_ctx_type *ctx);
+void Lustre_arrow_2_ctx_init(Lustre_arrow_2_ctx_type *ctx);
+void Lustre_arrow_2_step(convertible_hood_speed_state ,
+	convertible_hood_speed_state , convertible_hood_speed_state *,
+	Lustre_arrow_2_ctx_type *);
+void Lustre_arrow_ctx_reset(Lustre_arrow_ctx_type *ctx);
+void Lustre_arrow_ctx_init(Lustre_arrow_ctx_type *ctx);
+void Lustre_arrow_step(convertible_hood_state , convertible_hood_state ,
+	convertible_hood_state *, Lustre_arrow_ctx_type *);
+void Lustre_arrow_6_ctx_reset(Lustre_arrow_6_ctx_type *ctx);
+void Lustre_arrow_6_ctx_init(Lustre_arrow_6_ctx_type *ctx);
+void Lustre_arrow_6_step(convertible_vehicle_state , convertible_vehicle_state ,
+	convertible_vehicle_state *, Lustre_arrow_6_ctx_type *);
+void Lustre_arrow_5_ctx_reset(Lustre_arrow_5_ctx_type *ctx);
+void Lustre_arrow_5_ctx_init(Lustre_arrow_5_ctx_type *ctx);
+void Lustre_arrow_5_step(_real [50], _real [50], _real [50],
+	Lustre_arrow_5_ctx_type *);
+void Lustre_eq_step(_integer , _integer , _boolean *);
+void Lustre_eq_2_step(_real , _real , _boolean *);
+void Lustre_eq_3_step(convertible_hood_state , convertible_hood_state , _boolean
+	*);
+void Lustre_hat_step(_real , _real [50]);
+void Lustre_pre_4_ctx_reset(Lustre_pre_4_ctx_type *ctx);
+void Lustre_pre_4_ctx_init(Lustre_pre_4_ctx_type *ctx);
+void Lustre_pre_4_get(_integer *, Lustre_pre_4_ctx_type *);
+void Lustre_pre_4_set(_integer , Lustre_pre_4_ctx_type *);
+void Lustre_pre_3_ctx_reset(Lustre_pre_3_ctx_type *ctx);
+void Lustre_pre_3_ctx_init(Lustre_pre_3_ctx_type *ctx);
+void Lustre_pre_3_get(_real *, Lustre_pre_3_ctx_type *);
+void Lustre_pre_3_set(_real , Lustre_pre_3_ctx_type *);
+void Lustre_pre_2_ctx_reset(Lustre_pre_2_ctx_type *ctx);
+void Lustre_pre_2_ctx_init(Lustre_pre_2_ctx_type *ctx);
+void Lustre_pre_2_get(convertible_hood_speed_state *, Lustre_pre_2_ctx_type *);
+void Lustre_pre_2_set(convertible_hood_speed_state , Lustre_pre_2_ctx_type *);
+void Lustre_pre_ctx_reset(Lustre_pre_ctx_type *ctx);
+void Lustre_pre_ctx_init(Lustre_pre_ctx_type *ctx);
+void Lustre_pre_get(convertible_hood_state *, Lustre_pre_ctx_type *);
+void Lustre_pre_set(convertible_hood_state , Lustre_pre_ctx_type *);
+void Lustre_pre_6_ctx_reset(Lustre_pre_6_ctx_type *ctx);
+void Lustre_pre_6_ctx_init(Lustre_pre_6_ctx_type *ctx);
+void Lustre_pre_6_get(convertible_vehicle_state *, Lustre_pre_6_ctx_type *);
+void Lustre_pre_6_set(convertible_vehicle_state , Lustre_pre_6_ctx_type *);
+void Lustre_pre_5_ctx_reset(Lustre_pre_5_ctx_type *ctx);
+void Lustre_pre_5_ctx_init(Lustre_pre_5_ctx_type *ctx);
+void Lustre_pre_5_get(_real [50], Lustre_pre_5_ctx_type *);
+void Lustre_pre_5_set(_real [50], Lustre_pre_5_ctx_type *);
+void Lustre_slash_step(_real , _real , _real *);
+void assign_50_step(_real , _integer , _real [50], _real [50]);
+void convertible_abs_step(_real , _real *);
+void convertible_braking_time_step(_real , _real *);
+void convertible_hood_ctx_reset(convertible_hood_ctx_type *ctx);
+void convertible_hood_ctx_init(convertible_hood_ctx_type *ctx);
+void convertible_hood_step(_boolean , _boolean , _boolean , _boolean , _boolean
+	*, _real *, convertible_hood_ctx_type *);
+void convertible_hood_speed_ctx_reset(convertible_hood_speed_ctx_type *ctx);
+void convertible_hood_speed_ctx_init(convertible_hood_speed_ctx_type *ctx);
+void convertible_hood_speed_step(_boolean , _real *,
+	convertible_hood_speed_ctx_type *);
+void convertible_main_ctx_reset(convertible_main_ctx_type *ctx);
+void convertible_main_ctx_init(convertible_main_ctx_type *ctx);
+void convertible_main_step(_boolean , _boolean , _boolean , _boolean , _boolean
+	, _boolean , _real , _boolean *, _boolean *, _real *, _real *,
+	convertible_main_ctx_type *);
+void convertible_maxr_step(_real , _real , _real *);
+void convertible_may_collide_ctx_reset(convertible_may_collide_ctx_type *ctx);
+void convertible_may_collide_ctx_init(convertible_may_collide_ctx_type *ctx);
+void convertible_may_collide_step(_real , _real , _boolean *,
+	convertible_may_collide_ctx_type *);
+void convertible_ms_to_kmh_step(_real , _real *);
+void convertible_solve_eq_d2_step(_real , _real , _real , _real *);
+void convertible_speed_kmh_ctx_reset(convertible_speed_kmh_ctx_type *ctx);
+void convertible_speed_kmh_ctx_init(convertible_speed_kmh_ctx_type *ctx);
+void convertible_speed_kmh_step(_boolean , _boolean , _real *,
+	convertible_speed_kmh_ctx_type *);
+void convertible_sqrt_step(_real , _real *);
+void convertible_vehicle_ctx_reset(convertible_vehicle_ctx_type *ctx);
+void convertible_vehicle_ctx_init(convertible_vehicle_ctx_type *ctx);
+void convertible_vehicle_step(_boolean , _boolean , _real , _real ,
+	convertible_vehicle_state *, convertible_vehicle_ctx_type *);
+void fillred_update_cell_do_50_step(convertible_update_acc , _real [50],
+	convertible_update_acc *, _real [50]);
+void red_rplus_50_real_step(_real , _real [50], _real *);
+void squareR_1_step(_real , _real , _real *);
+void squareR_2_step(_real , _real , _real *);
+void squareR_3_step(_real , _real , _real *);
+void squareR_4_step(_real , _real , _real *);
+void squareR_5_step(_real , _real , _real *);
+void sum_50_0d0_ctx_reset(sum_50_0d0_ctx_type *ctx);
+void sum_50_0d0_ctx_init(sum_50_0d0_ctx_type *ctx);
+void sum_50_0d0_step(_real , _real *, sum_50_0d0_ctx_type *);
+void sum_50_0d1_ctx_reset(sum_50_0d1_ctx_type *ctx);
+void sum_50_0d1_ctx_init(sum_50_0d1_ctx_type *ctx);
+void sum_50_0d1_step(_real , _real *, sum_50_0d1_ctx_type *);
+void update_cell_do_50_step(convertible_update_acc , _real ,
+	convertible_update_acc *, _real *);
+
+void Lustre_arrow_4_ctx_reset(Lustre_arrow_4_ctx_type *ctx)
+{
+	int _i;
+# 9 "convertible_main.c"
+	ctx->_memory = 1;
+}
+
+void Lustre_arrow_4_ctx_init(Lustre_arrow_4_ctx_type *ctx_0)
+{
+# 15 "convertible_main.c"
+	Lustre_arrow_4_ctx_reset(ctx_0);
+}
+
+void Lustre_arrow_4_step(_integer x, _integer y, _integer *z,
+	Lustre_arrow_4_ctx_type *ctx_1)
+{
+# 18 "convertible_main.c"
+	*z = ctx_1->_memory ? x : y;
+# 19 "convertible_main.c"
+	ctx_1->_memory = 0;
+}
+
+void Lustre_arrow_3_ctx_reset(Lustre_arrow_3_ctx_type *ctx_2)
+{
+	int _i_0;
+# 26 "convertible_main.c"
+	ctx_2->_memory = 1;
+}
+
+void Lustre_arrow_3_ctx_init(Lustre_arrow_3_ctx_type *ctx_3)
+{
+# 32 "convertible_main.c"
+	Lustre_arrow_3_ctx_reset(ctx_3);
+}
+
+void Lustre_arrow_3_step(_real x_0, _real y_0, _real *z_0,
+	Lustre_arrow_3_ctx_type *ctx_4)
+{
+# 35 "convertible_main.c"
+	*z_0 = ctx_4->_memory ? x_0 : y_0;
+# 36 "convertible_main.c"
+	ctx_4->_memory = 0;
+}
+
+void Lustre_arrow_2_ctx_reset(Lustre_arrow_2_ctx_type *ctx_5)
+{
+	int _i_1;
+# 43 "convertible_main.c"
+	ctx_5->_memory = 1;
+}
+
+void Lustre_arrow_2_ctx_init(Lustre_arrow_2_ctx_type *ctx_6)
+{
+# 49 "convertible_main.c"
+	Lustre_arrow_2_ctx_reset(ctx_6);
+}
+
+void Lustre_arrow_2_step(convertible_hood_speed_state x_1,
+	convertible_hood_speed_state y_1, convertible_hood_speed_state *z_1,
+	Lustre_arrow_2_ctx_type *ctx_7)
+{
+# 52 "convertible_main.c"
+	*z_1 = ctx_7->_memory ? x_1 : y_1;
+# 53 "convertible_main.c"
+	ctx_7->_memory = 0;
+}
+
+void Lustre_arrow_ctx_reset(Lustre_arrow_ctx_type *ctx_8)
+{
+	int _i_2;
+# 60 "convertible_main.c"
+	ctx_8->_memory = 1;
+}
+
+void Lustre_arrow_ctx_init(Lustre_arrow_ctx_type *ctx_9)
+{
+# 66 "convertible_main.c"
+	Lustre_arrow_ctx_reset(ctx_9);
+}
+
+void Lustre_arrow_step(convertible_hood_state x_2, convertible_hood_state y_2,
+	convertible_hood_state *z_2, Lustre_arrow_ctx_type *ctx_10)
+{
+# 69 "convertible_main.c"
+	*z_2 = ctx_10->_memory ? x_2 : y_2;
+# 70 "convertible_main.c"
+	ctx_10->_memory = 0;
+}
+
+void Lustre_arrow_6_ctx_reset(Lustre_arrow_6_ctx_type *ctx_11)
+{
+	int _i_3;
+# 77 "convertible_main.c"
+	ctx_11->_memory = 1;
+}
+
+void Lustre_arrow_6_ctx_init(Lustre_arrow_6_ctx_type *ctx_12)
+{
+# 83 "convertible_main.c"
+	Lustre_arrow_6_ctx_reset(ctx_12);
+}
+
+void Lustre_arrow_6_step(convertible_vehicle_state x_3,
+	convertible_vehicle_state y_3, convertible_vehicle_state *z_3,
+	Lustre_arrow_6_ctx_type *ctx_13)
+{
+# 86 "convertible_main.c"
+	*z_3 = ctx_13->_memory ? x_3 : y_3;
+# 87 "convertible_main.c"
+	ctx_13->_memory = 0;
+}
+
+void Lustre_arrow_5_ctx_reset(Lustre_arrow_5_ctx_type *ctx_14)
+{
+	int _i_4;
+# 94 "convertible_main.c"
+	ctx_14->_memory = 1;
+}
+
+void Lustre_arrow_5_ctx_init(Lustre_arrow_5_ctx_type *ctx_15)
+{
+# 100 "convertible_main.c"
+	Lustre_arrow_5_ctx_reset(ctx_15);
+}
+
+void Lustre_arrow_5_step(_real x_4[50], _real y_4[50], _real z_4[50],
+	Lustre_arrow_5_ctx_type *ctx_16)
+{
+	int j;
+# 103 "convertible_main.c"
+	for(j = 0; j < sizeof(_real[50]); j++)
+# 103 "convertible_main.c"
+	{
+# 103 "convertible_main.c"
+		z_4[j] = ((ctx_16->_memory ? x_4 : y_4))[j];
+	}
+# 103 "convertible_main.c"
+	;
+# 104 "convertible_main.c"
+	ctx_16->_memory = 0;
+}
+
+void Lustre_eq_step(_integer x_5, _integer y_5, _boolean *z_5)
+{
+# 110 "convertible_main.c"
+	*z_5 = x_5 == y_5;
+}
+
+void Lustre_eq_2_step(_real x_6, _real y_6, _boolean *z_6)
+{
+# 116 "convertible_main.c"
+	*z_6 = x_6 == y_6;
+}
+
+void Lustre_eq_3_step(convertible_hood_state x_7, convertible_hood_state y_7,
+	_boolean *z_7)
+{
+# 122 "convertible_main.c"
+	*z_7 = x_7 == y_7;
+}
+
+void Lustre_hat_step(_real x_8, _real z_8[50])
+{
+# 128 "convertible_main.c"
+	z_8[0] = x_8;
+# 129 "convertible_main.c"
+	z_8[1] = x_8;
+# 130 "convertible_main.c"
+	z_8[2] = x_8;
+# 131 "convertible_main.c"
+	z_8[3] = x_8;
+# 132 "convertible_main.c"
+	z_8[4] = x_8;
+# 133 "convertible_main.c"
+	z_8[5] = x_8;
+# 134 "convertible_main.c"
+	z_8[6] = x_8;
+# 135 "convertible_main.c"
+	z_8[7] = x_8;
+# 136 "convertible_main.c"
+	z_8[8] = x_8;
+# 137 "convertible_main.c"
+	z_8[9] = x_8;
+# 138 "convertible_main.c"
+	z_8[10] = x_8;
+# 139 "convertible_main.c"
+	z_8[11] = x_8;
+# 140 "convertible_main.c"
+	z_8[12] = x_8;
+# 141 "convertible_main.c"
+	z_8[13] = x_8;
+# 142 "convertible_main.c"
+	z_8[14] = x_8;
+# 143 "convertible_main.c"
+	z_8[15] = x_8;
+# 144 "convertible_main.c"
+	z_8[16] = x_8;
+# 145 "convertible_main.c"
+	z_8[17] = x_8;
+# 146 "convertible_main.c"
+	z_8[18] = x_8;
+# 147 "convertible_main.c"
+	z_8[19] = x_8;
+# 148 "convertible_main.c"
+	z_8[20] = x_8;
+# 149 "convertible_main.c"
+	z_8[21] = x_8;
+# 150 "convertible_main.c"
+	z_8[22] = x_8;
+# 151 "convertible_main.c"
+	z_8[23] = x_8;
+# 152 "convertible_main.c"
+	z_8[24] = x_8;
+# 153 "convertible_main.c"
+	z_8[25] = x_8;
+# 154 "convertible_main.c"
+	z_8[26] = x_8;
+# 155 "convertible_main.c"
+	z_8[27] = x_8;
+# 156 "convertible_main.c"
+	z_8[28] = x_8;
+# 157 "convertible_main.c"
+	z_8[29] = x_8;
+# 158 "convertible_main.c"
+	z_8[30] = x_8;
+# 159 "convertible_main.c"
+	z_8[31] = x_8;
+# 160 "convertible_main.c"
+	z_8[32] = x_8;
+# 161 "convertible_main.c"
+	z_8[33] = x_8;
+# 162 "convertible_main.c"
+	z_8[34] = x_8;
+# 163 "convertible_main.c"
+	z_8[35] = x_8;
+# 164 "convertible_main.c"
+	z_8[36] = x_8;
+# 165 "convertible_main.c"
+	z_8[37] = x_8;
+# 166 "convertible_main.c"
+	z_8[38] = x_8;
+# 167 "convertible_main.c"
+	z_8[39] = x_8;
+# 168 "convertible_main.c"
+	z_8[40] = x_8;
+# 169 "convertible_main.c"
+	z_8[41] = x_8;
+# 170 "convertible_main.c"
+	z_8[42] = x_8;
+# 171 "convertible_main.c"
+	z_8[43] = x_8;
+# 172 "convertible_main.c"
+	z_8[44] = x_8;
+# 173 "convertible_main.c"
+	z_8[45] = x_8;
+# 174 "convertible_main.c"
+	z_8[46] = x_8;
+# 175 "convertible_main.c"
+	z_8[47] = x_8;
+# 176 "convertible_main.c"
+	z_8[48] = x_8;
+# 177 "convertible_main.c"
+	z_8[49] = x_8;
+}
+
+void Lustre_pre_4_ctx_reset(Lustre_pre_4_ctx_type *ctx_17)
+{
+	int _i_5;
+}
+
+void Lustre_pre_4_ctx_init(Lustre_pre_4_ctx_type *ctx_18)
+{
+# 190 "convertible_main.c"
+	Lustre_pre_4_ctx_reset(ctx_18);
+}
+
+void Lustre_pre_4_get(_integer *z_9, Lustre_pre_4_ctx_type *ctx_19)
+{
+# 194 "convertible_main.c"
+	*z_9 = ctx_19->_memory;
+}
+
+void Lustre_pre_4_set(_integer x_9, Lustre_pre_4_ctx_type *ctx_20)
+{
+# 199 "convertible_main.c"
+	ctx_20->_memory = x_9;
+}
+
+void Lustre_pre_3_ctx_reset(Lustre_pre_3_ctx_type *ctx_21)
+{
+	int _i_6;
+}
+
+void Lustre_pre_3_ctx_init(Lustre_pre_3_ctx_type *ctx_22)
+{
+# 212 "convertible_main.c"
+	Lustre_pre_3_ctx_reset(ctx_22);
+}
+
+void Lustre_pre_3_get(_real *z_10, Lustre_pre_3_ctx_type *ctx_23)
+{
+# 216 "convertible_main.c"
+	*z_10 = ctx_23->_memory;
+}
+
+void Lustre_pre_3_set(_real x_10, Lustre_pre_3_ctx_type *ctx_24)
+{
+# 221 "convertible_main.c"
+	ctx_24->_memory = x_10;
+}
+
+void Lustre_pre_2_ctx_reset(Lustre_pre_2_ctx_type *ctx_25)
+{
+	int _i_7;
+}
+
+void Lustre_pre_2_ctx_init(Lustre_pre_2_ctx_type *ctx_26)
+{
+# 234 "convertible_main.c"
+	Lustre_pre_2_ctx_reset(ctx_26);
+}
+
+void Lustre_pre_2_get(convertible_hood_speed_state *z_11, Lustre_pre_2_ctx_type
+	*ctx_27)
+{
+# 238 "convertible_main.c"
+	*z_11 = ctx_27->_memory;
+}
+
+void Lustre_pre_2_set(convertible_hood_speed_state x_11, Lustre_pre_2_ctx_type
+	*ctx_28)
+{
+# 243 "convertible_main.c"
+	ctx_28->_memory = x_11;
+}
+
+void Lustre_pre_ctx_reset(Lustre_pre_ctx_type *ctx_29)
+{
+	int _i_8;
+}
+
+void Lustre_pre_ctx_init(Lustre_pre_ctx_type *ctx_30)
+{
+# 256 "convertible_main.c"
+	Lustre_pre_ctx_reset(ctx_30);
+}
+
+void Lustre_pre_get(convertible_hood_state *z_12, Lustre_pre_ctx_type *ctx_31)
+{
+# 260 "convertible_main.c"
+	*z_12 = ctx_31->_memory;
+}
+
+void Lustre_pre_set(convertible_hood_state x_12, Lustre_pre_ctx_type *ctx_32)
+{
+# 265 "convertible_main.c"
+	ctx_32->_memory = x_12;
+}
+
+void Lustre_pre_6_ctx_reset(Lustre_pre_6_ctx_type *ctx_33)
+{
+	int _i_9;
+}
+
+void Lustre_pre_6_ctx_init(Lustre_pre_6_ctx_type *ctx_34)
+{
+# 278 "convertible_main.c"
+	Lustre_pre_6_ctx_reset(ctx_34);
+}
+
+void Lustre_pre_6_get(convertible_vehicle_state *z_13, Lustre_pre_6_ctx_type
+	*ctx_35)
+{
+# 282 "convertible_main.c"
+	*z_13 = ctx_35->_memory;
+}
+
+void Lustre_pre_6_set(convertible_vehicle_state x_13, Lustre_pre_6_ctx_type
+	*ctx_36)
+{
+# 287 "convertible_main.c"
+	ctx_36->_memory = x_13;
+}
+
+void Lustre_pre_5_ctx_reset(Lustre_pre_5_ctx_type *ctx_37)
+{
+	int _i_10;
+}
+
+void Lustre_pre_5_ctx_init(Lustre_pre_5_ctx_type *ctx_38)
+{
+# 300 "convertible_main.c"
+	Lustre_pre_5_ctx_reset(ctx_38);
+}
+
+void Lustre_pre_5_get(_real z_14[50], Lustre_pre_5_ctx_type *ctx_39)
+{
+	int j_0;
+# 304 "convertible_main.c"
+	for(j_0 = 0; j_0 < sizeof(_real[50]); j_0++)
+# 304 "convertible_main.c"
+	{
+# 304 "convertible_main.c"
+		z_14[j] = (ctx_39->_memory)[j];
+	}
+# 304 "convertible_main.c"
+	;
+}
+
+void Lustre_pre_5_set(_real x_14[50], Lustre_pre_5_ctx_type *ctx_40)
+{
+	int j_1;
+# 309 "convertible_main.c"
+	for(j_1 = 0; j_1 < sizeof(_real[50]); j_1++)
+# 309 "convertible_main.c"
+	{
+# 309 "convertible_main.c"
+		(ctx_40->_memory)[j] = x_14[j];
+	}
+# 309 "convertible_main.c"
+	;
+}
+
+void Lustre_slash_step(_real x_15, _real y_8, _real *z_15)
+{
+# 315 "convertible_main.c"
+	*z_15 = x_15 / y_8;
+}
+
+void assign_50_step(_real v, _integer jv, _real t[50], _real nt[50])
+{
+	convertible_update_acc _v_3;
+	convertible_update_acc dummy;
+# 324 "convertible_main.c"
+	_v_3.i = 0;
+# 325 "convertible_main.c"
+	_v_3.j = jv;
+# 326 "convertible_main.c"
+	_v_3.v = v;
+# 327 "convertible_main.c"
+	fillred_update_cell_do_50_step(_v_3, t, &dummy, nt);
+}
+
+void convertible_abs_step(_real x_16, _real *y_9)
+{
+	_real _v_2;
+	_boolean _v_1;
+# 348 "convertible_main.c"
+	_v_2 = -x_16;
+# 349 "convertible_main.c"
+	_v_1 = x_16 >= 0.0;
+# 350 "convertible_main.c"
+	if(_v_1 == 1)
+# 350 "convertible_main.c"
+	{
+# 351 "convertible_main.c"
+		*y_9 = x_16;
+	}
+	else
+# 352 "convertible_main.c"
+# 352 "convertible_main.c"
+	{
+# 353 "convertible_main.c"
+		*y_9 = _v_2;
+	}
+}
+
+void convertible_braking_time_step(_real Speed, _real *res)
+{
+	_real _v_4;
+# 368 "convertible_main.c"
+	_v_4 = Speed * Speed;
+# 369 "convertible_main.c"
+	Lustre_slash_step(_v_4, 5500.0, res);
+}
+
+void convertible_hood_ctx_reset(convertible_hood_ctx_type *ctx_41)
+{
+	int _i_11;
+# 377 "convertible_main.c"
+	convertible_hood_speed_ctx_reset(&(ctx_41->convertible_hood_speed_ctx_tab
+		)[0]);
+# 378 "convertible_main.c"
+	Lustre_pre_ctx_reset(&(ctx_41->Lustre_pre_ctx_tab)[0]);
+# 379 "convertible_main.c"
+	Lustre_arrow_ctx_reset(&(ctx_41->Lustre_arrow_ctx_tab)[0]);
+}
+
+void convertible_hood_ctx_init(convertible_hood_ctx_type *ctx_42)
+{
+# 385 "convertible_main.c"
+	convertible_hood_ctx_reset(ctx_42);
+}
+
+void convertible_hood_step(_boolean Tic, _boolean Parked, _boolean OnOff,
+	_boolean Done, _boolean *Locked, _real *Hood_Speed,
+	convertible_hood_ctx_type *ctx_43)
+{
+	_real _v_12;
+	_real _v_11;
+	convertible_hood_state _v_10;
+	_boolean _v_9;
+	convertible_hood_state _v_8;
+	_boolean _v_7;
+	_boolean _v_6;
+	convertible_hood_state _v_5;
+	convertible_hood_state pst;
+	convertible_hood_state st;
+	_boolean Tic_on_in_motion;
+# 460 "convertible_main.c"
+	Lustre_pre_get(&_v_5, &(ctx_43->Lustre_pre_ctx_tab)[0]);
+# 461 "convertible_main.c"
+	Lustre_arrow_step(0, _v_5, &pst, &(ctx_43->Lustre_arrow_ctx_tab)[0]);
+# 462 "convertible_main.c"
+	if(pst == 1)
+# 462 "convertible_main.c"
+	{
+# 463 "convertible_main.c"
+		_v_9 = Done;
+# 464 "convertible_main.c"
+		if(_v_9 == 1)
+# 464 "convertible_main.c"
+		{
+# 465 "convertible_main.c"
+			_v_10 = 0;
+		}
+		else
+# 466 "convertible_main.c"
+# 466 "convertible_main.c"
+		{
+# 467 "convertible_main.c"
+			_v_10 = 1;
+		}
+# 469 "convertible_main.c"
+		st = _v_10;
+	}
+	else
+# 471 "convertible_main.c"
+# 471 "convertible_main.c"
+		;
+# 472 "convertible_main.c"
+	_v_6 = OnOff & Parked;
+# 473 "convertible_main.c"
+	if(pst == 0)
+# 473 "convertible_main.c"
+	{
+# 474 "convertible_main.c"
+		_v_7 = _v_6;
+# 475 "convertible_main.c"
+		if(_v_7 == 1)
+# 475 "convertible_main.c"
+		{
+# 476 "convertible_main.c"
+			_v_8 = 1;
+		}
+		else
+# 477 "convertible_main.c"
+# 477 "convertible_main.c"
+		{
+# 478 "convertible_main.c"
+			_v_8 = 0;
+		}
+# 480 "convertible_main.c"
+		st = _v_8;
+	}
+	else
+# 482 "convertible_main.c"
+# 482 "convertible_main.c"
+		;
+# 483 "convertible_main.c"
+	Lustre_pre_set(st, &(ctx_43->Lustre_pre_ctx_tab)[0]);
+# 484 "convertible_main.c"
+	Lustre_eq_3_step(st, 0, Locked);
+# 485 "convertible_main.c"
+	if(st == 1)
+# 485 "convertible_main.c"
+	{
+# 486 "convertible_main.c"
+		Tic_on_in_motion = Tic;
+# 487 "convertible_main.c"
+		convertible_hood_speed_step(Tic_on_in_motion, &_v_12,
+			&(ctx_43->convertible_hood_speed_ctx_tab)[0]);
+# 488 "convertible_main.c"
+		*Hood_Speed = _v_12;
+	}
+	else
+# 490 "convertible_main.c"
+# 490 "convertible_main.c"
+	{
+# 491 "convertible_main.c"
+		if(st == 0)
+# 491 "convertible_main.c"
+		{
+# 492 "convertible_main.c"
+			_v_11 = 0.0;
+# 493 "convertible_main.c"
+			*Hood_Speed = _v_11;
+		}
+		else
+# 495 "convertible_main.c"
+# 495 "convertible_main.c"
+			;
+	}
+}
+
+void convertible_hood_speed_ctx_reset(convertible_hood_speed_ctx_type *ctx_44)
+{
+	int _i_12;
+# 503 "convertible_main.c"
+	Lustre_pre_2_ctx_reset(&(ctx_44->Lustre_pre_2_ctx_tab)[0]);
+# 504 "convertible_main.c"
+	Lustre_pre_3_ctx_reset(&(ctx_44->Lustre_pre_3_ctx_tab)[0]);
+# 505 "convertible_main.c"
+	Lustre_pre_3_ctx_reset(&(ctx_44->Lustre_pre_3_ctx_tab)[1]);
+# 506 "convertible_main.c"
+	Lustre_arrow_2_ctx_reset(&(ctx_44->Lustre_arrow_2_ctx_tab)[0]);
+# 507 "convertible_main.c"
+	Lustre_arrow_3_ctx_reset(&(ctx_44->Lustre_arrow_3_ctx_tab)[0]);
+# 508 "convertible_main.c"
+	Lustre_arrow_3_ctx_reset(&(ctx_44->Lustre_arrow_3_ctx_tab)[1]);
+}
+
+void convertible_hood_speed_ctx_init(convertible_hood_speed_ctx_type *ctx_45)
+{
+# 514 "convertible_main.c"
+	convertible_hood_speed_ctx_reset(ctx_45);
+}
+
+void convertible_hood_speed_step(_boolean Tic_0, _real *Hood_Speed_0,
+	convertible_hood_speed_ctx_type *ctx_46)
+{
+	_real _v_35;
+	_real _v_34;
+	_real _v_33;
+	_real _v_32;
+	_real _v_31;
+	_real _v_30;
+	_real _v_29;
+	_real _v_28;
+	_real _v_27;
+	_real _v_26;
+	_real _v_25;
+	_real _v_24;
+	_real _v_23;
+	_real _v_22;
+	_real _v_21;
+	_real _v_20;
+	convertible_hood_speed_state _v_19;
+	_boolean _v_18;
+	_real _v_17;
+	convertible_hood_speed_state _v_16;
+	_boolean _v_15;
+	_real _v_14;
+	convertible_hood_speed_state _v_13;
+	convertible_hood_speed_state pst_0;
+	convertible_hood_speed_state st_0;
+	_real kh;
+	_real Hood_Percent;
+	_real pHood_Percent;
+	_real slow_it_down;
+	_real pHood_Speed;
+# 728 "convertible_main.c"
+	if(Tic_0 == 1)
+# 728 "convertible_main.c"
+	{
+# 729 "convertible_main.c"
+		Lustre_pre_2_get(&_v_13, &(ctx_46->Lustre_pre_2_ctx_tab)[0]);
+# 730 "convertible_main.c"
+		Lustre_arrow_2_step(0, _v_13, &pst_0,
+			&(ctx_46->Lustre_arrow_2_ctx_tab)[0]);
+# 731 "convertible_main.c"
+		Lustre_pre_3_get(&_v_20, &(ctx_46->Lustre_pre_3_ctx_tab)[0]);
+# 732 "convertible_main.c"
+		Lustre_arrow_3_step(0.0, _v_20, &pHood_Percent,
+			&(ctx_46->Lustre_arrow_3_ctx_tab)[0]);
+# 733 "convertible_main.c"
+		if(pst_0 == 1)
+# 733 "convertible_main.c"
+		{
+# 734 "convertible_main.c"
+			_v_14 = pHood_Percent;
+# 735 "convertible_main.c"
+			_v_15 = _v_14 < 85.0;
+# 736 "convertible_main.c"
+			if(_v_15 == 1)
+# 736 "convertible_main.c"
+			{
+# 737 "convertible_main.c"
+				_v_16 = 1;
+			}
+			else
+# 738 "convertible_main.c"
+# 738 "convertible_main.c"
+			{
+# 739 "convertible_main.c"
+				_v_16 = 2;
+			}
+# 741 "convertible_main.c"
+			st_0 = _v_16;
+		}
+		else
+# 743 "convertible_main.c"
+# 743 "convertible_main.c"
+		{
+# 744 "convertible_main.c"
+			if(pst_0 == 2)
+# 744 "convertible_main.c"
+			{
+# 745 "convertible_main.c"
+				_v_17 = pHood_Percent;
+# 746 "convertible_main.c"
+				_v_18 = _v_17 < 100.0;
+# 747 "convertible_main.c"
+				if(_v_18 == 1)
+# 747 "convertible_main.c"
+				{
+# 748 "convertible_main.c"
+					_v_19 = 2;
+				}
+				else
+# 749 "convertible_main.c"
+# 749 "convertible_main.c"
+				{
+# 750 "convertible_main.c"
+					_v_19 = 0;
+				}
+# 752 "convertible_main.c"
+				st_0 = _v_19;
+			}
+			else
+# 754 "convertible_main.c"
+# 754 "convertible_main.c"
+			{
+# 755 "convertible_main.c"
+				if(pst_0 == 0)
+# 755 "convertible_main.c"
+				{
+# 756 "convertible_main.c"
+					st_0 = 1;
+				}
+				else
+# 758 "convertible_main.c"
+# 758 "convertible_main.c"
+					;
+			}
+		}
+# 759 "convertible_main.c"
+		Lustre_pre_2_set(st_0, &(ctx_46->Lustre_pre_2_ctx_tab)[0]);
+# 760 "convertible_main.c"
+		Lustre_slash_step(5., 0.1, &_v_25);
+# 761 "convertible_main.c"
+		Lustre_slash_step(100., _v_25, &kh);
+# 762 "convertible_main.c"
+		_v_30 = kh + pHood_Percent;
+# 763 "convertible_main.c"
+		if(st_0 == 1)
+# 763 "convertible_main.c"
+		{
+# 764 "convertible_main.c"
+			_v_31 = _v_30;
+# 765 "convertible_main.c"
+			Hood_Percent = _v_31;
+		}
+		else
+# 767 "convertible_main.c"
+# 767 "convertible_main.c"
+		{
+# 768 "convertible_main.c"
+			if(st_0 == 2)
+# 768 "convertible_main.c"
+			{
+# 769 "convertible_main.c"
+				_v_34 = pHood_Percent;
+# 770 "convertible_main.c"
+				_v_21 = pHood_Percent;
+# 771 "convertible_main.c"
+				_v_22 = 100.0 - _v_21;
+# 772 "convertible_main.c"
+				Lustre_slash_step(_v_22, 5.0, &_v_23);
+# 773 "convertible_main.c"
+				convertible_sqrt_step(_v_23, &_v_24);
+# 774 "convertible_main.c"
+				convertible_sqrt_step(_v_24, &slow_it_down);
+# 775 "convertible_main.c"
+				_v_32 = kh;
+# 776 "convertible_main.c"
+				_v_33 = slow_it_down * _v_32;
+# 777 "convertible_main.c"
+				_v_35 = _v_33 + _v_34;
+# 778 "convertible_main.c"
+				Hood_Percent = _v_35;
+			}
+			else
+# 780 "convertible_main.c"
+# 780 "convertible_main.c"
+			{
+# 781 "convertible_main.c"
+				if(st_0 == 0)
+# 781 "convertible_main.c"
+				{
+# 782 "convertible_main.c"
+					Hood_Percent = 0.0;
+# 783 "convertible_main.c"
+					Hood_Percent = 0.0;
+				}
+				else
+# 785 "convertible_main.c"
+# 785 "convertible_main.c"
+					;
+			}
+		}
+# 786 "convertible_main.c"
+		Lustre_pre_3_set(Hood_Percent,
+			&(ctx_46->Lustre_pre_3_ctx_tab)[0]);
+	}
+	else
+# 788 "convertible_main.c"
+# 788 "convertible_main.c"
+		;
+# 789 "convertible_main.c"
+	Lustre_pre_3_get(&_v_26, &(ctx_46->Lustre_pre_3_ctx_tab)[1]);
+# 790 "convertible_main.c"
+	Lustre_arrow_3_step(0.0, _v_26, &pHood_Speed,
+		&(ctx_46->Lustre_arrow_3_ctx_tab)[1]);
+# 791 "convertible_main.c"
+	if(Tic_0 == 0)
+# 791 "convertible_main.c"
+	{
+# 792 "convertible_main.c"
+		_v_27 = pHood_Speed;
+# 793 "convertible_main.c"
+		*Hood_Speed_0 = _v_27;
+	}
+	else
+# 795 "convertible_main.c"
+# 795 "convertible_main.c"
+	{
+# 796 "convertible_main.c"
+		if(Tic_0 == 1)
+# 796 "convertible_main.c"
+		{
+# 797 "convertible_main.c"
+			if(st_0 == 1)
+# 797 "convertible_main.c"
+			{
+# 798 "convertible_main.c"
+				_v_29 = 10.0;
+# 799 "convertible_main.c"
+				_v_29 = 10.0;
+			}
+			else
+# 801 "convertible_main.c"
+# 801 "convertible_main.c"
+			{
+# 802 "convertible_main.c"
+				if(st_0 == 2)
+# 802 "convertible_main.c"
+				{
+# 803 "convertible_main.c"
+					_v_28 = 10.0 * slow_it_down;
+# 804 "convertible_main.c"
+					_v_29 = _v_28;
+				}
+				else
+# 806 "convertible_main.c"
+# 806 "convertible_main.c"
+				{
+# 807 "convertible_main.c"
+					if(st_0 == 0)
+# 807 "convertible_main.c"
+					{
+# 808 "convertible_main.c"
+						_v_29 = 0.0;
+# 809 "convertible_main.c"
+						_v_29 = 0.0;
+					}
+					else
+# 811 "convertible_main.c"
+# 811 "convertible_main.c"
+						;
+				}
+			}
+# 812 "convertible_main.c"
+			*Hood_Speed_0 = _v_29;
+		}
+		else
+# 814 "convertible_main.c"
+# 814 "convertible_main.c"
+			;
+	}
+# 815 "convertible_main.c"
+	Lustre_pre_3_set(*Hood_Speed_0, &(ctx_46->Lustre_pre_3_ctx_tab)[1]);
+}
+
+void convertible_main_ctx_reset(convertible_main_ctx_type *ctx_47)
+{
+	int _i_13;
+# 823 "convertible_main.c"
+	convertible_vehicle_ctx_reset(&(ctx_47->convertible_vehicle_ctx_tab)[0])
+		;
+# 824 "convertible_main.c"
+	convertible_speed_kmh_ctx_reset(&(ctx_47->convertible_speed_kmh_ctx_tab)
+		[0]);
+# 825 "convertible_main.c"
+	convertible_may_collide_ctx_reset(&(ctx_47->convertible_may_collide_ctx_tab
+		)[0]);
+# 826 "convertible_main.c"
+	convertible_hood_ctx_reset(&(ctx_47->convertible_hood_ctx_tab)[0]);
+}
+
+void convertible_main_ctx_init(convertible_main_ctx_type *ctx_48)
+{
+# 832 "convertible_main.c"
+	convertible_main_ctx_reset(ctx_48);
+}
+
+void convertible_main_step(_boolean Start, _boolean Parked_0, _boolean Rot,
+	_boolean Tic_1, _boolean OnOff_0, _boolean Done_0, _real Distance,
+	_boolean *Danger, _boolean *Locked_0, _real *Speed_0, _real
+	*Hood_Speed_1, convertible_main_ctx_type *ctx_49)
+{
+	_boolean _v_38;
+	_real _v_37;
+	_real _v_36;
+	convertible_vehicle_state St;
+	_boolean _v_39;
+	_boolean _v_40;
+# 878 "convertible_main.c"
+	_v_39 = OnOff_0 & Start;
+# 879 "convertible_main.c"
+	_v_40 = !_v_39;
+# 880 "convertible_main.c"
+	convertible_hood_step(Tic_1, Parked_0, OnOff_0, Done_0, Locked_0,
+		Hood_Speed_1, &(ctx_49->convertible_hood_ctx_tab)[0]);
+# 881 "convertible_main.c"
+	convertible_speed_kmh_step(Rot, Tic_1, Speed_0,
+		&(ctx_49->convertible_speed_kmh_ctx_tab)[0]);
+# 882 "convertible_main.c"
+	convertible_vehicle_step(Start, *Locked_0, *Speed_0, Distance, &St,
+		&(ctx_49->convertible_vehicle_ctx_tab)[0]);
+# 883 "convertible_main.c"
+	if(St == 2)
+# 883 "convertible_main.c"
+	{
+# 884 "convertible_main.c"
+		_v_37 = Distance;
+# 885 "convertible_main.c"
+		_v_36 = *Speed_0;
+# 886 "convertible_main.c"
+		convertible_may_collide_step(_v_36, _v_37, &_v_38,
+			&(ctx_49->convertible_may_collide_ctx_tab)[0]);
+# 887 "convertible_main.c"
+		*Danger = _v_38;
+	}
+	else
+# 889 "convertible_main.c"
+# 889 "convertible_main.c"
+	{
+# 890 "convertible_main.c"
+		if(St == 1)
+# 890 "convertible_main.c"
+		{
+# 891 "convertible_main.c"
+			*Danger = 0;
+# 892 "convertible_main.c"
+			*Danger = 0;
+		}
+		else
+# 894 "convertible_main.c"
+# 894 "convertible_main.c"
+		{
+# 895 "convertible_main.c"
+			if(St == 0)
+# 895 "convertible_main.c"
+			{
+# 896 "convertible_main.c"
+				*Danger = 0;
+# 897 "convertible_main.c"
+				*Danger = 0;
+			}
+			else
+# 899 "convertible_main.c"
+# 899 "convertible_main.c"
+				;
+		}
+	}
+}
+
+void convertible_maxr_step(_real x_17, _real y_10, _real *res_0)
+{
+	_boolean _v_41;
+# 913 "convertible_main.c"
+	_v_41 = x_17 < y_10;
+# 914 "convertible_main.c"
+	if(_v_41 == 1)
+# 914 "convertible_main.c"
+	{
+# 915 "convertible_main.c"
+		*res_0 = y_10;
+	}
+	else
+# 916 "convertible_main.c"
+# 916 "convertible_main.c"
+	{
+# 917 "convertible_main.c"
+		*res_0 = x_17;
+	}
+}
+
+void convertible_may_collide_ctx_reset(convertible_may_collide_ctx_type *ctx_50)
+{
+	int _i_14;
+# 926 "convertible_main.c"
+	Lustre_pre_3_ctx_reset(&(ctx_50->Lustre_pre_3_ctx_tab)[0]);
+# 927 "convertible_main.c"
+	Lustre_arrow_3_ctx_reset(&(ctx_50->Lustre_arrow_3_ctx_tab)[0]);
+}
+
+void convertible_may_collide_ctx_init(convertible_may_collide_ctx_type *ctx_51)
+{
+# 933 "convertible_main.c"
+	convertible_may_collide_ctx_reset(ctx_51);
+}
+
+void convertible_may_collide_step(_real Speed_1, _real Distance_0, _boolean
+	*Res, convertible_may_collide_ctx_type *ctx_52)
+{
+	_real _v_47;
+	_real _v_46;
+	_real _v_45;
+	_real _v_44;
+	_real _v_43;
+	_real _v_42;
+	_real Accel;
+	_real tChoc;
+	_real tBrake;
+# 1000 "convertible_main.c"
+	Lustre_pre_3_get(&_v_42, &(ctx_52->Lustre_pre_3_ctx_tab)[0]);
+# 1001 "convertible_main.c"
+	_v_43 = Speed_1 - _v_42;
+# 1002 "convertible_main.c"
+	Lustre_slash_step(_v_43, 0.1, &_v_44);
+# 1003 "convertible_main.c"
+	Lustre_pre_3_set(Speed_1, &(ctx_52->Lustre_pre_3_ctx_tab)[0]);
+# 1004 "convertible_main.c"
+	Lustre_arrow_3_step(0.0, _v_44, &Accel,
+		&(ctx_52->Lustre_arrow_3_ctx_tab)[0]);
+# 1005 "convertible_main.c"
+	convertible_braking_time_step(Speed_1, &tBrake);
+# 1006 "convertible_main.c"
+	_v_46 = -(2.0 * Distance_0);
+# 1007 "convertible_main.c"
+	_v_45 = 2.0 * Speed_1;
+# 1008 "convertible_main.c"
+	convertible_solve_eq_d2_step(Accel, _v_45, _v_46, &tChoc);
+# 1009 "convertible_main.c"
+	_v_47 = 2.0 + tBrake;
+# 1010 "convertible_main.c"
+	*Res = tChoc < _v_47;
+}
+
+void convertible_ms_to_kmh_step(_real x_18, _real *res_1)
+{
+# 1017 "convertible_main.c"
+	*res_1 = x_18 * 3.6;
+}
+
+void convertible_solve_eq_d2_step(_real a, _real b, _real c, _real *res_2)
+{
+	_real _v_75;
+	_real _v_74;
+	_real _v_73;
+	_real _v_72;
+	_real _v_71;
+	_real _v_70;
+	_real _v_69;
+	_real _v_68;
+	_real _v_67;
+	_real _v_66;
+	_real _v_65;
+	_real _v_64;
+	_real _v_63;
+	_real _v_62;
+	_real _v_61;
+	_real _v_60;
+	_real _v_59;
+	_real _v_58;
+	convertible_eq_case _v_57;
+	convertible_eq_case _v_56;
+	_boolean _v_55;
+	_boolean _v_54;
+	convertible_eq_case _v_53;
+	_boolean _v_52;
+	_boolean _v_51;
+	_real _v_50;
+	_real _v_49;
+	_real _v_48;
+	_real delta;
+	convertible_eq_case sol_nb;
+	_real a2;
+	_real b2;
+	_real delta_pos;
+# 1255 "convertible_main.c"
+	_v_49 = 4.0 * a;
+# 1256 "convertible_main.c"
+	_v_50 = _v_49 * c;
+# 1257 "convertible_main.c"
+	_v_48 = b * b;
+# 1258 "convertible_main.c"
+	delta = _v_48 - _v_50;
+# 1259 "convertible_main.c"
+	Lustre_eq_2_step(delta, 0.0, &_v_55);
+# 1260 "convertible_main.c"
+	if(_v_55 == 1)
+# 1260 "convertible_main.c"
+	{
+# 1261 "convertible_main.c"
+		_v_56 = 2;
+	}
+	else
+# 1262 "convertible_main.c"
+# 1262 "convertible_main.c"
+	{
+# 1263 "convertible_main.c"
+		_v_56 = 3;
+	}
+# 1265 "convertible_main.c"
+	_v_54 = delta < 0.0;
+# 1266 "convertible_main.c"
+	if(_v_54 == 1)
+# 1266 "convertible_main.c"
+	{
+# 1267 "convertible_main.c"
+		_v_57 = 0;
+	}
+	else
+# 1268 "convertible_main.c"
+# 1268 "convertible_main.c"
+	{
+# 1269 "convertible_main.c"
+		_v_57 = _v_56;
+	}
+# 1271 "convertible_main.c"
+	Lustre_eq_2_step(b, 0.0, &_v_52);
+# 1272 "convertible_main.c"
+	if(_v_52 == 1)
+# 1272 "convertible_main.c"
+	{
+# 1273 "convertible_main.c"
+		_v_53 = 0;
+	}
+	else
+# 1274 "convertible_main.c"
+# 1274 "convertible_main.c"
+	{
+# 1275 "convertible_main.c"
+		_v_53 = 1;
+	}
+# 1277 "convertible_main.c"
+	Lustre_eq_2_step(a, 0.0, &_v_51);
+# 1278 "convertible_main.c"
+	if(_v_51 == 1)
+# 1278 "convertible_main.c"
+	{
+# 1279 "convertible_main.c"
+		sol_nb = _v_53;
+	}
+	else
+# 1280 "convertible_main.c"
+# 1280 "convertible_main.c"
+	{
+# 1281 "convertible_main.c"
+		sol_nb = _v_57;
+	}
+# 1283 "convertible_main.c"
+	if(sol_nb == 3)
+# 1283 "convertible_main.c"
+	{
+# 1284 "convertible_main.c"
+		delta_pos = delta;
+# 1285 "convertible_main.c"
+		a2 = a;
+# 1286 "convertible_main.c"
+		b2 = b;
+# 1287 "convertible_main.c"
+		convertible_sqrt_step(delta_pos, &_v_66);
+# 1288 "convertible_main.c"
+		_v_67 = 2.0 * a2;
+# 1289 "convertible_main.c"
+		Lustre_slash_step(_v_66, _v_67, &_v_68);
+# 1290 "convertible_main.c"
+		_v_65 = -b2;
+# 1291 "convertible_main.c"
+		_v_69 = _v_65 + _v_68;
+# 1292 "convertible_main.c"
+		convertible_sqrt_step(delta_pos, &_v_71);
+# 1293 "convertible_main.c"
+		_v_72 = 2.0 * a2;
+# 1294 "convertible_main.c"
+		Lustre_slash_step(_v_71, _v_72, &_v_73);
+# 1295 "convertible_main.c"
+		_v_70 = -b2;
+# 1296 "convertible_main.c"
+		_v_74 = _v_70 - _v_73;
+# 1297 "convertible_main.c"
+		convertible_maxr_step(_v_69, _v_74, &_v_75);
+	}
+	else
+# 1299 "convertible_main.c"
+# 1299 "convertible_main.c"
+		;
+# 1300 "convertible_main.c"
+	_v_61 = -b;
+# 1301 "convertible_main.c"
+	_v_62 = 2.0 * a;
+# 1302 "convertible_main.c"
+	Lustre_slash_step(_v_61, _v_62, &_v_63);
+# 1303 "convertible_main.c"
+	if(sol_nb == 2)
+# 1303 "convertible_main.c"
+	{
+# 1304 "convertible_main.c"
+		_v_64 = _v_63;
+	}
+	else
+# 1306 "convertible_main.c"
+# 1306 "convertible_main.c"
+		;
+# 1307 "convertible_main.c"
+	_v_58 = -c;
+# 1308 "convertible_main.c"
+	Lustre_slash_step(_v_58, b, &_v_59);
+# 1309 "convertible_main.c"
+	if(sol_nb == 1)
+# 1309 "convertible_main.c"
+	{
+# 1310 "convertible_main.c"
+		_v_60 = _v_59;
+# 1311 "convertible_main.c"
+		*res_2 = _v_60;
+	}
+	else
+# 1313 "convertible_main.c"
+# 1313 "convertible_main.c"
+	{
+# 1314 "convertible_main.c"
+		if(sol_nb == 3)
+# 1314 "convertible_main.c"
+		{
+# 1315 "convertible_main.c"
+			*res_2 = _v_75;
+		}
+		else
+# 1317 "convertible_main.c"
+# 1317 "convertible_main.c"
+		{
+# 1318 "convertible_main.c"
+			if(sol_nb == 2)
+# 1318 "convertible_main.c"
+			{
+# 1319 "convertible_main.c"
+				*res_2 = _v_64;
+			}
+			else
+# 1321 "convertible_main.c"
+# 1321 "convertible_main.c"
+			{
+# 1322 "convertible_main.c"
+				if(sol_nb == 0)
+# 1322 "convertible_main.c"
+				{
+# 1323 "convertible_main.c"
+					*res_2 = -1.0;
+# 1324 "convertible_main.c"
+					*res_2 = -1.0;
+				}
+				else
+# 1326 "convertible_main.c"
+# 1326 "convertible_main.c"
+					;
+			}
+		}
+	}
+}
+
+void convertible_speed_kmh_ctx_reset(convertible_speed_kmh_ctx_type *ctx_53)
+{
+	int _i_15;
+# 1334 "convertible_main.c"
+	sum_50_0d1_ctx_reset(&(ctx_53->sum_50_0d1_ctx_tab)[0]);
+# 1335 "convertible_main.c"
+	sum_50_0d0_ctx_reset(&(ctx_53->sum_50_0d0_ctx_tab)[0]);
+# 1336 "convertible_main.c"
+	Lustre_pre_3_ctx_reset(&(ctx_53->Lustre_pre_3_ctx_tab)[0]);
+# 1337 "convertible_main.c"
+	Lustre_pre_3_ctx_reset(&(ctx_53->Lustre_pre_3_ctx_tab)[1]);
+# 1338 "convertible_main.c"
+	Lustre_pre_3_ctx_reset(&(ctx_53->Lustre_pre_3_ctx_tab)[2]);
+# 1339 "convertible_main.c"
+	Lustre_arrow_3_ctx_reset(&(ctx_53->Lustre_arrow_3_ctx_tab)[0]);
+# 1340 "convertible_main.c"
+	Lustre_arrow_3_ctx_reset(&(ctx_53->Lustre_arrow_3_ctx_tab)[1]);
+# 1341 "convertible_main.c"
+	Lustre_arrow_3_ctx_reset(&(ctx_53->Lustre_arrow_3_ctx_tab)[2]);
+}
+
+void convertible_speed_kmh_ctx_init(convertible_speed_kmh_ctx_type *ctx_54)
+{
+# 1347 "convertible_main.c"
+	convertible_speed_kmh_ctx_reset(ctx_54);
+}
+
+void convertible_speed_kmh_step(_boolean Rot_0, _boolean Tic_2, _real *Speed_2,
+	convertible_speed_kmh_ctx_type *ctx_55)
+{
+	_real _v_87;
+	_real _v_86;
+	_real _v_85;
+	_real _v_84;
+	_real _v_83;
+	_real _v_82;
+	_real _v_81;
+	_real _v_80;
+	_real _v_79;
+	_real _v_78;
+	_real _v_77;
+	_real _v_76;
+	_real d;
+	_real t_0;
+	_real pd;
+	_real pt;
+	_real dx;
+	_real tx;
+	_boolean TicOrRot;
+# 1484 "convertible_main.c"
+	if(Rot_0 == 1)
+# 1484 "convertible_main.c"
+	{
+# 1485 "convertible_main.c"
+		dx = 1.4;
+	}
+	else
+# 1486 "convertible_main.c"
+# 1486 "convertible_main.c"
+	{
+# 1487 "convertible_main.c"
+		dx = 0.0;
+	}
+# 1489 "convertible_main.c"
+	if(Tic_2 == 1)
+# 1489 "convertible_main.c"
+	{
+# 1490 "convertible_main.c"
+		tx = 0.1;
+	}
+	else
+# 1491 "convertible_main.c"
+# 1491 "convertible_main.c"
+	{
+# 1492 "convertible_main.c"
+		tx = 0.0;
+	}
+# 1494 "convertible_main.c"
+	TicOrRot = Tic_2 | Rot_0;
+# 1495 "convertible_main.c"
+	Lustre_pre_3_get(&_v_76, &(ctx_55->Lustre_pre_3_ctx_tab)[0]);
+# 1496 "convertible_main.c"
+	Lustre_arrow_3_step(0.0, _v_76, &pd,
+		&(ctx_55->Lustre_arrow_3_ctx_tab)[0]);
+# 1497 "convertible_main.c"
+	if(TicOrRot == 0)
+# 1497 "convertible_main.c"
+	{
+# 1498 "convertible_main.c"
+		_v_78 = pd;
+# 1499 "convertible_main.c"
+		d = _v_78;
+	}
+	else
+# 1501 "convertible_main.c"
+# 1501 "convertible_main.c"
+	{
+# 1502 "convertible_main.c"
+		if(TicOrRot == 1)
+# 1502 "convertible_main.c"
+		{
+# 1503 "convertible_main.c"
+			_v_79 = dx;
+# 1504 "convertible_main.c"
+			sum_50_0d0_step(_v_79, &_v_80,
+				&(ctx_55->sum_50_0d0_ctx_tab)[0]);
+# 1505 "convertible_main.c"
+			d = _v_80;
+		}
+		else
+# 1507 "convertible_main.c"
+# 1507 "convertible_main.c"
+			;
+	}
+# 1508 "convertible_main.c"
+	Lustre_pre_3_set(d, &(ctx_55->Lustre_pre_3_ctx_tab)[0]);
+# 1509 "convertible_main.c"
+	Lustre_pre_3_get(&_v_77, &(ctx_55->Lustre_pre_3_ctx_tab)[1]);
+# 1510 "convertible_main.c"
+	Lustre_arrow_3_step(0.0, _v_77, &pt,
+		&(ctx_55->Lustre_arrow_3_ctx_tab)[1]);
+# 1511 "convertible_main.c"
+	if(TicOrRot == 0)
+# 1511 "convertible_main.c"
+	{
+# 1512 "convertible_main.c"
+		_v_83 = pt;
+# 1513 "convertible_main.c"
+		_v_84 = _v_83;
+	}
+	else
+# 1515 "convertible_main.c"
+# 1515 "convertible_main.c"
+	{
+# 1516 "convertible_main.c"
+		if(TicOrRot == 1)
+# 1516 "convertible_main.c"
+		{
+# 1517 "convertible_main.c"
+			_v_81 = tx;
+# 1518 "convertible_main.c"
+			sum_50_0d1_step(_v_81, &_v_82,
+				&(ctx_55->sum_50_0d1_ctx_tab)[0]);
+# 1519 "convertible_main.c"
+			_v_84 = _v_82;
+		}
+		else
+# 1521 "convertible_main.c"
+# 1521 "convertible_main.c"
+			;
+	}
+# 1522 "convertible_main.c"
+	convertible_maxr_step(0.1, _v_84, &t_0);
+# 1523 "convertible_main.c"
+	Lustre_pre_3_set(t_0, &(ctx_55->Lustre_pre_3_ctx_tab)[1]);
+# 1524 "convertible_main.c"
+	Lustre_pre_3_get(&_v_87, &(ctx_55->Lustre_pre_3_ctx_tab)[2]);
+# 1525 "convertible_main.c"
+	Lustre_slash_step(d, t_0, &_v_85);
+# 1526 "convertible_main.c"
+	convertible_ms_to_kmh_step(_v_85, &_v_86);
+# 1527 "convertible_main.c"
+	Lustre_pre_3_set(_v_86, &(ctx_55->Lustre_pre_3_ctx_tab)[2]);
+# 1528 "convertible_main.c"
+	Lustre_arrow_3_step(0.0, _v_87, Speed_2,
+		&(ctx_55->Lustre_arrow_3_ctx_tab)[2]);
+}
+
+void convertible_sqrt_step(_real R, _real *Sqrt)
+{
+# 1535 "convertible_main.c"
+	squareR_5_step(R, 1.0, Sqrt);
+}
+
+void convertible_vehicle_ctx_reset(convertible_vehicle_ctx_type *ctx_56)
+{
+	int _i_16;
+# 1543 "convertible_main.c"
+	Lustre_pre_6_ctx_reset(&(ctx_56->Lustre_pre_6_ctx_tab)[0]);
+# 1544 "convertible_main.c"
+	Lustre_arrow_6_ctx_reset(&(ctx_56->Lustre_arrow_6_ctx_tab)[0]);
+}
+
+void convertible_vehicle_ctx_init(convertible_vehicle_ctx_type *ctx_57)
+{
+# 1550 "convertible_main.c"
+	convertible_vehicle_ctx_reset(ctx_57);
+}
+
+void convertible_vehicle_step(_boolean Start_0, _boolean Locked_1, _real
+	Speed_3, _real Distance_1, convertible_vehicle_state *st_1,
+	convertible_vehicle_ctx_type *ctx_58)
+{
+	convertible_vehicle_state _v_153;
+	_boolean _v_152;
+	_boolean _v_151;
+	convertible_vehicle_state _v_150;
+	convertible_vehicle_state _v_149;
+	_boolean _v_148;
+	_boolean _v_147;
+	_boolean _v_146;
+	convertible_vehicle_state _v_145;
+	_boolean _v_144;
+	_boolean _v_143;
+	convertible_vehicle_state _v_142;
+	convertible_vehicle_state pst_1;
+	_boolean ac_cond;
+# 1652 "convertible_main.c"
+	Lustre_pre_6_get(&_v_142, &(ctx_58->Lustre_pre_6_ctx_tab)[0]);
+# 1653 "convertible_main.c"
+	Lustre_arrow_6_step(0, _v_142, &pst_1,
+		&(ctx_58->Lustre_arrow_6_ctx_tab)[0]);
+# 1654 "convertible_main.c"
+	ac_cond = Speed_3 >= 110.0;
+# 1655 "convertible_main.c"
+	if(pst_1 == 2)
+# 1655 "convertible_main.c"
+	{
+# 1656 "convertible_main.c"
+		_v_151 = ac_cond;
+# 1657 "convertible_main.c"
+		_v_152 = !_v_151;
+# 1658 "convertible_main.c"
+		if(_v_152 == 1)
+# 1658 "convertible_main.c"
+		{
+# 1659 "convertible_main.c"
+			_v_153 = 1;
+		}
+		else
+# 1660 "convertible_main.c"
+# 1660 "convertible_main.c"
+		{
+# 1661 "convertible_main.c"
+			_v_153 = 2;
+		}
+# 1663 "convertible_main.c"
+		*st_1 = _v_153;
+	}
+	else
+# 1665 "convertible_main.c"
+# 1665 "convertible_main.c"
+		;
+# 1666 "convertible_main.c"
+	Lustre_eq_2_step(Speed_3, 0.0, &_v_147);
+# 1667 "convertible_main.c"
+	if(pst_1 == 1)
+# 1667 "convertible_main.c"
+	{
+# 1668 "convertible_main.c"
+		_v_148 = _v_147;
+# 1669 "convertible_main.c"
+		if(_v_148 == 1)
+# 1669 "convertible_main.c"
+		{
+# 1670 "convertible_main.c"
+			_v_149 = 0;
+		}
+		else
+# 1671 "convertible_main.c"
+# 1671 "convertible_main.c"
+		{
+# 1672 "convertible_main.c"
+			_v_149 = 1;
+		}
+# 1674 "convertible_main.c"
+		_v_146 = ac_cond;
+# 1675 "convertible_main.c"
+		if(_v_146 == 1)
+# 1675 "convertible_main.c"
+		{
+# 1676 "convertible_main.c"
+			_v_150 = 2;
+		}
+		else
+# 1677 "convertible_main.c"
+# 1677 "convertible_main.c"
+		{
+# 1678 "convertible_main.c"
+			_v_150 = _v_149;
+		}
+# 1680 "convertible_main.c"
+		*st_1 = _v_150;
+	}
+	else
+# 1682 "convertible_main.c"
+# 1682 "convertible_main.c"
+		;
+# 1683 "convertible_main.c"
+	_v_143 = Start_0 & Locked_1;
+# 1684 "convertible_main.c"
+	if(pst_1 == 0)
+# 1684 "convertible_main.c"
+	{
+# 1685 "convertible_main.c"
+		_v_144 = _v_143;
+# 1686 "convertible_main.c"
+		if(_v_144 == 1)
+# 1686 "convertible_main.c"
+		{
+# 1687 "convertible_main.c"
+			_v_145 = 1;
+		}
+		else
+# 1688 "convertible_main.c"
+# 1688 "convertible_main.c"
+		{
+# 1689 "convertible_main.c"
+			_v_145 = 0;
+		}
+# 1691 "convertible_main.c"
+		*st_1 = _v_145;
+	}
+	else
+# 1693 "convertible_main.c"
+# 1693 "convertible_main.c"
+		;
+# 1694 "convertible_main.c"
+	Lustre_pre_6_set(*st_1, &(ctx_58->Lustre_pre_6_ctx_tab)[0]);
+}
+
+void fillred_update_cell_do_50_step(convertible_update_acc acc, _real cell[50],
+	convertible_update_acc *nacc, _real ncell[50])
+{
+	int _i_17;
+# 1701 "convertible_main.c"
+	for(_i_17 = 0; _i_17 < 49; _i_17 += 2)
+# 1701 "convertible_main.c"
+	{
+# 1702 "convertible_main.c"
+		update_cell_do_50_step(acc, cell[_i], &acc, &ncell[_i]);
+# 1703 "convertible_main.c"
+		update_cell_do_50_step(acc, cell[_i + 1], &acc, &ncell[_i + 1]);
+	}
+# 1705 "convertible_main.c"
+	*nacc = acc;
+}
+
+void red_rplus_50_real_step(_real i1, _real i2[50], _real *o)
+{
+	int _i_18;
+# 1712 "convertible_main.c"
+	for(_i_18 = 0; _i_18 < 49; _i_18 += 2)
+# 1712 "convertible_main.c"
+	{
+# 1713 "convertible_main.c"
+		i1 = i1 + i2[_i];
+# 1714 "convertible_main.c"
+		i1 = i1 + i2[_i + 1];
+	}
+# 1716 "convertible_main.c"
+	*o = i1;
+}
+
+void squareR_1_step(_real x_19, _real presqrt, _real *Sqrt_0)
+{
+	_real _v_91;
+	_real _v_90;
+	_real _v_89;
+	_real _v_88;
+	_real sqrt;
+	_boolean ecart;
+# 1765 "convertible_main.c"
+	Lustre_slash_step(x_19, presqrt, &_v_90);
+# 1766 "convertible_main.c"
+	_v_91 = presqrt + _v_90;
+# 1767 "convertible_main.c"
+	sqrt = 0.5 * _v_91;
+# 1768 "convertible_main.c"
+	_v_88 = presqrt - sqrt;
+# 1769 "convertible_main.c"
+	convertible_abs_step(_v_88, &_v_89);
+# 1770 "convertible_main.c"
+	ecart = _v_89 < 0.0005;
+# 1771 "convertible_main.c"
+	*Sqrt_0 = sqrt;
+}
+
+void squareR_2_step(_real x_20, _real presqrt_0, _real *Sqrt_1)
+{
+	_real _v_99;
+	_real _v_98;
+	_real _v_97;
+	_real _v_96;
+	_real _v_95;
+	_real _v_94;
+	_real _v_93;
+	_real _v_92;
+	_real sqrt_0;
+	_boolean ecart_0;
+# 1848 "convertible_main.c"
+	Lustre_slash_step(x_20, presqrt_0, &_v_94);
+# 1849 "convertible_main.c"
+	_v_95 = presqrt_0 + _v_94;
+# 1850 "convertible_main.c"
+	sqrt_0 = 0.5 * _v_95;
+# 1851 "convertible_main.c"
+	_v_92 = presqrt_0 - sqrt_0;
+# 1852 "convertible_main.c"
+	convertible_abs_step(_v_92, &_v_93);
+# 1853 "convertible_main.c"
+	ecart_0 = _v_93 < 0.0005;
+# 1854 "convertible_main.c"
+	if(ecart_0 == 1)
+# 1854 "convertible_main.c"
+	{
+# 1855 "convertible_main.c"
+		_v_99 = sqrt_0;
+# 1856 "convertible_main.c"
+		*Sqrt_1 = _v_99;
+	}
+	else
+# 1858 "convertible_main.c"
+# 1858 "convertible_main.c"
+	{
+# 1859 "convertible_main.c"
+		if(ecart_0 == 0)
+# 1859 "convertible_main.c"
+		{
+# 1860 "convertible_main.c"
+			_v_97 = sqrt_0;
+# 1861 "convertible_main.c"
+			_v_96 = x_20;
+# 1862 "convertible_main.c"
+			squareR_1_step(_v_96, _v_97, &_v_98);
+# 1863 "convertible_main.c"
+			*Sqrt_1 = _v_98;
+		}
+		else
+# 1865 "convertible_main.c"
+# 1865 "convertible_main.c"
+			;
+	}
+}
+
+void squareR_3_step(_real x_21, _real presqrt_1, _real *Sqrt_2)
+{
+	_real _v_107;
+	_real _v_106;
+	_real _v_105;
+	_real _v_104;
+	_real _v_103;
+	_real _v_102;
+	_real _v_101;
+	_real _v_100;
+	_real sqrt_1;
+	_boolean ecart_1;
+# 1942 "convertible_main.c"
+	Lustre_slash_step(x_21, presqrt_1, &_v_102);
+# 1943 "convertible_main.c"
+	_v_103 = presqrt_1 + _v_102;
+# 1944 "convertible_main.c"
+	sqrt_1 = 0.5 * _v_103;
+# 1945 "convertible_main.c"
+	_v_100 = presqrt_1 - sqrt_1;
+# 1946 "convertible_main.c"
+	convertible_abs_step(_v_100, &_v_101);
+# 1947 "convertible_main.c"
+	ecart_1 = _v_101 < 0.0005;
+# 1948 "convertible_main.c"
+	if(ecart_1 == 1)
+# 1948 "convertible_main.c"
+	{
+# 1949 "convertible_main.c"
+		_v_107 = sqrt_1;
+# 1950 "convertible_main.c"
+		*Sqrt_2 = _v_107;
+	}
+	else
+# 1952 "convertible_main.c"
+# 1952 "convertible_main.c"
+	{
+# 1953 "convertible_main.c"
+		if(ecart_1 == 0)
+# 1953 "convertible_main.c"
+		{
+# 1954 "convertible_main.c"
+			_v_105 = sqrt_1;
+# 1955 "convertible_main.c"
+			_v_104 = x_21;
+# 1956 "convertible_main.c"
+			squareR_2_step(_v_104, _v_105, &_v_106);
+# 1957 "convertible_main.c"
+			*Sqrt_2 = _v_106;
+		}
+		else
+# 1959 "convertible_main.c"
+# 1959 "convertible_main.c"
+			;
+	}
+}
+
+void squareR_4_step(_real x_22, _real presqrt_2, _real *Sqrt_3)
+{
+	_real _v_115;
+	_real _v_114;
+	_real _v_113;
+	_real _v_112;
+	_real _v_111;
+	_real _v_110;
+	_real _v_109;
+	_real _v_108;
+	_real sqrt_2;
+	_boolean ecart_2;
+# 2036 "convertible_main.c"
+	Lustre_slash_step(x_22, presqrt_2, &_v_110);
+# 2037 "convertible_main.c"
+	_v_111 = presqrt_2 + _v_110;
+# 2038 "convertible_main.c"
+	sqrt_2 = 0.5 * _v_111;
+# 2039 "convertible_main.c"
+	_v_108 = presqrt_2 - sqrt_2;
+# 2040 "convertible_main.c"
+	convertible_abs_step(_v_108, &_v_109);
+# 2041 "convertible_main.c"
+	ecart_2 = _v_109 < 0.0005;
+# 2042 "convertible_main.c"
+	if(ecart_2 == 1)
+# 2042 "convertible_main.c"
+	{
+# 2043 "convertible_main.c"
+		_v_115 = sqrt_2;
+# 2044 "convertible_main.c"
+		*Sqrt_3 = _v_115;
+	}
+	else
+# 2046 "convertible_main.c"
+# 2046 "convertible_main.c"
+	{
+# 2047 "convertible_main.c"
+		if(ecart_2 == 0)
+# 2047 "convertible_main.c"
+		{
+# 2048 "convertible_main.c"
+			_v_113 = sqrt_2;
+# 2049 "convertible_main.c"
+			_v_112 = x_22;
+# 2050 "convertible_main.c"
+			squareR_3_step(_v_112, _v_113, &_v_114);
+# 2051 "convertible_main.c"
+			*Sqrt_3 = _v_114;
+		}
+		else
+# 2053 "convertible_main.c"
+# 2053 "convertible_main.c"
+			;
+	}
+}
+
+void squareR_5_step(_real x_23, _real presqrt_3, _real *Sqrt_4)
+{
+	_real _v_123;
+	_real _v_122;
+	_real _v_121;
+	_real _v_120;
+	_real _v_119;
+	_real _v_118;
+	_real _v_117;
+	_real _v_116;
+	_real sqrt_3;
+	_boolean ecart_3;
+# 2130 "convertible_main.c"
+	Lustre_slash_step(x_23, presqrt_3, &_v_118);
+# 2131 "convertible_main.c"
+	_v_119 = presqrt_3 + _v_118;
+# 2132 "convertible_main.c"
+	sqrt_3 = 0.5 * _v_119;
+# 2133 "convertible_main.c"
+	_v_116 = presqrt_3 - sqrt_3;
+# 2134 "convertible_main.c"
+	convertible_abs_step(_v_116, &_v_117);
+# 2135 "convertible_main.c"
+	ecart_3 = _v_117 < 0.0005;
+# 2136 "convertible_main.c"
+	if(ecart_3 == 1)
+# 2136 "convertible_main.c"
+	{
+# 2137 "convertible_main.c"
+		_v_123 = sqrt_3;
+# 2138 "convertible_main.c"
+		*Sqrt_4 = _v_123;
+	}
+	else
+# 2140 "convertible_main.c"
+# 2140 "convertible_main.c"
+	{
+# 2141 "convertible_main.c"
+		if(ecart_3 == 0)
+# 2141 "convertible_main.c"
+		{
+# 2142 "convertible_main.c"
+			_v_121 = sqrt_3;
+# 2143 "convertible_main.c"
+			_v_120 = x_23;
+# 2144 "convertible_main.c"
+			squareR_4_step(_v_120, _v_121, &_v_122);
+# 2145 "convertible_main.c"
+			*Sqrt_4 = _v_122;
+		}
+		else
+# 2147 "convertible_main.c"
+# 2147 "convertible_main.c"
+			;
+	}
+}
+
+void sum_50_0d0_ctx_reset(sum_50_0d0_ctx_type *ctx_59)
+{
+	int _i_19;
+# 2155 "convertible_main.c"
+	Lustre_pre_5_ctx_reset(&(ctx_59->Lustre_pre_5_ctx_tab)[0]);
+# 2156 "convertible_main.c"
+	Lustre_pre_4_ctx_reset(&(ctx_59->Lustre_pre_4_ctx_tab)[0]);
+# 2157 "convertible_main.c"
+	Lustre_arrow_5_ctx_reset(&(ctx_59->Lustre_arrow_5_ctx_tab)[0]);
+# 2158 "convertible_main.c"
+	Lustre_arrow_4_ctx_reset(&(ctx_59->Lustre_arrow_4_ctx_tab)[0]);
+}
+
+void sum_50_0d0_ctx_init(sum_50_0d0_ctx_type *ctx_60)
+{
+# 2164 "convertible_main.c"
+	sum_50_0d0_ctx_reset(ctx_60);
+}
+
+void sum_50_0d0_step(_real s, _real *res_3, sum_50_0d0_ctx_type *ctx_61)
+{
+	_integer _v_128;
+	_real _v_127[50];
+	_real _v_126[50];
+	_integer _v_125;
+	_integer _v_124;
+	_real a_0[50];
+	_real pre_a[50];
+	_integer i;
+# 2224 "convertible_main.c"
+	Lustre_pre_4_get(&_v_124, &(ctx_61->Lustre_pre_4_ctx_tab)[0]);
+# 2225 "convertible_main.c"
+	Lustre_arrow_4_step(0, _v_124, &_v_125,
+		&(ctx_61->Lustre_arrow_4_ctx_tab)[0]);
+# 2226 "convertible_main.c"
+	i = _v_125 + 1;
+# 2227 "convertible_main.c"
+	Lustre_pre_4_set(i, &(ctx_61->Lustre_pre_4_ctx_tab)[0]);
+# 2228 "convertible_main.c"
+	Lustre_pre_5_get(_v_127, &(ctx_61->Lustre_pre_5_ctx_tab)[0]);
+# 2229 "convertible_main.c"
+	Lustre_hat_step(0.0, _v_126);
+# 2230 "convertible_main.c"
+	Lustre_arrow_5_step(_v_126, _v_127, pre_a,
+		&(ctx_61->Lustre_arrow_5_ctx_tab)[0]);
+# 2231 "convertible_main.c"
+	_v_128 = i % 50;
+# 2232 "convertible_main.c"
+	assign_50_step(s, _v_128, pre_a, a_0);
+# 2233 "convertible_main.c"
+	Lustre_pre_5_set(a_0, &(ctx_61->Lustre_pre_5_ctx_tab)[0]);
+# 2234 "convertible_main.c"
+	red_rplus_50_real_step(0.0, a_0, res_3);
+}
+
+void sum_50_0d1_ctx_reset(sum_50_0d1_ctx_type *ctx_62)
+{
+	int _i_20;
+# 2242 "convertible_main.c"
+	Lustre_pre_5_ctx_reset(&(ctx_62->Lustre_pre_5_ctx_tab)[0]);
+# 2243 "convertible_main.c"
+	Lustre_pre_4_ctx_reset(&(ctx_62->Lustre_pre_4_ctx_tab)[0]);
+# 2244 "convertible_main.c"
+	Lustre_arrow_5_ctx_reset(&(ctx_62->Lustre_arrow_5_ctx_tab)[0]);
+# 2245 "convertible_main.c"
+	Lustre_arrow_4_ctx_reset(&(ctx_62->Lustre_arrow_4_ctx_tab)[0]);
+}
+
+void sum_50_0d1_ctx_init(sum_50_0d1_ctx_type *ctx_63)
+{
+# 2251 "convertible_main.c"
+	sum_50_0d1_ctx_reset(ctx_63);
+}
+
+void sum_50_0d1_step(_real s_0, _real *res_4, sum_50_0d1_ctx_type *ctx_64)
+{
+	_integer _v_133;
+	_real _v_132[50];
+	_real _v_131[50];
+	_integer _v_130;
+	_integer _v_129;
+	_real a_1[50];
+	_real pre_a_0[50];
+	_integer i_0;
+# 2311 "convertible_main.c"
+	Lustre_pre_4_get(&_v_129, &(ctx_64->Lustre_pre_4_ctx_tab)[0]);
+# 2312 "convertible_main.c"
+	Lustre_arrow_4_step(0, _v_129, &_v_130,
+		&(ctx_64->Lustre_arrow_4_ctx_tab)[0]);
+# 2313 "convertible_main.c"
+	i_0 = _v_130 + 1;
+# 2314 "convertible_main.c"
+	Lustre_pre_4_set(i_0, &(ctx_64->Lustre_pre_4_ctx_tab)[0]);
+# 2315 "convertible_main.c"
+	Lustre_pre_5_get(_v_132, &(ctx_64->Lustre_pre_5_ctx_tab)[0]);
+# 2316 "convertible_main.c"
+	Lustre_hat_step(0.1, _v_131);
+# 2317 "convertible_main.c"
+	Lustre_arrow_5_step(_v_131, _v_132, pre_a_0,
+		&(ctx_64->Lustre_arrow_5_ctx_tab)[0]);
+# 2318 "convertible_main.c"
+	_v_133 = i_0 % 50;
+# 2319 "convertible_main.c"
+	assign_50_step(s_0, _v_133, pre_a_0, a_1);
+# 2320 "convertible_main.c"
+	Lustre_pre_5_set(a_1, &(ctx_64->Lustre_pre_5_ctx_tab)[0]);
+# 2321 "convertible_main.c"
+	red_rplus_50_real_step(0.0, a_1, res_4);
+}
+
+void update_cell_do_50_step(convertible_update_acc acc_0, _real cell_0,
+	convertible_update_acc *nacc_0, _real *ncell_0)
+{
+	_integer _v_139;
+	_integer _v_138;
+	_integer _v_140;
+	_real _v_141;
+	_real _v_137;
+	_boolean _v_136;
+	_integer _v_135;
+	_integer _v_134;
+# 2348 "convertible_main.c"
+	_v_137 = acc_0.v;
+# 2349 "convertible_main.c"
+	_v_134 = acc_0.i;
+# 2350 "convertible_main.c"
+	_v_135 = acc_0.j;
+# 2351 "convertible_main.c"
+	Lustre_eq_step(_v_134, _v_135, &_v_136);
+# 2352 "convertible_main.c"
+	if(_v_136 == 1)
+# 2352 "convertible_main.c"
+	{
+# 2353 "convertible_main.c"
+		*ncell_0 = _v_137;
+	}
+	else
+# 2354 "convertible_main.c"
+# 2354 "convertible_main.c"
+	{
+# 2355 "convertible_main.c"
+		*ncell_0 = cell_0;
+	}
+# 2357 "convertible_main.c"
+	_v_138 = acc_0.i;
+# 2358 "convertible_main.c"
+	_v_139 = _v_138 + 1;
+# 2359 "convertible_main.c"
+	_v_140 = acc_0.j;
+# 2360 "convertible_main.c"
+	_v_141 = acc_0.v;
+# 2361 "convertible_main.c"
+	nacc_0->i = _v_139;
+# 2362 "convertible_main.c"
+	nacc_0->j = _v_140;
+# 2363 "convertible_main.c"
+	nacc_0->v = _v_141;
+}
+
