@@ -1,0 +1,6 @@
+node use_extern(b: bool) returns (l: int);
+let
+	l = random(10);
+tel
+
+extern function random(d:int) returns (r:int);
