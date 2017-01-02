@@ -1,0 +1,14 @@
+unsafe function use_unsafe_extern(b: bool) returns (l: int);
+let
+	l = random(10);
+tel
+
+unsafe extern function random(d:int) returns (r:int);
+
+-- to use this function, one needs to fill in the
+-- "use_unsafe_extern_use_unsafe_extern_ext.c" with:
+
+--  #include <stdlib.h>
+--  void use_unsafe_extern_random_step(_integer d,_integer *r){
+--    *r=rand() % 2;
+--  }

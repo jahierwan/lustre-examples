@@ -1,6 +1,13 @@
-node use_extern(b: bool) returns (l: int);
+function use_extern(x: real) returns (y: real);
 let
-	l = random(10);
+	y = cos(x);
 tel
 
-extern function random(d:int) returns (r:int);
+extern function cos(d:real) returns (r:real);
+-- to use this function, one needs to fill in "use_extern_use_extern_ext.c" with:
+-- #include <math.h>
+-- void use_extern_cos_step(_real d,_real *r){
+--   *r=cos(d);
+-- }
+
+  

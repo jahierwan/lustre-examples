@@ -1,0 +1,126 @@
+--
+-- A fault-tolerant heater controller with 3 sensors.
+--
+-- To guess the temperature (T),
+--
+--    (1) It compares the value of the 3 sensors 2 by 2 to determine
+--      which ones seem are broken -- we consider then broken if they 
+--      differ too much.
+--
+--    (2) then, it performs a vote: 
+--        o If the tree sensors are broken, it does not heat;
+--        o If the temperature is bigger than TMAX, it does not  heat;
+--        o If the temperature is smaller than TMIN, it heats;
+--        o Otherwise, it keeps its previous state.
+
+
+const FAILURE = -999.0; -- a fake temperature given when all sensors are broken
+const TMIN = 6.0;
+const TMAX = 9.0;
+
+
+const DELTA = 0.5;
+-- const DELTA :  real;
+
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+node heater_control(T, T1, T2, T3 : real) returns (Heat_on:bool);
+-- T is supposed to be the real temperature and is not
+-- used in the controller; we add it here in oder to test the 
+-- controller to be able to write a sensible oracle.
+
+
+var
+ V12,  V13,  V23 : bool;
+ Tguess : real;
+
+let
+  V12 = abs(T1-T2) < DELTA; -- Are T1 and T2 valid?
+  V13 = abs(T1-T3) < DELTA; -- Are T1 and T3 valid?
+  V23 = abs(T2-T3) < DELTA; -- Are T2 and T3 valid?
+
+  Tguess =
+    if noneoftree(V12, V13, V23) then FAILURE else
+    if oneoftree(V12, V13, V23) then Median(T1, T2, T3) else
+    if alloftree(V12, V13, V23) then Median(T1, T2, T3) else
+    -- 2 among V1, V2, V3 are false
+    if V12 then Average(T1, T2) else
+    if V13 then Average(T1, T3) else
+                -- V23 is necessarily true,  hence T1 is wrong
+                Average(T2, T3) ;
+
+  Heat_on = true -> 
+    if Tguess = FAILURE then false else
+    if Tguess < TMIN    then true  else
+    if Tguess > TMAX    then false else
+                        pre Heat_on;
+tel
+
+
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+node not_a_sauna(T,  T1, T2, T3 : real; Heat_on: bool) returns (ok:bool);
+
+let
+  ok = true -> pre T < TMAX + 1.0 ;
+tel
+
+node not_a_sauna2(T,  T1, T2, T3 : real; Heat_on: bool) returns (ok:bool);
+
+let
+  ok = true -> pre T < TMAX - 6.0 ;
+tel
+
+
+
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+
+-- returns the absolute value of 2 reals
+function abs (v : real) returns (a : real) ;
+let
+	a = if v >= 0.0 then v else -v ;
+tel
+
+-- returns the average values of 2 reals
+function Average(a, b: real) returns (z : real); 
+let 
+	z = (a+b)/2.0 ; 
+tel
+
+-- returns the median values of 3 reals
+function Median(a, b, c : real) returns (z : real); 
+let
+	z = a + b + c - min2 (a, min2(b,c)) - max2 (a, max2(b,c)) ;
+tel
+
+
+-- returns the maximum values of 2 reals
+function max2 (one, two  : real) returns (m : real) ;
+let
+	m = if one > two then one else two ;
+tel
+
+-- returns the minimum values of 2 reals
+function min2 (one, two  : real) returns (m : real) ;
+let
+	m = if one < two then one else two ;
+tel
+
+
+function noneoftree (f1, f2, f3 : bool) returns (r : bool) 
+let
+	 r = not f1 and not f2 and not f3 ;
+tel 
+
+function alloftree (f1, f2, f3 : bool) returns (r : bool) 
+let
+	 r =  f1 and f2 and f3 ;
+tel 
+
+function oneoftree (f1, f2, f3 : bool) returns (r : bool) 
+let
+	r = f1 and not f2 and not f3  or
+	    f2 and not f1 and not f3  or
+	    f3 and not f1 and not f2 ;
+tel
