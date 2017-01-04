@@ -1,0 +1,19 @@
+
+node consensus_gen<<const n : int>>(T: bool^n) returns (a: bool); 
+let
+	a = with (n = 1)
+		then T[0]
+		else T[0] and consensus_gen << n-1 >> (T[1 .. n-1]);
+tel
+
+node consensus = consensus_gen<<8>>
+
+node c8 = consensus_gen<<8>>;
+
+
+node use_recursive_nodes (T : bool^4) returns (c : bool);
+let
+	c = consensus_gen<<4>>(T);
+tel
+
+node use_recursive_nodes2 = consensus_gen<<10>>;
