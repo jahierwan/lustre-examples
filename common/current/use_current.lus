@@ -1,0 +1,12 @@
+node use_current(x: bool; y: bool)
+returns (z: bool);
+let
+  assert(x->true);
+  z = current(current_clk(x,y when x));
+tel
+
+node current_clk(x: bool; y: bool when x)
+returns (z: bool when x);
+let
+  z = y;
+tel
