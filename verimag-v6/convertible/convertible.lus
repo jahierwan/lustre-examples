@@ -1,4 +1,4 @@
--- Time-stamp: <modified the 16/09/2016 (at 14:34) by Erwan Jahier>
+-- Time-stamp: <modified the 04/01/2017 (at 10:47) by Erwan Jahier>
 
 -------------------------------------------------------------------
 -- Compute the hood motion speed
@@ -7,18 +7,18 @@
 const period = 0.1;  -- in seconds
 const wheel_girth = 1.4;  -- meter
 const size = 50; -- size of the sliding windows used to smooth values
-const max_hood_speed = 10.0;
+const max_roof_speed = 10.0;
 const speed_max = 110.0;                                           --
 const speed_hist= 5.0; 
 
 -- Beyong this value, the sensor can not see any obstacle
 const max_dist_sensor = 200.0;
 
-type hood_state = enum { locked, in_motion };
+type roof_state = enum { locked, in_motion };
 
-node hood(Tic, Parked, OnOff, Done: bool) returns (Locked:bool; Hood_Speed:real);
+node roof(Tic, Parked, OnOff, Done: bool) returns (Locked:bool; Roof_Speed:real);
 var 
-  pst, st : hood_state;
+  pst, st : roof_state;
   Tic_on_in_motion : bool when in_motion(st);
 let
   pst = locked fby st;
@@ -27,45 +27,45 @@ let
          (in_motion -> if Done when in_motion(pst) then locked else in_motion);
   Locked = (st=locked) ;
   Tic_on_in_motion = Tic when in_motion(st);
-  Hood_Speed = merge st
+  Roof_Speed = merge st
     (locked    -> 0.0 when locked(st))
-    (in_motion -> hood_speed(Tic_on_in_motion));
+    (in_motion -> roof_speed(Tic_on_in_motion));
 tel
 
-type hood_speed_state = enum { wait, fast, slow };
+type roof_speed_state = enum { wait, fast, slow };
 
-node hood_speed(Tic:bool) returns (Hood_Speed:real);
+node roof_speed(Tic:bool) returns (Roof_Speed:real);
 var 
-  pst, st : hood_speed_state when Tic;
-  kh, Hood_Percent, pHood_Percent : real when Tic;
+  pst, st : roof_speed_state when Tic;
+  kh, Roof_Percent, pRoof_Percent : real when Tic;
   slow_it_down : real when slow(st);
-  pHood_Speed : real;
+  pRoof_Speed : real;
 let
   pst = wait fby st;
   st = merge pst
     (wait -> fast)
-    (fast -> if pHood_Percent when fast(pst) < 85.0  then fast else slow)
-    (slow -> if pHood_Percent when slow(pst) < 100.0 then slow else wait);
-  pHood_Percent = 0.0 fby Hood_Percent;
+    (fast -> if pRoof_Percent when fast(pst) < 85.0  then fast else slow)
+    (slow -> if pRoof_Percent when slow(pst) < 100.0 then slow else wait);
+  pRoof_Percent = 0.0 fby Roof_Percent;
   
-  -- When pHood_Percent goes from 85 to 100, slow_it_down goes from
+  -- When pRoof_Percent goes from 85 to 100, slow_it_down goes from
   -- 1 to 0, but not linearly
-  slow_it_down = sqrt(sqrt((100.0 - pHood_Percent when slow(st))/5.0));
+  slow_it_down = sqrt(sqrt((100.0 - pRoof_Percent when slow(st))/5.0));
 
-  kh = 100./(5./period); -- so that the hood opens in ~5 seconds
-  pHood_Speed = 0.0 fby Hood_Speed;
-  Hood_Speed =
+  kh = 100./(5./period); -- so that the roof opens in ~5 seconds
+  pRoof_Speed = 0.0 fby Roof_Speed;
+  Roof_Speed =
     merge Tic
-     (false -> pHood_Speed when not Tic)
+     (false -> pRoof_Speed when not Tic)
      (true ->
       merge st
         (wait -> 0.0)
-        (fast -> max_hood_speed)
-        (slow -> max_hood_speed * slow_it_down)); 
-  Hood_Percent = merge st
+        (fast -> max_roof_speed)
+        (slow -> max_roof_speed * slow_it_down)); 
+  Roof_Percent = merge st
     (wait -> 0.0)
-    (fast -> (kh + pHood_Percent) when fast(st))
-    (slow -> slow_it_down*kh when slow(st) + pHood_Percent when slow(st)); 
+    (fast -> (kh + pRoof_Percent) when fast(st))
+    (slow -> slow_it_down*kh when slow(st) + pRoof_Percent when slow(st)); 
 tel
 
 -------------------------------------------------------------------
@@ -93,7 +93,7 @@ tel
 type vehicle_state = enum { stationnary, run, anti_col };         --
 
 node main (Start, Parked, Rot, Tic, OnOff, Done: bool ; Distance:real) 
-returns(Danger, Locked : bool; Speed, Hood_Speed :real);
+returns(Danger, Locked : bool; Speed, Roof_Speed :real);
 var
   St:vehicle_state;
 let
@@ -101,7 +101,7 @@ let
     -- Allows Lesar to state that:  not(parked)=>locked
     -- ie, in_motion => parked
   -- Feedback loop ! 
-  (Locked,Hood_Speed) = hood(Tic, Parked, OnOff, Done);
+  (Locked,Roof_Speed) = roof(Tic, Parked, OnOff, Done);
   Speed  = speed_kmh(Rot, Tic);
   St = vehicle(Start, Locked, Speed, Distance);
   Danger = merge St 
@@ -178,7 +178,7 @@ let
 tel
 
 ------------------------------------------------------------------------
--- assign the jth element of an array to a value.
+-- assign the jth element of an array to a value. v.(j) <- i
 type update_acc = {
   i: int; 
   j: int; 
