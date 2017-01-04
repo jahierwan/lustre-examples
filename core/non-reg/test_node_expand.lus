@@ -1,0 +1,17 @@
+
+
+node n(x,y: int) returns(a,b: int);
+var 
+  v1,v2: int;
+let
+  v1 = x+y;
+  v2 = x*y;
+  a = v1*x;
+  b = v2*y;
+tel
+
+
+node test_node_expand(i1, i2: int) returns (o1, o2: int);
+let
+  o1,o2 = n(i1, i2);
+tel

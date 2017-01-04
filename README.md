@@ -1,4 +1,4 @@
-# suite Lustrelusb
+# suite Lustre
 
 This is a benchmark library for the Lustre synchronous dataflow language and 
 its extensions. It is intended for demonstrating and testing features of the 
@@ -21,8 +21,7 @@ Does not require clocks or an initialization analysis.
 See: [LUSTRE: a declarative language for real-time 
 programming](http://dl.acm.org/citation.cfm?id=41641)
 
-## Features
-
+## features
 
 The various tools support different dialects and features. We categorize 
 them here. Minor syntactic differences between tools must be treated by 
@@ -37,7 +36,7 @@ Contains examples that are specific to the Verimag Lustre V6 language
 
 Contains examples that are specific to the Verimag Lustre V6 language
 
-## Languages XXX mv somewhere
+## Languages XXX mv somewhere else
 
 The different Languages and their feature classifications:
 

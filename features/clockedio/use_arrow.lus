@@ -1,0 +1,5 @@
+node use_arrow(i1,i2:int) returns(o1,o2:int);
+let
+  o1 = i1 -> pre o1 + 1;
+  o2 = i2 -> pre o2 + 2;
+tel

@@ -1,5 +1,5 @@
 type piece = enum { Pile, Face, Tranche }; ---
-node test_merge(clk: piece; ---
+node use_merge(clk: piece; ---
    i1 : int ; 
    i2 : int; 
    i3 : int) 

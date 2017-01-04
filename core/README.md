@@ -1,9 +1,9 @@
 
-# simple
-  contains simple programs that illustrate one eponymous concept one
-
 # examples
   contains more complex examples
+
+# simple
+  contains simple programs that illustrate one eponymous concept one
 
 # non-reg
 

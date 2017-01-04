@@ -3,7 +3,7 @@ type complex = struct {
 	im : real = 0.
 }; ---
 
-node test_struct (a, b : complex) returns (c : complex);
+node use_struct (a, b : complex) returns (c : complex);
 let
   c = complex { re = a.re+b.re ; im = a.im+b.im };
 tel
