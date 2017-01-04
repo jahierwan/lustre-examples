@@ -1,0 +1,11 @@
+*.ffx
+*.log
+*.ratio
+*.lp
+*.ff
+*.exec
+*.wcet
+*.out
+*.c
+*.h
+*~

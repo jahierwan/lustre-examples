@@ -1,0 +1,5 @@
+-- nb: Lustre tuples are always flattened 
+node use_tuple (c:bool; x: int) returns (a, b, c: int);
+let
+  (a, b, c) =  if c then ((x, x), x) else (x, (x, x));
+tel

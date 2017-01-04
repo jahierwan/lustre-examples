@@ -1,0 +1,10 @@
+-- true after x has been true once
+node after(x: bool) returns (after: bool);
+let
+   after = x or (false fby after);
+tel
+  
+node use_fby(x: bool) returns (res: bool);
+let
+  res = after(c);
+tel
