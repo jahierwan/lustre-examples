@@ -40,24 +40,29 @@ Contains examples that are specific to the Verimag Lustre V6 language
 
 The different Languages and their feature classifications:
 
-|               | Lustre-v4 | Lustre-v6 | Heptagon | Kind 2 | Scade 6 | Vélus |
-|---------------|-----------|-----------|----------|--------|---------|-------|
-| core          | yes       | yes       | yes      | yes    | yes     | yes   |
-| pre           | yes       | yes       | yes      |        | yes     |       |
-| current       | yes       | yes       |          |        |         |       |
-| merge         |           | yes       | yes      |        | yes     | yes   |
-| function      | yes       | yes       | yes      |        | yes     |       |
-| int           | yes       | yes       | yes      |        | yes     | yes   |
-| bitwise       |           |           | yes      |        | yes     | yes   |
-| stdint        |           |           |          |        | yes     | yes   |
-| real          | yes       | yes       | yes      |        | yes     | yes   |
-| stdfloat      |           |           |          |        | yes     | yes   |
-| clockedio     | yes       | yes       | yes      |        | yes     |       |
-| enum          |           | yes       | yes      |        | yes     |       |
-| statemachines |           |           | yes      |        | yes     |       |
-| signals       |           |           | yes      |        | yes     |       |
-| records       |           | yes       | yes      |        | yes     |       |
-| arrays        | yes       | yes       | yes      |        | yes     |       |
+|                | Lustre-v4 | Lustre-v6 | Heptagon | Kind 2 | Scade 6 | Vélus |
+|----------------|-----------|-----------|----------|--------|---------|-------|
+| core           | yes       | yes       | yes      | yes    | yes     | yes   |
+| pre            | yes       | yes       | yes      |        | yes     |       |
+| current        | yes       | yes       |          |        |         |       |
+| merge          |           | yes       | yes      |        | yes     | yes   |
+| function       | yes       | yes       | yes      |        | yes     |       |
+| int            | yes       | yes       | yes      |        | yes     | yes   |
+| bitwise        |           |           | yes      |        | yes     | yes   |
+| stdint         |           |           |          |        | yes     | yes   |
+| real           | yes       | yes       | yes      |        | yes     | yes   |
+| stdfloat       |           |           |          |        | yes     | yes   |
+| clockedio      | yes       | yes       | yes      |        | yes     |       |
+| enum           |           | yes       | yes      |        | yes     |       |
+| statemachines  |           |           | yes      |        | yes     |       |
+| signals        |           |           | yes      |        | yes     |       |
+| records        |           | yes       | yes      |        | yes     |       |
+| arrays         | yes       | yes       | yes      |        | yes     |       |
+| packages       |           | yes       |          |        | yes     |       |
+| static param   |           | yes       |          |        | yes ?   |       |
+| recursive nodes|           | yes       |          |        |         |       |
+|                |           |           |          |        |         |       |
+|                |           |           |          |        |         |       |
 
 TODO: update the column for Kind 2
 TODO: implement a conformance test to generate a column for a given tool.
