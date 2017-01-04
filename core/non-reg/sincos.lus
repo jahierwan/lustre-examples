@@ -1,0 +1,14 @@
+-- 
+node sincos(omega : real) returns (sin, cos: real);
+var pcos,psin: real;
+let
+  pcos = 1.0 fby(cos);
+ psin = 0.0 fby sin;
+ sin = omega * integrator(pcos,0.1,0.0);
+ cos = omega * integrator(-psin,0.1,1.0);
+tel
+node integrator(F,STEP,init: real) returns (Y: real); 
+let 
+  Y = init -> pre(Y) + ((F + pre(F))*STEP)/2.0; 
+tel -- del
+

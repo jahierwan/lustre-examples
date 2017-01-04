@@ -1,0 +1,20 @@
+const n = 2 ;
+const m = 3 ;
+
+type T_fibo = int^2;
+
+function fibo(accu_in : T_fibo) returns (accu_out : T_fibo; elt : int);
+let
+  accu_out = [accu_in[0]+accu_in[1], accu_in[0]];
+  elt = accu_in[0]+accu_in[1];
+tel
+
+function matrice ( a : int ) returns ( sum: int; bid: T_fibo; T: int^m^n); 
+let 
+	bid, T = fill << fill << fibo ; m >> ; n >> ([a, a]);	
+	sum = red << red <<node Lustre::plus ; m >> ; n >> (0, T); 
+tel
+
+
+
+

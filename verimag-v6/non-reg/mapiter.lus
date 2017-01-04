@@ -1,0 +1,10 @@
+node incr_tab(a: int) returns (b: int);
+let
+  b = a+1;
+tel
+
+node mapiter ( i1 : int^7^3)  
+        returns (s1 : int^7^3);
+let
+        s1 = map<<map<<incr_tab;7>>;3>>(i1);
+tel

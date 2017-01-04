@@ -1,6 +1,7 @@
 # questions
 
-faut-il dispatcher ces descriptions dans les divers sous repertoires ?
+- faut-il dispatcher ces descriptions dans les divers sous repertoires ?
+- ne devrait on pas mettre les liens vers des pdfs quand il sont dispos ?
 
 # arrays
 
@@ -13,7 +14,7 @@ R1: as records ?
 See:
 - [Implementing Reactive Programs on Circuits: A Hardware Implementation of LUSTRE](http://link.springer.com/content/pdf/10.1007/bfb0031993.pdf)
 - [Efficient compilation of array iterators for Lustre](http://www.irisa.fr/espresso/Equipe/Morel/Publications/slap02/morel02.pdf)
-- [A modular memory optimization for synchronous data-flow languages: application to arrays in a Lustre compiler](https://hal.inria.fr/hal-0072852://hal.inria.fr/hal-00728527)
+- [A modular memory optimization for synchronous data-flow languages: application to arrays in a Lustre compiler](https://hal.inria.fr/hal-0072852://hal.inria.fr/hal-00728527) XXX BROKEN LINK XXX
 
 # bitwise
 

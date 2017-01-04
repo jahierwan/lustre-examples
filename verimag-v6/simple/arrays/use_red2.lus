@@ -1,0 +1,5 @@
+-- returns the sum of an array of array of int
+node use_red2(a: int^5^3) returns (b: int);
+let 
+  b = red<<red<<+,  5>>, 3>>(0, a);
+tel

@@ -1,0 +1,28 @@
+node multiclock ( x, y: int; c: bool; z: int )
+        returns ( s: int);
+
+let
+  assert(c->true);
+  s = current(multiclock_clk ( x, y, c, z when c ));
+tel
+
+node multiclock_clk ( x, y: int; c: bool; z: int when c )
+        returns ( s: int when c);
+var
+  h: bool when c ;
+  u: int when h ;
+let
+  h = ( true when c ) -> ( ( x + y ) when c) < z ;
+  u = ( z when h ) -> moyenne( z when h,  pre u ) ;
+  s = current u ;
+tel
+
+/* 
+  WARNING: la division reelle a une semantique differente de celle de SCADE!!!
+*/
+node moyenne( x, y: int ) returns ( m: int );
+var s: int;
+let
+  m = s / 2 ;
+  s = x + y ;
+tel

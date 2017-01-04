@@ -1,0 +1,21 @@
+
+type truc = struct {
+	a : bool^100;
+	b : int
+};
+
+
+node left(x : bool) returns (t : truc^3);
+let
+   t[0].a[0..98 step 2][0..48 step 2] = true^25;	
+--   t[0].a[0..98 step 2][48..0 step -2] = true^25;	
+	t[0].a[0..98 step 2][1..49 step 2] = false^25;	
+	t[0].a[1..99 step 2][0] = true;
+	t[0].a[1..99 step 2][1] = true;
+	t[0].a[5..99 step 2] = false^48;
+   t[0].b = 42;
+	t[1..2] = (truc { a = true^100; b = 0 })^2;
+
+
+--      t[0].a[0..98 step 2][0..48 step 2] = true^25;	
+tel

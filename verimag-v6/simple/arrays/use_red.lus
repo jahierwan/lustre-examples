@@ -1,0 +1,7 @@
+const n = 2 ;
+const m = 3 ;
+
+node use_red( a : int ) returns ( res : int );
+let 
+	res = red << +,  m >> (0 , a^m ); 
+tel

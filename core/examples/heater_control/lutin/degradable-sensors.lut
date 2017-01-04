@@ -1,0 +1,40 @@
+-- Simulate sensors that wears out
+
+
+node temp_simu_alt (T:real) returns (Ts:real) =
+  exist eps : real [-0.1;0.1] in
+      Ts = T + eps
+   fby
+      loop { 
+          |10: Ts = T + eps     -- working    
+          |1:  loop Ts = pre Ts -- not working    
+        }
+
+node temp_simu(T:real) returns (Ts:real) =
+  exist eps : real [-0.1;0.1] in
+       Ts = T + eps
+   fby loop [30,50] Ts = T + eps -- working
+   fby loop         Ts = pre Ts  -- not working  
+        
+
+node main(Heat_on : bool) returns (T, T1, T2, T3 : real) = 
+  let delta = 0.2 in
+  exist T1_cst, T2_cst, T3_cst : bool = false in
+  loop {
+    -- init
+        T= 7.0 and
+        T1 = T and T2 = T and T3 = T
+    fby
+      let newT = pre T + (if Heat_on then delta else -delta) in
+      assert T = newT in
+      assert (T1_cst = (T1 = pre T1)) in
+      assert (T2_cst = (T2 = pre T2)) in
+      assert (T3_cst = (T3 = pre T3)) in
+      
+      run T1 := temp_simu(newT) in
+      run T2 := temp_simu(newT) in
+      run T3 := temp_simu(newT) in
+          loop { not (T1 = pre T1 and T2 = pre T2 and T3 = pre T3) }
+         -- force to start again from the beginning when the 3 sensors are broken
+    }
+ 

@@ -1,0 +1,15 @@
+type complex = struct {
+	re : real = 42.0;
+	im : real = 42.0;
+}; 
+node plus_im (a : real; b : complex) returns (c : complex);
+let
+  c = complex { b with  im = a+b.im };
+--  c = complex { re=b.re  im = a+b.im };
+tel
+node plus_im_1 (b : complex) returns (c : complex);
+let
+  c = complex { b with  im = 1.0+b.im };
+tel
+
+node use_struct_with = plus_im_1
