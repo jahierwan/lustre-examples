@@ -1,0 +1,5 @@
+
+node use_diese(a, b, c:bool) returns (res: bool);
+let
+	res = #(a,b,c); -- res iff at most one among a,b,c is true
+tel

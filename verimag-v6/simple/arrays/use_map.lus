@@ -1,0 +1,15 @@
+
+node myplus<<type t>>(x, y : t) returns (o : t);
+let
+   o = x + y;
+tel
+
+
+node map_plus<<type t>> = map<<myplus<<t>>,4>>;
+
+
+node use_map(x,y: real^4) returns (o: real^4);
+let
+	o = map_plus<<real>>(x,y);
+tel
+

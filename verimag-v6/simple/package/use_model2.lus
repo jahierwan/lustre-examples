@@ -1,0 +1,52 @@
+model IntM 
+ needs 
+   const n:int;
+
+ provides
+   type t;
+   const zero: t ;
+   function incr (x: t) returns (incr: t);
+   function add (x,y: t) returns (sum: t);
+--   function fulladd(ci, x, y: bool) returns (s, co: bool);
+
+ body
+   type t = bool^n;
+   const zero = false^n;
+   function incr (x: t) returns (incr: t);
+      var co: bool;
+     let
+       (co, incr) = fillred<<fulladd,n>>(true,x,zero);
+     tel
+
+   function fulladd(ci, x, y: bool) returns (s, co: bool);
+     let
+	s = ci xor (x xor y);
+	co = (ci and x) or (x and y) or (y and ci);
+     tel
+
+   function add (x,y: t) returns (sum: t);
+     var co: bool;
+     let
+	(co, sum) =  fillred<<fulladd,n>>(false,x,y);
+     tel
+
+end
+
+-----------------------
+--  instances
+-----------------------
+
+package Int8 is IntM(n=8);
+
+package use_model2 uses Int8;
+provides
+ node use_model2(evt, reset: bool) returns (nat: Int8::t);
+body
+ node use_model2(evt, reset: bool) returns (nat: Int8::t);
+ let
+  nat =  if true -> reset then Int8::zero else 
+          if evt then Int8::incr(pre(nat))
+          else pre(nat);
+ tel
+end
+

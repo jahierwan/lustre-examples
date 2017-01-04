@@ -1,0 +1,36 @@
+
+model m
+needs 
+  type elementType;
+  function _isEqualTo_(e1 : elementType; e2 : elementType) returns (x : bool);
+provides
+  function est_egal(e1 : elementType; e2 : elementType) returns (x : bool);
+body
+
+
+function est_egal = _isEqualTo_;
+
+end
+
+
+package u
+provides
+   function egal(i1:int; i2:int) returns (o:bool);
+body
+   function egal(i1:int; i2:int) returns (o:bool);
+  let
+  o = (i1 = i2);
+  tel
+
+end
+
+
+package p = m(elementType=int, _isEqualTo_=u::egal);
+
+package use_model
+provides
+   function use_model (e1,e2:int) returns (x:bool);
+  body
+   function use_model (e1,e2:int) returns (x:bool) = p::est_egal;
+
+  end

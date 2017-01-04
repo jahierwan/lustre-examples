@@ -1,0 +1,61 @@
+
+-- This package provides prefix version of predefined infix operators
+--
+--
+-- nb : note we did not define polymorphic operators here (e.g., '>'), 
+-- as we cannot define polymorphic nodes in lustre V6.
+
+package Lustre
+  provides 
+    function And(x, y: bool) returns (z: bool);
+    function Or(x, y: bool) returns (z: bool);
+    function Xor(x, y: bool) returns (z: bool);
+    function Impl(x, y: bool) returns (z: bool);
+
+    function Div(x, y: int) returns (z: int);
+    function Mod(x, y: int) returns (z: int);
+    function Iplus(x, y: int) returns (z: int);
+    function Iminus(x, y: int) returns (z: int);
+    function Itimes(x, y: int) returns (z: int);
+    function Islash(x, y: int) returns (z: int);
+    function Iuminus(x: int) returns (z: int);
+
+    function Rplus(x, y: real) returns (z: real);
+    function Rminus(x, y: real) returns (z: real);
+    function Rtimes(x, y: real) returns (z: real);
+    function Rslash(x, y: real) returns (z: real);
+    function Ruminus(x: real) returns (z: real);
+
+body        
+   
+
+   function And = Lustre::and;
+   function Or(x, y: bool) returns (z: bool); let z = x or y; tel
+   function Xor(x, y: bool) returns (z: bool); let z = x xor y; tel
+   function Impl(x, y: bool) returns (z: bool); let z = x => y; tel
+  
+   function Div(x, y: int) returns (z: int); let z = x div y; tel
+   function Mod(x, y: int) returns (z: int); let z = x mod y; tel
+   function Iplus(x, y: int) returns (z: int); let z = x + y; tel
+   function Iminus(x, y: int) returns (z: int); let z = x - y; tel
+   function Itimes(x, y: int) returns (z: int); let z = x * y; tel
+   function Islash(x, y: int) returns (z: int); let z = x / y; tel
+   function Iuminus(x: int) returns (z: int); let z = -x; tel
+  
+   function Rplus(x, y: real) returns (z: real); let z = x + y; tel
+   function Rminus(x, y: real) returns (z: real); let z = x - y; tel
+   function Rtimes(x, y: real) returns (z: real); let z = x * y; tel
+   function Rslash(x, y: real) returns (z: real); let z = x / y; tel
+   function Ruminus(x: real) returns (z: real); let z = -x; tel
+  
+
+end
+
+package use_package
+  provides 
+   function use_package(x: real) returns (z: real); 
+body        
+   function use_package(x: real) returns (z: real); let z = Lustre::Ruminus(x); tel
+
+end
+

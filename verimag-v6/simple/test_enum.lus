@@ -1,0 +1,14 @@
+-- Test enum type code generation
+
+
+type
+    couleur = enum {bleu, blanc, rouge};
+    color   = enum {blue, white, redd};
+
+
+node test_enum(e: int) returns (c: couleur;  c2: color);
+let
+  c = if e = 0 then bleu else if e = 1 then blanc else rouge;
+  c2 = if e = 0 then blue else if e = 1 then white else redd;
+  
+tel

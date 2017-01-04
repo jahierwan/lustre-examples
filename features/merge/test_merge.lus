@@ -1,0 +1,39 @@
+type piece = enum { Pile, Face, Tranche }; ---
+node test_merge(clk: piece; ---
+   i1 : int ; 
+   i2 : int; 
+   i3 : int) 
+returns (y: int); ---
+  let
+  y = test_merge_clk(clk,i1 when Pile(clk), i2 when Face(clk), i3 when Tranche(clk));
+  tel
+ 
+
+node test_merge_clk(clk: piece; ---
+   i1 : int when Pile(clk) ; 
+   i2 : int when Face(clk); 
+   i3 : int when Tranche(clk)) 
+returns (y: int); ---
+let
+    y = merge clk
+        ( Pile    -> (0->i1))
+        ( Face    -> i2)
+        ( Tranche -> i3);
+tel
+
+node merge_bool_alt(clk : bool ; 
+                    i1  : int when clk ; 
+                    i2  : int when not clk) 
+returns (y: int); 
+let
+    y = merge clk (true -> i1) (false-> i2);
+tel
+
+node merge_bool_ter(clk : bool ; 
+                    i1  : int when clk ; 
+                    i2 : int when not clk) 
+returns (y: int); 
+let
+    y = merge clk (false-> i2) (true -> i1) ;
+tel
+

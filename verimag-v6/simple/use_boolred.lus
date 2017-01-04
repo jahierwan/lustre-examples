@@ -1,0 +1,5 @@
+
+node use_boolred(t:bool^5) returns (res:bool);
+let
+  res = boolred<<1,2,5>>(t); -- res <=> 1 or 2 elements of t are true
+tel
