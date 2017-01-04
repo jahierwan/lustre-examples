@@ -1,4 +1,4 @@
-# lusbench
+# suite Lustrelusb
 
 This is a benchmark library for the Lustre synchronous dataflow language and 
 its extensions. It is intended for demonstrating and testing features of the 
@@ -7,14 +7,6 @@ language in different tools.
 The main aim is to collect both conformance tests and larger examples to aid 
 both tool developers and users. A secondary aim is to promote unity and 
 compatibility.
-
-## Features
-
-
-The various tools support different dialects and features. We categorize 
-them here. Minor syntactic differences between tools must be treated by 
-filters mapping from the dialect used in the benchmarks (specified below for 
-each feature).
 
 ## core
 
@@ -29,8 +21,23 @@ Does not require clocks or an initialization analysis.
 See: [LUSTRE: a declarative language for real-time 
 programming](http://dl.acm.org/citation.cfm?id=41641)
 
+## Features
 
-## Languages
+
+The various tools support different dialects and features. We categorize 
+them here. Minor syntactic differences between tools must be treated by 
+filters mapping from the dialect used in the benchmarks (specified below for 
+each feature).
+
+## verimag-v6
+
+Contains examples that are specific to the Verimag Lustre V6 language
+
+## verimag-v4
+
+Contains examples that are specific to the Verimag Lustre V6 language
+
+## Languages XXX mv somewhere
 
 The different Languages and their feature classifications:
 

@@ -1,0 +1,9 @@
+
+-- is polymorphic
+node add42 = map<<+,42>>;
+
+node test_poly(x,y: int) returns (o: int^42; o2:real^42);
+let
+  o = if (x < y) then 0^42 else add42(x^42, y^42); 
+  o2= add42(3.0^42, 2.0^42); 
+tel

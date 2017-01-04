@@ -1,0 +1,25 @@
+-- 
+
+
+package test_clash
+provides 
+  const c : bool;
+  type t ;
+  function test_clash(x: bool) returns (y: bool);
+body
+
+const c = true;
+type t = bool;
+
+  function test_clash(x: bool) returns (y: bool);
+  let
+  y = tutu(x) and c;
+  tel 
+
+  function tutu(x: t) returns (y: t);
+  let
+  y = x;
+  tel 
+
+
+end
