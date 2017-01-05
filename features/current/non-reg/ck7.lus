@@ -1,0 +1,19 @@
+node ck7(a: bool; m,n:int)
+returns(q:int; r: int);
+var
+  r_on_a : int when a;
+let
+  assert(a->true);
+  q,r_on_a = ck7_clk(a,m,n);
+  r = current (r_on_a);
+tel
+
+
+
+
+function ck7_clk(a: bool; m,n:int)
+returns(q:int; r: int when a);
+let
+	q = m+n;
+	r = q when a;
+tel

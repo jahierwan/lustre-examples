@@ -1,0 +1,24 @@
+node ck6(b,c: bool; n,m: int)
+returns (k,l: int);
+var u,v,w: int when b;
+	x: int when cc;
+	cc: bool when b;
+let
+  assert(b->true);
+
+	(u,v) = p(n when b);
+	(w,x) = N(cc, u, v);
+	cc = c when b;
+	k = current(w);
+	l = current(current(x));
+tel
+
+
+node N(a: bool; m,n:int)
+returns(q:int; r: int when a);
+let
+	q = m+n;
+	r = q when a;
+tel
+
+extern function p(d:int) returns (e,f:int);

@@ -1,0 +1,13 @@
+node ck5 (b,c: bool) returns (e: bool);
+var 
+ c_prime: bool;
+let
+   c_prime = true fby c;
+	e = current (edge(b when c_prime));
+tel
+
+node edge(x:bool) returns (y: bool);
+let
+  y = false -> x and not pre(x);
+tel
+

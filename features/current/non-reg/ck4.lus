@@ -1,0 +1,11 @@
+node ck4 (a: int; b: bool)
+returns (c: int);
+let
+  assert(b->true);
+  c = ck4_clk(a when b, b);
+tel
+node ck4_clk (a: int when b; b: bool)
+returns (c: int);
+let
+  c = current(a);
+tel

@@ -1,0 +1,19 @@
+
+node ck2 (c: bool; d: bool ; e: int)
+returns (n: int);  
+var
+  d_on_c : bool when c;
+
+let
+  assert(c->true);
+  assert(d->true);
+  d_on_c = d when c;
+  n = ck2_clk(c,  d_on_c , e when d_on_c);
+tel
+
+
+node ck2_clk (c: bool; d: bool when c ; e: int when d)
+returns (n: int);
+let
+  n = if c and current(d) then 0 else current(current(e));
+tel
