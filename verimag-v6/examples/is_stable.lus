@@ -1,0 +1,94 @@
+--  Time-stamp: <modified the 05/01/2017 (at 14:09) by Erwan Jahier> 
+
+const cycle_time = 1.0;
+const epsilon = 0.0001;
+
+node true_since_n_seconds(n: real; signal: bool) returns (res: bool)
+var
+  tempo : real;
+let
+  tempo = n -> if not signal then n else max<<real>>(0.0, pre tempo - cycle_time);
+  res = (tempo = 0.0);
+tel
+
+node true_since_n_seconds_bis(n, t : real; signal: bool) returns (res: bool)
+var
+  tempo : real;
+  pt : real; -- a register to store the timestamp 
+let
+  pt = 0.0 -> pre t;
+  tempo = n -> if not signal then n else max<<real>> (0.0, pre tempo - (t-pt));
+  res = (tempo = 0.0);
+tel
+
+-- assign the jth element of an array to a value
+type update_acc = {
+  i: int; 
+  j: int; 
+  v: real
+};
+  
+function update_cell_do<<const d: int>>(acc: update_acc; cell: real) 
+returns (nacc: update_acc; ncell: real);
+let
+  ncell = if acc.i = acc.j then acc.v else cell;
+  nacc = update_acc { i = acc.i+1; j = acc.j ; v = acc.v }; -- arg...
+tel
+
+function assign<<const d: int>>(v: real; jv: int;  t: real^d) returns (nt: real^d)
+var
+  dummy: update_acc; 
+let
+  dummy, nt=fillred<<update_cell_do<<d>>; d>>( update_acc { i = 0 ; j = jv ; v = v },  t);
+tel
+
+----------------------------------------------------------------------------
+-- Compute the average of the elements of an array
+
+function average<<const d : int>>(t: real^d) returns (res: real)
+let
+   res =red<<+; d>>(0.0, t) / int2real(d);
+tel
+  
+------------------------------------------------------------------------------
+-- Compute the range of an array of reals
+type range = { min: real; max: real };
+function get_range_cell<<const d : int>>(acc :  range;  cell: real) returns (res : range);
+let
+  res = range {
+    min = if cell<acc.min then cell else acc.min;
+    max = if cell>acc.max then cell else acc.max;
+  };
+tel
+function get_range<<const d : int>>(t: real^d) returns (res : real);
+var
+  t_range: range;
+let
+  t_range = red<<get_range_cell; d>>(range{ min=t[0] ; max=t[0] }, t);
+  res = t_range.max - t_range.min;
+tel
+
+node is_d_stable<<const d: int; const eps: real>>(v: real) 
+returns (res:bool);
+var
+  v_mem: real^d; -- circular array
+  cpt: int; 
+let
+  cpt = 0 -> (pre cpt + 1);
+  v_mem =  0.0^d ->  assign<<d>>(v, cpt mod d,pre v_mem);
+  res = cpt>=d-1 and (get_range<<d>>(v_mem) < eps);
+tel
+
+node max<<type t>>(a,b:t) returns(res:t)
+let
+  res = if a<b then b else a;
+tel
+node min<<type t>>(a,b:t) returns(res:t)
+let
+  res = if a>b then b else a;
+tel
+
+node maxr=max<<real>>;
+node minr=min<<real>>;
+
+node is_stable = is_d_stable<<5, 0.1>>
