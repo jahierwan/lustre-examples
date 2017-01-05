@@ -1,0 +1,15 @@
+type T_fibo = int^2;
+
+node fibo(accu_in : T_fibo) returns (accu_out : T_fibo; elt : int);
+let
+  accu_out = [accu_in[0]+accu_in[1], accu_in[0]];
+  elt = accu_in[0]+accu_in[1];
+tel
+
+
+-- returns fibonacci numbers in a list
+node use_fill(x,y : int) returns (T : int^10);
+	var _dummy : int^2;
+let
+  _dummy, T = fill<<fibo;10>>([x,y]);
+tel
