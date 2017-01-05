@@ -1,0 +1,6 @@
+extern function sqrt(x:real) returns (y:real);
+
+node use_extern_function(x:real) returns (y:real);
+let
+  y = sqrt(x);
+tel

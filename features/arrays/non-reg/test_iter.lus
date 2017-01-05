@@ -1,0 +1,86 @@
+(* Combinaison d'itarateurs *)
+
+
+---------- RED de RED ----------------
+
+const n = 4;
+const m = 3;
+const p = 2;
+
+-- node monplus = red<<+; 3>> ;   --erreur
+-- node monplus = red<<Lustre::iplus; 3>> ;   --erreur
+-- node monplus = red<<=>; 3>> ;   --erreur
+
+node big_sum(x : int^n^m^p) returns (s : int);
+let
+	s = red<< red<< red<<+,  n>>,  m >>,  p >>(0, x);
+tel
+
+--le même style en booléen ...
+
+node big_or(x : bool^n^m^p) returns (s : bool);
+let
+	s = red<< red<< red<<or ; n>> ; m >> ; p >>(false, x);
+tel
+
+node big_xor(x : bool^n^m^p) returns (s : bool);
+let
+	s = red<< red<< red<<xor ; n>> ; m >> ; p >>(false, x);
+tel
+---------- FILL de FILL -------------
+
+node incr(accin : int) returns (accout, val : int);
+let
+	accout = accin+1;
+	val = accin; 
+tel
+
+-- incr : int -> int * int
+-- F  = fill<<incr ; n>> : int -> int * int^n
+-- G  = fill<<F ; m>>    : int -> int * int^n^m
+-- H  = fill<<G ; m>>    : int -> int * int^n^m^p
+
+node big_incr(init : int) returns (x : int^n^m^p);
+var accout : int;
+let
+	accout, x = fill<< fill<< fill<<incr; n>>; m >>; p>>(init);
+tel
+
+---------- MAPRED de MAPRED -------------
+
+type byte = bool^n;
+type word = byte^m;
+type long = word^p;
+
+node full_adder(ci, x, y : bool) returns (co, s : bool);
+let
+	s = ci xor x xor y ;
+	co = if ci then (x or y) else (x and y);	
+tel
+
+node add_byte(x, y : byte) returns (s : byte);
+var co : bool;
+let
+	co, s = fillred<<full_adder; n>>(false, x, y);
+tel
+
+node add_long (x, y : long) returns ( s : long);
+var co : bool;
+let
+	co, s = fillred<<fillred<<fillred<<full_adder; n>>; m>>; p>>(false, x, y);
+tel
+
+----------- un noeud principal pour tester le tout ----------------------
+type tab3d = int^n^m^p;
+
+node arrays( init_incr: int; init_long: long ) 
+		returns ( ok: bool; red_res : int; fillred_res : long );
+var 
+			fill_res : tab3d;	
+let
+		red_res = big_sum(fill_res);
+		fill_res = big_incr(init_incr);
+		fillred_res = init_long -> add_long(init_long, pre fillred_res);
+		ok = false -> big_xor( fillred_res );
+tel
+

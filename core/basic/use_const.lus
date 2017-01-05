@@ -1,0 +1,11 @@
+const i=3;
+const j=3;
+const k=3;
+
+node use_const(x:int) returns (y:int);
+var z,t: int;
+let
+  z = i+j;
+  t = j-k;
+  y = x + 2*z + 3*t;
+tel

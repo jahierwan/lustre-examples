@@ -1,0 +1,18 @@
+const n = 3;
+const m = 2;
+
+node minus(a, b, c: bool^n^m) returns (r: bool; T1, T2: bool^n^m);
+var 
+  bid : bool;
+let
+  T1 = map<< map<< if,  n >>,  m >>(a, b, c);
+  bid, T2 = fill<< fill<< bitalt,  n>>,  m>>(a[0][0]);
+  r = red<< red<< xor,  n>>,  m>>(a[0][0], T1);
+tel
+
+node bitalt(a: bool) returns (out, b: bool);
+let
+  b = a;
+  out = not(a);
+tel
+ 

@@ -1,0 +1,9 @@
+function use_concat(x:bool) returns (y: bool^2);
+let
+	y = [x]|[x];
+tel
+function use_concat_bis(x:bool^1) returns (y: bool^2);
+let
+	y = x|x;
+tel
+
