@@ -1,0 +1,65 @@
+-- Time-stamp: <modified the 05/01/2017 (at 15:29) by Erwan Jahier>
+
+type data = int;
+
+-- version pour otawa
+extern function A0(x:data) returns (y:data);
+extern function A1(x:data) returns (y:data);
+extern function A2(x:data) returns (y:data);
+extern function B0(x:data) returns (y:data);
+extern function B1(x:data) returns (y:data);
+
+
+type state = enum { idle, low, high };
+
+node A(x:data; ca1, ca2: bool) returns (y:data);
+var
+   s, ps: state;
+let
+   s = if ps = idle then (if ca1 then low else idle)
+       else if ps = low  then (if ca1 then idle else if ca2 then high else low)
+       else (* ps = high *) (if ca1 then idle else if ca2 then low  else high);
+  ps = idle -> pre s;
+  y = merge s 
+             ( idle -> A0(x when idle(s)))
+             ( low  -> A1(x when low(s)) )
+             ( high -> A2(x when high(s)));
+tel
+
+node B(x:data; nom, sby: bool) returns (z:data);
+var
+  sby_when_not_nom : bool when not nom;
+let
+  sby_when_not_nom = sby when not nom;
+  z = merge nom 
+  (true -> B0(x when nom))
+  (false -> (merge sby_when_not_nom
+             (true -> B1(x when sby_when_not_nom))
+             (false -> (0 -> pre z)  when not sby_when_not_nom)));
+tel
+node B_old(x:data; nom, sby: bool) returns (z:data);
+let
+	z = if nom then current (B0(x when nom))
+	    else if sby then current (B1(x when sby))
+		 else (0 -> pre z);
+tel
+
+node modes3x2_v4(x:data; on_off, toggle: bool) returns (res: data);
+var
+	y, z : data;	
+	sby : bool;
+	nom : bool;
+);
+let
+	assert #(on_off, toggle);
+
+	y = A(x, on_off, toggle);
+	z = B(y, nom, sby);
+
+	(* coordination commandes *)
+	--pcritic, critic = switch(false, on_off, on_off);
+	--sleep = pcritic and (on_off or toggle);
+	sby = (on_off = (true -> pre nom));
+	nom = (on_off = (false -> pre sby));
+	res = y + z;
+tel
