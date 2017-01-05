@@ -7,7 +7,7 @@ node ONE_BUTTON(change,init: bool) returns (state:bool);
 let
  state = init -> if change then not pre(state) else pre(state);
 tel
-node poussoir (e3,init:bool) returns (s3, s4:bool);
+node pusher (e3,init:bool) returns (s3, s4:bool);
 let
  s3 = TWO_STATES(e3,e3,init);
  s4 = ONE_BUTTON(e3,init);
