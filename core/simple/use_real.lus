@@ -1,0 +1,5 @@
+node use_real(x:real) returns (y:real);
+let
+  y = (x +. .42.0) -. 42.0 *. 42.0 /. 42.0;
+tel
+
