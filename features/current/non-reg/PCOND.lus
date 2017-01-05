@@ -1,0 +1,60 @@
+node PCOND( 
+           h0:bool; 
+           hA,hB,hC:bool;
+           A:int ; 
+           B:int ; 
+           C:bool;
+           hD:bool; 
+           D:bool )
+returns (hX:bool; X:int);
+var
+  hX1 : bool when h0;
+  X1 : int when hX1; 
+  hA_when_h0,hB_when_h0,hC_when_h0 : bool  when h0;
+  hD_when_hC_when_h0  : bool when hC_when_h0;
+let
+  assert((h0=true)->true);
+  assert((hA=true)->true);
+  assert((hB=true)->true);
+  assert((hC=true)->true);
+  assert((hD=true)->true);
+
+  hX = current(hX1);
+  X = current(current(X1));
+  hA_when_h0 = hA when h0;
+  hB_when_h0 = hB when h0;
+  hC_when_h0 = hC when h0;
+  hD_when_hC_when_h0 = hD  when hC_when_h0;
+  hX1, X1 = PCOND_clk( 
+           h0,
+           hA_when_h0,
+           hB when h0, 
+           hC when h0,
+           A when hA_when_h0,
+           B when hB_when_h0, 
+           C when hC_when_h0,
+           hD when hC_when_h0, 
+           D when hD_when_hC_when_h0);
+tel
+
+node PCOND_clk( 
+           h0:bool; 
+           hA,hB,hC:bool when h0;
+           A:int when hA; 
+           B:int when hB; 
+           C:bool when hC;
+           hD:bool when hC; 
+           D:bool when hD)
+returns (hX:bool when h0; X:int when hX);
+let
+  hX = hC and current(hD) and ( ( hA and
+                                 current(current(D)) ) 
+                               or 
+                               ( hB and not
+                                current(current(D)) ) );
+
+  X = ( if ( hA and current(current(D)) )
+        then current(A) 
+        else current(B) 
+       ) when hX;
+tel
