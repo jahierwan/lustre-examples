@@ -6,5 +6,5 @@ tel
   
 node use_fby(x: bool) returns (res: bool);
 let
-  res = after(c);
+  res = after(x);
 tel
