@@ -73,7 +73,7 @@ tel
 ----------- un noeud principal pour tester le tout ----------------------
 type tab3d = int^n^m^p;
 
-node arrays( init_incr: int; init_long: long ) 
+node test_iter( init_incr: int; init_long: long ) 
 		returns ( ok: bool; red_res : int; fillred_res : long );
 var 
 			fill_res : tab3d;	
