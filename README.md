@@ -1,4 +1,5 @@
-# suite Lustre
+
+# Suite Lustre
 
 This is a benchmark library for the Lustre synchronous dataflow language and 
 its extensions. It is intended for demonstrating and testing features of the 
@@ -8,7 +9,22 @@ The main aim is to collect both conformance tests and larger examples to aid
 both tool developers and users. A secondary aim is to promote unity and 
 compatibility.
 
-## core
+# Lustre Suite Illustre 
+
+This is a Lustre program suite that aims at illustrating the use of
+the Lustre synchronous dataflow language and its extensions. It is
+intended for demonstrating and testing features of the language in
+different tools.
+
+The main aim is to collect both conformance tests and larger examples to aid 
+both tool developers and users. A secondary aim is to promote unity and 
+compatibility.
+
+
+
+
+## The directories structure
+### core
 
 The most basic subset supported in all languages derived from Lustre:
 - nodes (with multiple arguments and return values)
@@ -21,22 +37,22 @@ Does not require clocks or an initialization analysis.
 See: [LUSTRE: a declarative language for real-time 
 programming](http://dl.acm.org/citation.cfm?id=41641)
 
-## features
+### features
 
 The various tools support different dialects and features. We categorize 
 them here. Minor syntactic differences between tools must be treated by 
 filters mapping from the dialect used in the benchmarks (specified below for 
 each feature).
 
-## verimag-v6
+### velus, verimag-v6, verimag-v4, etc.
 
-Contains examples that are specific to the Verimag Lustre V6 language
+You the have one directory per Lustre dialect.Each directory contains
+3 sub-directories:
+- `basic`: contains simple programs that illustrate one eponymous concept at a time
+- `examples`: contains more complex examples
+- `non-reg`:  contains more tricky examples that aims at chalenging compilers
 
-## verimag-v4
 
-Contains examples that are specific to the Verimag Lustre V6 language
-
-## Languages XXX mv somewhere else
 
 The different Languages and their feature classifications:
 
