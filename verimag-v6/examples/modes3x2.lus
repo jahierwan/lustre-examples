@@ -1,4 +1,4 @@
--- Time-stamp: <modified the 06/01/2017 (at 13:31) by Erwan Jahier>
+-- Time-stamp: <modified the 06/01/2017 (at 13:41) by Erwan Jahier>
 
 type data = int;
 
@@ -49,7 +49,6 @@ var
 	y, z : data;	
 	sby : bool;
 	nom : bool;
-);
 let
 	assert #(on_off, toggle);
 
