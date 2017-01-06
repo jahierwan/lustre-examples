@@ -1,5 +1,0 @@
-node array_concat2(x:bool^3) returns (y: bool^3^2);
-let
-	y = [x]|[x];
-tel
-
