@@ -1,4 +1,4 @@
--- Time-stamp: <modified the 04/01/2017 (at 10:47) by Erwan Jahier>
+-- Time-stamp: <modified the 06/01/2017 (at 13:30) by Erwan Jahier>
 
 -------------------------------------------------------------------
 -- Compute the hood motion speed
@@ -92,7 +92,7 @@ tel
 ------------------------------------------------------------------------
 type vehicle_state = enum { stationnary, run, anti_col };         --
 
-node main (Start, Parked, Rot, Tic, OnOff, Done: bool ; Distance:real) 
+node convertible(Start, Parked, Rot, Tic, OnOff, Done: bool ; Distance:real) 
 returns(Danger, Locked : bool; Speed, Roof_Speed :real);
 var
   St:vehicle_state;

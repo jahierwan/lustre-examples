@@ -1,4 +1,4 @@
--- Time-stamp: <modified the 05/01/2017 (at 15:29) by Erwan Jahier>
+-- Time-stamp: <modified the 06/01/2017 (at 13:31) by Erwan Jahier>
 
 type data = int;
 
@@ -44,7 +44,7 @@ let
 		 else (0 -> pre z);
 tel
 
-node modes3x2_v4(x:data; on_off, toggle: bool) returns (res: data);
+node modes3x2(x:data; on_off, toggle: bool) returns (res: data);
 var
 	y, z : data;	
 	sby : bool;
