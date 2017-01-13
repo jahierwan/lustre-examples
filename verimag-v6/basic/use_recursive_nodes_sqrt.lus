@@ -1,0 +1,22 @@
+-- Time-stamp: <modified the 13/01/2017 (at 10:23) by Erwan Jahier>
+
+-- Demonstrate the use of recursive nodes to compute the square root
+-- using a Newton–Raphson method
+
+function squareR <<const n : int>>(x,presqrt:real) returns (Sqrt:real);
+var sqrt:real;
+    ecart:bool;
+let
+	ecart =( abs(presqrt-sqrt)<0.0005);
+	sqrt = (0.5*(presqrt + x/presqrt));
+
+	Sqrt = with(n<=1) then sqrt
+			 else (merge ecart
+            (true -> sqrt when ecart)
+            (false -> (squareR<<(n-1)>> ((x when not ecart),(sqrt when not ecart)))));	
+tel
+
+function use_recursive_nodes_sqrt (x:real) returns (res : real);
+let
+	res = squareR <<5>> (x, 1.0);
+tel
