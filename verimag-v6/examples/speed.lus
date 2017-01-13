@@ -1,0 +1,80 @@
+-- Time-stamp: <modified the 13/01/2017 (at 16:59) by Erwan Jahier> 
+
+-- This node computes the speed (of some vehicle with wheels) out
+-- of two sampled inputs:
+-- + Rot, which is true for one step each time the wheel has performed
+--   a complete rotation
+-- + input, which is true for one step each time some external clock has emitted
+--   a signal indicating that some constant amount of time elapsed (e.g., 100 ms)  
+--
+-- This example was inspired from a real program in a train regulating system
+
+  
+const period = 0.1;  -- in seconds
+const wheel_girth = 1.4;  -- in meter
+const size = 20; -- size of the sliding window used to compute the speed
+      
+node compute_speed(Rot, Tic: bool) returns (Speed:real);
+var
+  d,t,dx,tx:real;
+let
+  dx = if Rot then wheel_girth else 0.0;
+  tx = if Tic then period else 0.0;
+  d = sum<<size,0.0>>(dx);
+  t = sum<<size,period>>(tx);
+  -- the speed is actually the average speed during the last "size*period" seconds  
+  Speed = (d/t);
+  -- nb : yes there can be some division by zero! For instance if the vehicle
+  -- overtakes the speed of size*wheel_girth/period
+  -- (i.e., with size=20, period=0.1, wheel_girth=1.4, if the speed is > 1008km/h)
+  -- This means that for high-speed vehicle, one needs to increase "size".
+tel
+
+-- The idea is to call the node that do the computation only when needed, i.e.,
+-- when Tic or Rot is true. 
+node speed(Rot, Tic: bool) returns (Speed:real);
+var
+  TicOrRot : bool;
+  NewSpeed : real when TicOrRot;
+let
+  TicOrRot = Tic or Rot;
+  NewSpeed = compute_speed(Rot when TicOrRot, Tic when TicOrRot);
+  Speed = current(NewSpeed);
+tel
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+-- computes the sum of the last d values taken by s
+node sum<<const d: int; const init:real>>(s: real) returns (res:real);
+var
+  a,pre_a: real^d; -- circular array
+  i: int; 
+let
+  i = 0 fby i + 1;
+  pre_a = (init^d) fby a;
+  a = assign<<d>>(s, i mod d, pre_a);
+  res =red<<+; d>>(0.0, a); 
+tel
+
+------------------------------------------------------------------------
+-- assign the jth element of an array to a value. v.(j) <- i
+type update_acc = {
+  i: int; 
+  j: int; 
+  v: real
+};
+  
+function update_cell_do<<const d: int>>(acc: update_acc; cell: real) 
+returns (nacc: update_acc; ncell: real);
+let
+  ncell = if acc.i = acc.j then acc.v else cell;
+  nacc = update_acc { i = acc.i+1; j = acc.j ; v = acc.v };
+tel
+
+function assign<<const d: int>>(v: real; jv: int;  t: real^d) returns (nt: real^d)
+var
+  dummy: update_acc; 
+let
+  dummy, nt=fillred<<update_cell_do<<d>>; d>>( update_acc { i=0 ; j=jv ; v=v }, t);
+tel
+
