@@ -828,64 +828,41 @@ convertible_speed_kmh_ctx_type* convertible_speed_kmh_ctx_new_ctx(){
   return ctx;
 }
 // Step function(s) for convertible_speed_kmh_ctx
-void convertible_speed_kmh_step(_boolean Rot,_boolean Tic,_real *Speed,convertible_speed_kmh_ctx_type* ctx){   _real _v_87;
-   _real _v_86;
-   _real _v_85;
-   _real _v_84;
-   _real _v_83;
-   _real _v_82;
-   _real _v_81;
-   _real _v_80;
-   _real _v_79;
-   _real _v_78;
-   _real _v_77;
-   _real _v_76;
-   _real d;
-   _real t;
-   _real pd;
-   _real pt;
-   _real dx;
-   _real tx;
-   _boolean TicOrRot;
+void convertible_speed_kmh_step(_boolean Rot,_boolean Tic,_real *Speed,convertible_speed_kmh_ctx_type* ctx){
+  _real _v_87, _v_86, _v_85, _v_84, _v_83, _v_82, _v_81, _v_80;
+  _real _v_79, _v_78, _v_77, _v_76, d, t, pd, pt, dx, tx;
+  _boolean TicOrRot;
 
-   if (Rot == _true) {
-     dx = 1.4;
-   } else {
-     dx = 0.0;
-   }
-   if (Tic == _true) {
-     tx = 0.1;
-   } else {
-     tx = 0.0;
-   }
+   if (Rot == _true) { dx = 1.4; } else { dx = 0.0; }
+   if (Tic == _true) { tx = 0.1; } else { tx = 0.0; }
   TicOrRot = Tic | Rot;
   Lustre_pre_3_get(&_v_76,&ctx->Lustre_pre_3_ctx_tab[0]); 
   Lustre_arrow_3_step(0.0,_v_76,&pd,&ctx->Lustre_arrow_3_ctx_tab[0]); 
   switch (TicOrRot){
   case _false:
-  _v_78 = pd;
-  d = _v_78;
-  break;
+    _v_78 = pd;
+    d = _v_78;
+    break;
   case _true:
-  _v_79 = dx;
-  sum_50_0d0_step(_v_79,&_v_80,&ctx->sum_50_0d0_ctx_tab[0]); 
-  d = _v_80;
-  break;
-}
+    _v_79 = dx;
+    sum_50_0d0_step(_v_79,&_v_80,&ctx->sum_50_0d0_ctx_tab[0]); 
+    d = _v_80;
+    break;
+  }
   Lustre_pre_3_set(d,&ctx->Lustre_pre_3_ctx_tab[0]); 
   Lustre_pre_3_get(&_v_77,&ctx->Lustre_pre_3_ctx_tab[1]); 
   Lustre_arrow_3_step(0.0,_v_77,&pt,&ctx->Lustre_arrow_3_ctx_tab[1]); 
   switch (TicOrRot){
   case _false:
-  _v_83 = pt;
-  _v_84 = _v_83;
-  break;
+    _v_83 = pt;
+    _v_84 = _v_83;
+    break;
   case _true:
-  _v_81 = tx;
-  sum_50_0d1_step(_v_81,&_v_82,&ctx->sum_50_0d1_ctx_tab[0]); 
-  _v_84 = _v_82;
-  break;
-}
+    _v_81 = tx;
+    sum_50_0d1_step(_v_81,&_v_82,&ctx->sum_50_0d1_ctx_tab[0]); 
+    _v_84 = _v_82;
+    break;
+  }
   convertible_maxr_step(0.1,_v_84,&t); 
   Lustre_pre_3_set(t,&ctx->Lustre_pre_3_ctx_tab[1]); 
   Lustre_pre_3_get(&_v_87,&ctx->Lustre_pre_3_ctx_tab[2]); 
