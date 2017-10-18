@@ -1,0 +1,26 @@
+const
+  period:real = 0.5;
+
+-- type SwitchMode = enum { ON, OFF, AUTO };
+type SwitchMode =  int;
+const
+  ON=0;
+  OFF=1;
+  AUTO=2;
+
+node front_montant(x : bool) returns (res : bool); 
+let
+ res = x -> (x and not pre(x));
+tel
+function max(x,y:real) returns (res:real);
+let
+  res = if x>y then x else y;
+tel
+  -- end of max
+node vrai_depuis_n_secondes(signal: bool; n: real) returns (res: bool);
+var
+  tempo : real;
+let
+  tempo = n -> if not signal then n else max (0.0, pre tempo - period);
+  res = (tempo = 0.0);
+tel 

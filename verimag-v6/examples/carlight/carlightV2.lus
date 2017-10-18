@@ -1,0 +1,55 @@
+const
+  period:real = 0.5;
+
+type SwitchMode = enum { ON, OFF, AUTO };
+
+
+
+node carlight_auto(intensity:real; pre_is_on:bool)
+returns (res:bool);
+let
+  res =     if pre_is_on then -- intensity <= 70.0
+               if vrai_depuis_n_secondes(pre_is_on and intensity > 70.0, 3.0)
+               then false else pre_is_on
+             else
+               if vrai_depuis_n_secondes(not(pre_is_on) and intensity < 60.0, 2.0)
+               then true else pre_is_on
+             ; 
+tel
+
+node carlight(switch_pos:SwitchMode; intensity:real) returns (is_on:bool);
+var 
+  fm_auto : bool;
+  res_auto : bool when AUTO(switch_pos);
+let
+  fm_auto = front_montant(switch_pos=AUTO);
+  res_auto= 
+    if fm_auto when AUTO(switch_pos) then 
+      (intensity <= 70.0) when AUTO(switch_pos) 
+    else
+      carlight_auto(intensity when AUTO(switch_pos), 
+                    pre(is_on) when AUTO(switch_pos));
+  is_on = merge switch_pos 
+           (ON  -> true)
+           (OFF -> false)
+           (AUTO-> res_auto);
+tel
+
+
+
+node front_montant(x : bool) returns (res : bool); 
+let
+ res = x -> (x and not pre(x));
+tel
+function max(x,y:real) returns (res:real);
+let
+  res = if x>y then x else y;
+tel
+  -- end of max
+node vrai_depuis_n_secondes(signal: bool; n: real) returns (res: bool);
+var
+  tempo : real;
+let
+  tempo = n -> if not signal then n else max (0.0, pre tempo - period);
+  res = (tempo = 0.0);
+tel 

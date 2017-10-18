@@ -1,0 +1,53 @@
+--include "phares.lus"
+--include "phare_spec.lus"
+
+
+node sat_req1(switch_pos:SwitchMode; intensity:real) returns (ok:bool);
+var
+is_on:bool;
+let
+  is_on = phares(switch_pos, intensity);
+  ok = req1(switch_pos, intensity, is_on);
+tel
+  -- end of sar_req1
+node sat_req2(switch_pos:SwitchMode; intensity:real) returns (ok:bool);
+var
+is_on:bool;
+let
+  is_on = phares(switch_pos, intensity);
+  ok = req2(switch_pos, intensity, is_on);
+tel
+
+node sat_req31(switch_pos:SwitchMode; intensity:real) returns (ok:bool);
+var
+  is_on:bool;
+  c1,c2:bool;
+let
+  is_on = phares(switch_pos, intensity);
+  ok,c1,c2 = req31(switch_pos, intensity, is_on);
+tel
+node sat_req32(switch_pos:SwitchMode; intensity:real) returns (ok:bool);
+var
+  is_on:bool;
+  c1,c2:bool;
+let
+  is_on = phares(switch_pos, intensity);
+  ok,c1,c2 = req32(switch_pos, intensity, is_on);
+tel
+node sat_req33(switch_pos:SwitchMode; intensity:real) returns (ok:bool);
+var
+  is_on:bool;
+  c1:bool;
+let
+  is_on = phares(switch_pos, intensity);
+  ok,c1 = req33(switch_pos, intensity, is_on);
+tel
+
+node sat_req34(switch_pos:SwitchMode; intensity:real) returns (ok:bool);
+var
+  is_on:bool;
+  c1:bool;
+let
+  is_on = phares(switch_pos, intensity);
+  ok,c1 = req34(switch_pos, intensity, is_on);
+tel

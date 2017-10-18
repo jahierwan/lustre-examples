@@ -1,0 +1,24 @@
+
+node carlight(switch_pos:SwitchMode; intensity:real) returns (is_on:bool);
+let
+  is_on = 
+    if switch_pos = ON then true
+    else if switch_pos = OFF then false
+    else
+  -- AUTO
+           if front_montant(switch_pos=AUTO) then intensity <= 70.0 else
+             if pre(is_on) then -- intensity <= 70.0
+               if vrai_depuis_n_secondes(
+                    switch_pos=AUTO and pre(is_on) and intensity > 70.0,
+                   3.0)
+               then false else pre(is_on)
+             else
+               if vrai_depuis_n_secondes(
+                    switch_pos=AUTO and not(pre(is_on)) and intensity < 60.0,
+                   2.0)
+               then true else pre(is_on);
+tel
+  -- end of carlight 
+
+
+

@@ -1,0 +1,98 @@
+-- include "phares_type.lus"
+
+
+  -- - =REQ_001=  : if  the switch  is ON  then the  headlights must  turn
+  -- -- --   immediately on
+function req1(switch_pos: SwitchMode; intensity: real;is_on:bool) returns (res:bool);
+let
+  res = (switch_pos=ON) => is_on;
+tel
+
+  -- - =REQ_002= :  if the  switch is  OFF then  the headlights  must turn
+  --   immediately off
+function req2(switch_pos: SwitchMode; intensity: real; is_on:bool) returns (res:bool);
+let
+  res = (switch_pos=OFF) => not(is_on);
+tel
+
+  -- - =REQ_003= :  if the switch is  AUTO then the headlights  turn on or
+  --   off,  depending on  the ambient  light intensity  - with  a defined
+  --   hysteresis to prevent blinking. More precisily:
+  -- 
+  --   +  =REQ_003.1= if  the  switch is  turned to  AUTO,  and the  light
+  --     intensity is at  or below 70% then the headlights  should stay or
+  --     turn immediately  ON. Afterwards  the headlights  shall be  ON in
+  --     AUTO as long as the light intensity is not above 70%
+  -- 
+node req31(switch_pos: SwitchMode; intensity: real;is_on:bool) returns (res,c1,c2:bool);
+var
+  p1,p2:bool;
+  autom: bool;
+let
+  autom = (switch_pos=AUTO);
+  c1 = (front_montant(autom) and (intensity<=70.0));
+  p1 = c1 => is_on;
+  --afterwards
+  c2 = false -> autom and ((not(pre(c2)) and c1) or (pre(c2) and (intensity <= 70.0)));
+  p2 = c2 => (is_on=(intensity <= 70.0));
+  res = p1 and p2;
+tel
+
+  --   +  =REQ_003.2= if  the  switch is  turned to  AUTO,  and the  light
+  --     intensity is  above 70% then  the headlights should stay  or turn
+  --     immediately OFF. Afterwards  the headlights shall be  OFF in AUTO
+--     as long as the light intensity is not below 60%
+node req32(switch_pos: SwitchMode; intensity: real;is_on:bool)
+returns (res, c1, c2 :bool);
+var
+  autom,p1,p2:bool;
+let
+  autom = (switch_pos=AUTO);
+  c1 = front_montant(autom) and (intensity>70.0);
+  p1 = c1 => (is_on=false);
+  --afterwards
+  c2 = false -> autom and ((not(pre(c2)) and c1) or (pre(c2) and (intensity > 60.0)));
+  p2 = c2 => (is_on=false);
+  res = p1 and p2;
+tel
+
+--   + =REQ_003.3= if the switch is in position AUTO, the headlights are
+--     OFF, and  the light intensity  falls bellow 60%, then  the lights
+--     should turn ON if this condition lasts for 2s
+node req33(switch_pos: SwitchMode; intensity: real;is_on:bool)
+returns (res,cond:bool);
+var
+  c:bool;
+let
+  c = false -> pre((switch_pos = AUTO and (is_on=false) and intensity < 60.0));
+  cond = switch_pos = AUTO and intensity < 60.0 and vrai_depuis_n_secondes(c,2.0);
+  res = cond => is_on;
+tel
+
+--   + =REQ_003.4= if the switch is in position AUTO, the headlights are
+--     ON, and the light intensity is  above 70%, then the lights should
+--     turn OFF if this condition lasts for 3s
+node req34(switch_pos: SwitchMode; intensity: real;is_on:bool)
+returns (res,cond:bool);
+var
+  c:bool;
+let
+  c = false -> pre ((switch_pos = AUTO) and is_on and intensity > 70.0);
+  cond = (switch_pos = AUTO) and intensity > 70.0 and vrai_depuis_n_secondes(c, 3.0);
+  res = cond => (is_on=false);
+tel
+
+node all(switch_pos: SwitchMode; intensity: real; is_on:bool)
+returns (res,cov_Req31_1,cov_Req31_2,cov_Req32_1,cov_Req32_2,cov_Req33,cov_Req34:bool;
+  Req1,Req2,Req31,Req32,Req33,Req34:bool
+         );
+let
+  Req1 =req1 (switch_pos, intensity, is_on);
+  Req2 =req2 (switch_pos, intensity, is_on);
+  Req31,cov_Req31_1,cov_Req31_2=req31(switch_pos, intensity, is_on);
+  Req32,cov_Req32_1,cov_Req32_2=req32(switch_pos, intensity, is_on);
+  Req33,cov_Req33=req33(switch_pos, intensity, is_on);
+  Req34,cov_Req34=req34(switch_pos, intensity, is_on);
+  res = Req1 and Req2 and Req31 and Req32 and Req33 and Req34;
+tel
+
