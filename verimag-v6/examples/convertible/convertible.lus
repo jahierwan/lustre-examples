@@ -1,7 +1,7 @@
--- Time-stamp: <modified the 06/01/2017 (at 13:30) by Erwan Jahier>
+-- Time-stamp: <modified the 09/02/2018 (at 17:39) by Erwan Jahier>
 
 -------------------------------------------------------------------
--- Compute the hood motion speed
+-- Compute the roof motion speed
 
   
 const period = 0.1;  -- in seconds
@@ -16,28 +16,28 @@ const max_dist_sensor = 200.0;
 
 type roof_state = enum { locked, in_motion };
 
-node roof(Tic, Parked, OnOff, Done: bool) returns (Locked:bool; Roof_Speed:real);
+node roof(Tick, Parked, OnOff, Done: bool) returns (Locked:bool; Roof_Speed:real);
 var 
   pst, st : roof_state;
-  Tic_on_in_motion : bool when in_motion(st);
+  Tick_on_in_motion : bool when in_motion(st);
 let
   pst = locked fby st;
   st =  merge pst  
          (locked    -> if (OnOff and Parked) when locked(pst) then in_motion else locked)
          (in_motion -> if Done when in_motion(pst) then locked else in_motion);
   Locked = (st=locked) ;
-  Tic_on_in_motion = Tic when in_motion(st);
+  Tick_on_in_motion = Tick when in_motion(st);
   Roof_Speed = merge st
     (locked    -> 0.0 when locked(st))
-    (in_motion -> roof_speed(Tic_on_in_motion));
+    (in_motion -> roof_speed(Tick_on_in_motion));
 tel
 
 type roof_speed_state = enum { wait, fast, slow };
 
-node roof_speed(Tic:bool) returns (Roof_Speed:real);
+node roof_speed(Tick:bool) returns (Roof_Speed:real);
 var 
-  pst, st : roof_speed_state when Tic;
-  kh, Roof_Percent, pRoof_Percent : real when Tic;
+  pst, st : roof_speed_state when Tick;
+  kh, Roof_Percent, pRoof_Percent : real when Tick;
   slow_it_down : real when slow(st);
   pRoof_Speed : real;
 let
@@ -55,8 +55,8 @@ let
   kh = 100./(5./period); -- so that the roof opens in ~5 seconds
   pRoof_Speed = 0.0 fby Roof_Speed;
   Roof_Speed =
-    merge Tic
-     (false -> pRoof_Speed when not Tic)
+    merge Tick
+     (false -> pRoof_Speed when not Tick)
      (true ->
       merge st
         (wait -> 0.0)
@@ -70,29 +70,29 @@ tel
 
 -------------------------------------------------------------------
 
-node speed_kmh(Rot, Tic: bool) returns (Speed:real);
+node speed_kmh(Rot, Tick: bool) returns (Speed:real);
 var
   d,t,pd,pt,dx,tx:real;
-  TicOrRot:bool;
+  TickOrRot:bool;
 let
   dx = if Rot then wheel_girth else 0.0;
-  tx = if Tic then period else 0.0;
-  TicOrRot = Tic or Rot;
+  tx = if Tick then period else 0.0;
+  TickOrRot = Tick or Rot;
   pd = 0.0 fby d;
   pt = 0.0 fby t;
-  d = merge TicOrRot 
-        (true -> sum<<size,0.0>>(dx when TicOrRot))
-        (false -> pd when not TicOrRot);
-  t = maxr(period, merge TicOrRot 
-        (true ->  sum<<size,period>>(tx when TicOrRot))
-        (false -> pt when not TicOrRot));
+  d = merge TickOrRot 
+        (true -> sum<<size,0.0>>(dx when TickOrRot))
+        (false -> pd when not TickOrRot);
+  t = maxr(period, merge TickOrRot 
+        (true ->  sum<<size,period>>(tx when TickOrRot))
+        (false -> pt when not TickOrRot));
   Speed = 0.0 fby ms_to_kmh(d/t);
 tel
   
 ------------------------------------------------------------------------
 type vehicle_state = enum { stationnary, run, anti_col };         --
 
-node convertible(Start, Parked, Rot, Tic, OnOff, Done: bool ; Distance:real) 
+node main (Start, Parked, Rot, Tick, OnOff, Done: bool ; Dist:real) 
 returns(Danger, Locked : bool; Speed, Roof_Speed :real);
 var
   St:vehicle_state;
@@ -101,23 +101,23 @@ let
     -- Allows Lesar to state that:  not(parked)=>locked
     -- ie, in_motion => parked
   -- Feedback loop ! 
-  (Locked,Roof_Speed) = roof(Tic, Parked, OnOff, Done);
-  Speed  = speed_kmh(Rot, Tic);
-  St = vehicle(Start, Locked, Speed, Distance);
+  (Locked,Roof_Speed) = roof(Tick, Parked, OnOff, Done);
+  Speed  = speed_kmh(Rot, Tick);
+  St = vehicle(Start, Locked, Speed, Dist);
   Danger = merge St 
       (stationnary -> false)
       (run -> false)
-      (anti_col -> may_collide(Speed when anti_col(St), Distance when anti_col(St)));
+      (anti_col -> may_collide(Speed when anti_col(St), Dist when anti_col(St)));
 tel
 
-node vehicle(Start, Locked:bool ; Speed, Distance : real)
+node vehicle(Start, Locked:bool ; Speed, Dist : real)
 returns (st : vehicle_state);
 var
   pst: vehicle_state;
   ac_cond : bool;
 let
   pst = stationnary fby st;
-  ac_cond = Speed >= speed_max ; -- and Distance < max_dist_sensor;
+  ac_cond = Speed >= speed_max ; -- and Dist < max_dist_sensor;
   st =  merge pst
     (stationnary ->
         if (Start and Locked) when stationnary(pst)
@@ -135,13 +135,13 @@ let
         else anti_col);
 tel
 
-node may_collide(Speed, Distance:real) returns (Res:bool);
+node may_collide(Speed, Dist:real) returns (Res:bool);
 var
   Accel, tChoc, tBrake : real;
 let
   Accel  = 0.0 -> (Speed-pre(Speed))/period;
   tBrake = braking_time(Speed);
-  tChoc  = solve_eq_d2(Accel, 2.0*Speed, -2.0 * Distance);
+  tChoc  = solve_eq_d2(Accel, 2.0*Speed, -2.0 * Dist);
   Res = tChoc < 2.0 + tBrake;
 tel
 
@@ -178,7 +178,7 @@ let
 tel
 
 ------------------------------------------------------------------------
--- assign the jth element of an array to a value. v.(j) <- i
+-- assign the jth element of an array to a value.
 type update_acc = {
   i: int; 
   j: int; 
