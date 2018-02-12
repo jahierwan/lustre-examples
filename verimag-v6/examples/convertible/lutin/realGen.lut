@@ -56,7 +56,7 @@ node up_and_down2_old(min, max, delta : real) returns (x : real) =
         | run x := up(pre x, ldelta)   in loop { x < lmax }
         | run x := down(pre x, ldelta) in loop { x > lmin }
        }
-node up_and_down2(min, max, delta : real) returns (x : real) =   
+node up_down(min, max, delta : real) returns (x : real) =   
    Between(x, min, max)
  fby
    loop 
