@@ -1,7 +1,15 @@
-node fby_d<<const n:int; type t>> (init,x:t) returns(res:t)=
+node fby_d<<const n:int; type t>> (init,x:t) returns(res:t);
 let
-  	res = with (n = 0)
-  	     then init
-  	 	  else fby_d<<n-1>>();
+  	res = with (n = 0) then x
+  	  	   else init fby fby_d<<n-1,t>>(init,x);
 
 tel
+
+node fby3=fby_d<<3,int>>
+
+
+node test_fby_d(x:int) returns (res:int);
+let
+  res = fby3(0,x);
+tel
+

@@ -1,19 +1,16 @@
 
-node toto(a,b: int) returns (x,y,z: int);
+node some_node(a,b: int) returns (x,y,z: int);
 let
 	x = a + b;
 	y = 0 fby y + 1;
 	z = x fby z + a;
 tel
-node toto_nm(a,b: int) returns (x,y,z: int);
-let
-	x = a + b;
-	y =   1;
-	z =   a;
-tel
 
 node use_condact(c: bool; a,b:int) returns (x,y,z: int);
 let
-	(x, y, z) = condact<<toto, (11, 42, 12)>>(c, a, b);
+  -- some_node is called iff c is true.
+  -- (x, y, z) keeps their values when c is false
+  -- (11, 42, 12) is used if c is false at the first step.
+	(x, y, z) = condact<<some_node, (11, 42, 12)>>(c, a, b);
 tel
 -- 
