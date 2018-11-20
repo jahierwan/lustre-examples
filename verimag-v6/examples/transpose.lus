@@ -1,0 +1,50 @@
+-- Time-stamp: <modified the 19/11/2018 (at 17:46) by Erwan Jahier>
+
+node transpose<<const n:int; const m:int; type t>>(x:t^m^n) returns (y:t^n^m);
+let
+  y =
+  --  with n = 0 then []
+  -- If could talk about the empty array in Lustre, life would be nicer! grrr.
+  with n = 1 then 
+     map<<scal_to_array<<t>>, m >>(x[0])      
+  else
+     add_vect_to_matrix <<n-1,m,t>>(x[0], transpose<<n-1,m,t>>(x[1..n-1]));
+tel
+
+node scal_to_array<<type t>>(x:t) returns (res:t^1);
+let
+  res = [x];
+tel
+
+node add_vect_to_matrix<<const n:int; const m:int; type t>>
+        (x:t^m; y:t^n^m) 
+returns (res:t^(n+1)^m);
+let
+  res = 
+  with m = 1 then [ [ x[0]] | y[0] ]
+  else            [ [ x[0]] | y[0] ] 
+                  | add_vect_to_matrix<<n,m-1,t>> (x[1..m-1], y[1..m-1]);
+tel
+
+--------------------------------------------------------------------------------
+node test_transpose(x:int^4^2) returns (res:int^2^4);
+let
+  res = transpose<<2,4,int>>(x);
+tel
+
+--------------------------------------------------------------------------------
+-- Let's show with lesar that transpose is an involution
+--      lv6 transpose.lus -n transpose_is_involutive -ec -o proove_me.ec
+--      lesar proove_me.ec transpose_is_involutive
+node transpose_is_involutive(x:bool^4^2) returns (res:bool);
+var
+  y: bool^2^4;
+  z: bool^4^2;
+let
+  y = transpose<<2,4,bool>>(x);
+  z = transpose<<4,2,bool>>(y);
+  res = ( x = z ); 
+tel
+--------------------------------------------------------------------------------
+
+
