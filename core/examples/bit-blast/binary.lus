@@ -1,0 +1,88 @@
+
+-- Signed binary 
+
+--const BIN_SZ=8;
+type UsrInt = bool^BIN_SZ;
+
+const UsrInt_0 = false^BIN_SZ;
+
+
+node UsrIntIf(
+	c : bool; x : UsrInt; y : UsrInt
+) returns (
+	s : UsrInt
+);
+let
+	s = if c^BIN_SZ then x else y;
+tel
+
+node UsrIntPlus(
+	x : UsrInt; y : UsrInt
+) returns (
+	s : UsrInt
+);
+var c : bool^(BIN_SZ+1);
+let
+	c[0] = false;
+
+	c[1..BIN_SZ] = if c[0..BIN_SZ-1] then (x or y) else (x and y); 
+	s = x xor y xor c[0..BIN_SZ-1];
+tel
+
+node UsrIntChs(
+	x : UsrInt;
+) returns (
+	s : UsrInt
+);
+var c : bool^(BIN_SZ+1);
+let
+	c[0] = false;
+	c[1..BIN_SZ] = c[0..BIN_SZ-1] or x;	
+	s = c[0..BIN_SZ-1] xor x;
+tel
+
+node UsrIntMinus(
+	x : UsrInt; y : UsrInt
+) returns (
+	s : UsrInt
+);
+let
+	s = UsrIntPlus(x, UsrIntChs(y));
+tel
+
+
+node UsrIntGt( x : UsrInt; y : UsrInt) returns ( o : bool);
+var
+	z : UsrInt;
+let
+	-- x > y <=> y - x < 0
+	z = UsrIntPlus(y, UsrIntChs(x));
+	o = z[BIN_SZ-1];
+tel
+
+node UsrIntLt( x : UsrInt; y : UsrInt) returns ( o : bool);
+let
+	-- x < y <=> y > x
+	o = UsrIntGt(y,x);
+tel
+
+node UsrIntGte( x : UsrInt; y : UsrInt) returns ( o : bool);
+let
+	-- x >= y <=> not y > x
+	o = not UsrIntGt(y,x);
+tel
+
+node UsrIntLte( x : UsrInt; y : UsrInt) returns ( o : bool);
+let
+	-- x <= y <=> not x > y
+	o = not UsrIntGt(x,y);
+tel
+
+node UsrIntEq( x : UsrInt; y : UsrInt) returns ( o : bool);
+var
+	a : bool^BIN_SZ+1;
+let
+	a[0] = true;
+	a[1..BIN_SZ] = a[0..BIN_SZ-1] and (x = y);	
+	o = a[BIN_SZ-1];
+tel

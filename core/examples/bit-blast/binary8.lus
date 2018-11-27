@@ -1,0 +1,32 @@
+
+-- to be included BEFORE binary.lus
+
+const BIN_SZ=8;
+
+const UsrInt_0  = [0, 0, 0, 0, 0, 0, 0, 0];
+const UsrInt_1  = [1, 0, 0, 0, 0, 0, 0, 0];
+const UsrInt_2  = [0, 1, 0, 0, 0, 0, 0, 0];
+const UsrInt_3  = [1, 1, 0, 0, 0, 0, 0, 0];
+const UsrInt_4  = [0, 0, 1, 0, 0, 0, 0, 0];
+const UsrInt_5  = [1, 0, 1, 0, 0, 0, 0, 0];
+const UsrInt_6  = [0, 1, 1, 0, 0, 0, 0, 0];
+const UsrInt_7  = [1, 1, 1, 0, 0, 0, 0, 0];
+const UsrInt_8  = [0, 0, 0, 1, 0, 0, 0, 0];
+
+const UsrInt_9  = [1, 0, 0, 1, 0, 0, 0, 0];
+const UsrInt_10 = [0, 1, 0, 1, 0, 0, 0, 0];
+const UsrInt_11 = [1, 1, 0, 1, 0, 0, 0, 0];
+const UsrInt_12 = [0, 0, 1, 1, 0, 0, 0, 0];
+const UsrInt_13 = [1, 0, 1, 1, 0, 0, 0, 0];
+const UsrInt_14 = [0, 1, 1, 1, 0, 0, 0, 0];
+const UsrInt_15 = [1, 1, 1, 1, 0, 0, 0, 0];
+const UsrInt_16 = [0, 0, 0, 0, 1, 0, 0, 0];
+
+const UsrInt_17 = [1, 0, 0, 0, 1, 0, 0, 0];
+const UsrInt_18 = [0, 1, 0, 0, 1, 0, 0, 0];
+const UsrInt_19 = [1, 1, 0, 0, 1, 0, 0, 0];
+const UsrInt_20 = [0, 0, 1, 0, 1, 0, 0, 0];
+const UsrInt_21 = [1, 0, 1, 0, 1, 0, 0, 0];
+const UsrInt_22 = [0, 1, 1, 0, 1, 0, 0, 0];
+const UsrInt_23 = [1, 1, 1, 0, 1, 0, 0, 0];
+-- to be continued
